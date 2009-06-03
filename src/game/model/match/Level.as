@@ -1,4 +1,4 @@
-﻿package game.model.game 
+﻿package game.model.match 
 {
 	
 	/**

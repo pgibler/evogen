@@ -10,7 +10,7 @@
 		
 		public function get RoundWinsToWinMatch():int
 		{
-			
+			return roundWinsToWinMatch;
 		}
 		
 		public function TournamentSettings() 
