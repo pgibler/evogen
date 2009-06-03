@@ -1,5 +1,6 @@
-﻿package org.evogen
+﻿package org.evogen.genetics.trait 
 {
+	import org.evogen.util.Nameable;
 	
 	/**
 	 * <code>TraitTemplate</code> is an interface that defines how a trait is represented in DNA, and can generate traits of its type randomly.

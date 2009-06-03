@@ -1,6 +1,7 @@
-﻿package org.evogen
+﻿package org.evogen.entity
 {
 	import flash.utils.Dictionary;
+	import org.evogen.genetics.chromosome.Chromosome;
 	
 	/**
 	 * A <code>Specimen</code> contains traits and a dictionary of data. The data's purpose is to have the information it contains

@@ -3,14 +3,14 @@
 	import adobe.utils.CustomActions;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import org.evogen.BinaryTraitTemplate;
+	import org.evogen.genetics.trait.BinaryTraitTemplate;
 	import org.evogen.Breeder;
-	import org.evogen.Chromosome;
-	import org.evogen.ChromosomeTemplate;
-	import org.evogen.ContinuousTraitTemplate;
-	import org.evogen.DiscreteTraitTemplate;
-	import org.evogen.FuzzyTraitTemplate;
-	import org.evogen.Specimen;
+	import org.evogen.genetics.chromosome.Chromosome;
+	import org.evogen.genetics.chromosome.ChromosomeTemplate;
+	import org.evogen.genetics.trait.ContinuousTraitTemplate;
+	import org.evogen.genetics.trait.DiscreteTraitTemplate;
+	import org.evogen.genetics.trait.FuzzyTraitTemplate;
+	import org.evogen.entity.Specimen;
 	
 	/**
 	 * ...

@@ -1,7 +1,8 @@
-﻿package org.evogen
+﻿package org.evogen.genetics.trait 
 {
 	import flash.errors.IllegalOperationError;
 	import flash.utils.Dictionary;
+	import org.evogen.util.Nameable;
 	
 	/**
 	 * A <code>Trait</code> is characteristic of a specimen.

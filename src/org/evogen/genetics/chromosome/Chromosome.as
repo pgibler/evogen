@@ -1,6 +1,8 @@
-﻿package org.evogen
+﻿package org.evogen.genetics.chromosome
 {
 	import flash.utils.Dictionary;
+	import org.evogen.util.Nameable;
+	import org.evogen.genetics.trait.Trait
 	
 	/**
 	 * A <code>Chromosome</code> defines the set of traits that a creature can have.

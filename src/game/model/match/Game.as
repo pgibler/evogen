@@ -1,13 +1,15 @@
-﻿package game.model
+﻿package game.model.match
 {
+	import game.model.character.Character;
 	
 	/**
 	 * ...
 	 * @author Paul Gibler
 	 */
-	public class GameState 
+	public class Game 
 	{
 		
+		public var IsComplete:Boolean;
 		public function get Player1():Character
 		{
 			return player1;
@@ -17,10 +19,11 @@
 			return player2;
 		}
 		
-		public function GameState(player1:Character, player2:Character) 
+		public function Game(player1:Character, player2:Character) 
 		{
 			this.player1 = p1;
 			this.player2 = p2;
+			this.IsComplete = false;
 		}
 		
 		private var player1 : Character;

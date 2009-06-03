@@ -1,4 +1,4 @@
-﻿package org.evogen 
+﻿package org.evogen.genetics.trait 
 {
 	
 	/**

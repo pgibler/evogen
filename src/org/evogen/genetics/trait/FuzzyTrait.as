@@ -1,4 +1,4 @@
-﻿package org.evogen
+﻿package org.evogen.genetics.trait 
 {
 	import flash.errors.IllegalOperationError;
 	import flash.utils.Dictionary;
