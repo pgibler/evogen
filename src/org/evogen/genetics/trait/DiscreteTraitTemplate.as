@@ -21,7 +21,7 @@
 		 */
 		public function AddState(state:String):DiscreteTraitTemplate
 		{
-			_states.push(state);
+			states.push(state);
 			return this;
 		}
 		
@@ -32,7 +32,7 @@
 		 */
 		public function RemoveState(state:String):DiscreteTraitTemplate
 		{
-			_states.splice(_states.indexOf(state), 1);
+			states.splice(states.indexOf(state), 1);
 			return this;
 		}
 		
@@ -43,10 +43,10 @@
 			var trait : DiscreteTrait = new DiscreteTrait(name, this);
 			for each(var s : String in states)
 			{
-				trait.addState(s);
+				trait.AddState(s);
 			}
-			var dnaChar : String = dna.substr(0, dnaLength);
-			trait.currentState = states[parseInt(dnaChar)];
+			var dnaChar : String = dna.substr(0, DNALength);
+			trait.CurrentState = states[parseInt(dnaChar)];
 			return trait;
 		}
 		
@@ -55,10 +55,10 @@
 			var trait : DiscreteTrait = new DiscreteTrait(name, this);
 			for each(var s : String in states)
 			{
-				trait.addState(s);
+				trait.AddState(s);
 			}
 			var stateNum : int = Math.round(Math.random() * (states.length - 1));
-			trait.currentState = states[stateNum];
+			trait.CurrentState = states[stateNum];
 			return trait;
 		}
 		

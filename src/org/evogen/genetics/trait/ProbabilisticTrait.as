@@ -4,10 +4,10 @@
 	import flash.utils.Dictionary;
 	
 	/**
-	 * A <code>FuzzyTrait</code> is characteristic that has more than one discrete possible state.
+	 * A <code>ProbabilisticTrait</code> is characteristic that has more than one discrete possible state.
 	 * @author Paul Gibler
 	 */
-	public class FuzzyTrait implements Trait
+	public class ProbabilisticTrait implements Trait
 	{
 		/**
 		 * The probabilities of each state occuring. The indices of stateProbabilities coincide with the indices of states.
@@ -17,7 +17,7 @@
 			return stateProbabilities;
 		}
 		/**
-		 * The set of all states that the FuzzyTrait can have.
+		 * The set of all states that the ProbabilisticTrait can have.
 		 */
 		public function get States (): Vector.<String>
 		{
@@ -25,17 +25,17 @@
 		}
 		
 		/**
-		 * Creates an instance of <code>FuzzyTrait</code>.
+		 * Creates an instance of <code>ProbabilisticTrait</code>.
 		 */
-		public function FuzzyTrait(name:String, template:FuzzyTraitTemplate)
+		public function ProbabilisticTrait(name:String, template:ProbabilisticTraitTemplate)
 		{
 			this.name = name;
-			_template = template;
+			this.template = template;
 			states = new Vector.<String>();
 			stateProbabilities = new Vector.<Number>();
 		}
 				
-		internal function AddState(name:String, probability:Number):FuzzyTrait
+		internal function AddState(name:String, probability:Number):ProbabilisticTrait
 		{
 			states.push(name);
 			stateProbabilities.push(probability);
@@ -66,8 +66,8 @@
 			{
 				for (; i < stateProbabilities.length; i++)
 				{
-					var str : String = "0" + stateProbabilities[i].toFixed(FuzzyTraitTemplate.FUZZY_STRING_LENGTH - 1).substr(2, FuzzyTraitTemplate.FUZZY_STRING_LENGTH - 1);
-					while (str.length < FuzzyTraitTemplate.FUZZY_STRING_LENGTH)
+					var str : String = "0" + stateProbabilities[i].toFixed(ProbabilisticTraitTemplate.FUZZY_STRING_LENGTH - 1).substr(2, ProbabilisticTraitTemplate.FUZZY_STRING_LENGTH - 1);
+					while (str.length < ProbabilisticTraitTemplate.FUZZY_STRING_LENGTH)
 					{
 						str += "0"
 					}
@@ -84,10 +84,10 @@
 			return s;
 		}
 		
-		public function mutate():Trait
+		public function Mutate():Trait
 		{
-			var fz : FuzzyTrait = template.generateTrait() as FuzzyTrait;
-			this.stateProbabilities = fz.stateProbabilities;
+			var fz : ProbabilisticTrait = template.GenerateTrait() as ProbabilisticTrait;
+			this.stateProbabilities = fz.StateProbabilities;
 			return this;
 		}
 		
@@ -105,7 +105,7 @@
 			return name;
 		}
 
-		private var template : FuzzyTraitTemplate;
+		private var template : ProbabilisticTraitTemplate;
 		private var name : String;
 		private var states : Vector.<String>;
 		private var stateProbabilities : Vector.<Number>;

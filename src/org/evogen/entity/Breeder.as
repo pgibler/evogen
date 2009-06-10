@@ -1,5 +1,7 @@
 ﻿package org.evogen.entity
 {
+	import org.evogen.genetics.chromosome.Chromosome;
+	import org.evogen.genetics.trait.Trait;
 	
 	/**
 	 * The <code>Breeder</code> picks and chooses chromosomes from a population and breeds them together
@@ -105,8 +107,8 @@
 				newTraits.push(chromosome2.Traits[i]);
 			}
 			
-			returnme.traits = newTraits;
-			returnme.traitNames = chromosome1.TraitNames;
+			returnme.Traits = newTraits;
+			returnme.TraitNames = chromosome1.TraitNames;
 			return returnme;
 		}
 		

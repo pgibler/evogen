@@ -8,7 +8,7 @@
 	public class BinaryTraitTemplate implements TraitTemplate
 	{
 		
-		public function BinaryTraitTemplate(name:String) 
+		public function BinaryTraitTemplate(name:String="") 
 		{
 			this.name = name;
 		}

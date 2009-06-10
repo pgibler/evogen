@@ -18,9 +18,9 @@
 		
 		public function FromDNA(dna:String):Trait
 		{
-			var num : String = dna.substring(0, dnaLength);
-			_probability = parseFloat("0." + num);
-			return new ContinuousTrait(name, this, _probability);
+			var num : String = dna.substring(0, DNALength);
+			probability = parseFloat("0." + num);
+			return new ContinuousTrait(name, this, probability);
 		}
 		
 		public function GenerateTrait():Trait

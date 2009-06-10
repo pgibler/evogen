@@ -16,9 +16,19 @@
 			return traits;
 		}
 		
+		public function set Traits(traits:Vector.<Trait>):void
+		{
+			this.traits = traits;
+		}
+		
 		public function get TraitNames():Vector.<String>
 		{
 			return traitNames;
+		}
+		
+		public function set TraitNames(traitNames:Vector.<String>):void
+		{
+			this.traitNames = traitNames;
 		}
 		
 		public function get Template():ChromosomeTemplate

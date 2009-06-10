@@ -24,13 +24,13 @@
 		
 		public function Mutate():Trait
 		{
-			value = (template.generateTrait() as ContinuousTrait).value;
+			value = (template.GenerateTrait() as ContinuousTrait).value;
 			return this;
 		}
 		
 		public function ToDNA():String
 		{
-			var dna : String = String(_value).substr(2, template.DNALength);
+			var dna : String = String(value).substr(2, template.DNALength);
 			while (dna.length < template.DNALength)
 			{
 				dna += "0"

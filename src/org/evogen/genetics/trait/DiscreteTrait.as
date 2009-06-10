@@ -17,7 +17,7 @@
 		
 		internal function AddState(state:String):DiscreteTrait
 		{
-			_states.push(state);
+			states.push(state);
 			return this;
 		}
 		
@@ -40,7 +40,7 @@
 		
 		/* INTERFACE org.evogen.Trait */
 		
-		public function Nutate():Trait
+		public function Mutate():Trait
 		{
 			var possibleStates : Vector.<String> = states.slice();
 			possibleStates.splice(states.indexOf(currentState), 1);

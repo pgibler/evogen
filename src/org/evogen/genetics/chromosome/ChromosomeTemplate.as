@@ -1,5 +1,6 @@
 ﻿package org.evogen.genetics.chromosome
 {
+	import org.evogen.genetics.trait.Trait;
 	import org.evogen.genetics.trait.TraitTemplate;
 	import org.evogen.util.Nameable;
 	
