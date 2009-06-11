@@ -7,7 +7,7 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class AirKickAction implements Action
+	public class BlockAction implements Action
 	{
 		
 		public function IsValid(player:Player, match:Match):Boolean
@@ -22,7 +22,7 @@
 		
 		public function FrameLag():int
 		{
-			return 100;
+			return 20;
 		}
 		
 	}

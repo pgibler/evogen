@@ -17,8 +17,20 @@
 		
 		public function PerformAction(player:Player, match:Match):Player
 		{
-			player.CurrentMatch.GetOpponentOf(player);
+			if (player.Position.x > player.CurrentOpponent.Position.x)
+			{
+				player.Position.x -= player.WalkSpeed;
+			}
+			else
+			{
+				player.Position.x += player.WalkSpeed;
+			}
 			return player;
+		}
+		
+		public function FrameLag():int
+		{
+			return 0;
 		}
 		
 	}

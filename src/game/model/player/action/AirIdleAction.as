@@ -5,19 +5,31 @@
 	
 	/**
 	 * ...
-	 * @author pgibler
+	 * @author 
 	 */
-	public class GroundPunchAction implements Action
+	public class AirIdleAction implements Action
 	{
+		
+		/* INTERFACE game.model.player.action.Action */
 		
 		public function IsValid(player:Player, match:Match):Boolean
 		{
-			return player.OnGround && !player.IsAttacking;
+			return this;
 		}
 		
 		public function PerformAction(player:Player, match:Match):Player
 		{
-			return player;
+			return this;
+		}
+		
+		public function get FrameLag():int
+		{
+			return 0;
+		}
+		
+		public function OnComplete():Action
+		{
+			return this;
 		}
 		
 	}

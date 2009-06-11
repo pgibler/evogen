@@ -4,6 +4,12 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.utils.getQualifiedClassName;
+	import game.controller.callback.MatchCallbackImpl;
+	import game.controller.player.PlayerController;
+	import game.controller.runner.MatchRunner;
+	import game.model.match.Match;
+	import game.model.player.condition.Production;
+	import game.model.player.Player;
 	import org.evogen.entity.Breeder;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -26,7 +32,21 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			testMatch();
 			
+		}
+		
+		private function testMatch():void
+		{
+			var prod : Production = new PlayerProduction
+			var pc : PlayerController = new PlayerController(
+			var p1 : Player = new Player(
+			var match : Match = new Match(
+			var mr : MatchRunner = new MatchRunner(new MatchCallbackImpl(), 
+		}
+		
+		private function testGenetics():void
+		{
 			var ct : ChromosomeTemplate = new ChromosomeTemplate();
 			ct.AddTraitTemplate(new ProbabilisticTraitTemplate("crouching").AddState("attack").AddState("stand").AddState("jump"));
 			ct.AddTraitTemplate(new ContinuousTraitTemplate("penis"));

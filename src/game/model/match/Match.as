@@ -1,5 +1,7 @@
 ﻿package game.model.match
 {
+	import flash.display.DisplayObjectContainer;
+	import flash.geom.Point;
 	import game.model.player.Player;
 	
 	/**
@@ -8,9 +10,25 @@
 	 */
 	public class Match 
 	{
-		public function get Level():Level
+		public function get StartingPositions():Vector.<Point>
+		{
+			return startingPositions;
+		}
+		public function get Winner():Player
+		{
+			return winner;
+		}
+		public function get Loser():Player
+		{
+			return loser;
+		}
+		public function get MatchLevel():Level
 		{
 			return level;
+		}
+		public function get ViewContainer():DisplayObjectContainer
+		{
+			return viewContainer;
 		}
 		public function get IsComplete():Boolean
 		{
@@ -41,6 +59,10 @@
 		{
 			return winner;
 		}
+		public function get TimeElapsed():Number
+		{
+			return timeElapsed;
+		}
 		
 		public function Match(player1:Player, player2:Player, level:Level) 
 		{
@@ -56,15 +78,19 @@
 			player2.CurrentMatch = this;
 			player1.CurrentOpponent = player2;
 			player2.CurrentOpponent = player1;
+			
+			var threshhold : Number = 30;
+			startingPositions.push(level.LeftWallX + threshhold);
+			startingPositions.push(level.RightWallX - threshhold);
 		}
 		
 		public function GetOpponentOf(player:Player):Player
 		{
-			if (player == player1)
+			if (player === player1)
 			{
 				return player2;
 			}
-			else if (player == player2)
+			else if (player === player2)
 			{
 				return player1;
 			}
@@ -78,9 +104,10 @@
 		
 		public function DeclareWinner(player:Player):void
 		{
-			if (player == player1 || player == player2)
+			if (player === player1 || player === player2)
 			{
 				this.winner = player;
+				this.loser = player.CurrentOpponent;
 			}
 			else
 			{
@@ -88,6 +115,12 @@
 			}
 		}
 		
+		private static var timeMax : Number;
+		private var startingPositions : Vector.<Point>;
+		private var viewContainer : DisplayObjectContainer;
+		private var winner : Player;
+		private var loser : Player;
+		private var timeElapsed : Number;
 		private var level : Level;
 		private var player1Wins : int;
 		private var player2Wins : int;

@@ -17,7 +17,14 @@
 		
 		public function PerformAction(player:Player, match:Match):Player
 		{
+			player.XSpeed = player.WalkSpeed * -1 * player.FacingDirection;
+			player.YSpeed = player.JumpSpeed;
 			return player;
+		}
+		
+		public function FrameLag():int
+		{
+			return 10;
 		}
 		
 	}

@@ -20,6 +20,11 @@
 			return player;
 		}
 		
+		public function FrameLag():int
+		{
+			return 10;
+		}
+		
 	}
 	
 }

@@ -8,22 +8,22 @@
 	public class AvailableActions 
 	{
 		
-		private static var returnme : Vector.<Class>;
+		private static var returnme : Vector.<Action>;
 		
-		public static function GetAllActions():Vector.<Class>
+		public static function GetAllActions():Vector.<Action>
 		{
 			if (returnme == null)
 			{
 				returnme = new Vector.<Class>();
-				returnme.push(JumpAwayAction);
-				returnme.push(JumpTowardsAction);
-				returnme.push(JumpUpAction);
-				returnme.push(MoveAwayAction);
-				returnme.push(MoveTowardsAction);
-				returnme.push(GroundKickAction);
-				returnme.push(GroundPunchAction);
-				returnme.push(AirPunchAction);
-				returnme.push(AirKickAction);
+				returnme.push(new JumpAwayAction());
+				returnme.push(new JumpTowardsAction());
+				returnme.push(new MoveAwayAction());
+				returnme.push(new MoveTowardsAction());
+				returnme.push(new GroundKickAction());
+				returnme.push(new AirKickAction());
+				returnme.push(new BlockAction());
+				returnme.push(new AirIdleAction());
+				returnme.push(new GroundIdleAction());
 			}
 			return returnme;
 		}
