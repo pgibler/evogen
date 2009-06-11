@@ -3,8 +3,8 @@
 	import flash.display.Stage;
 	import flash.ui.Keyboard;
 	import fighter.model.game.Game;
-	import fighter.model.player.action.Action;
-	import fighter.model.player.condition.Production;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.production.Production;
 	import fighter.model.player.Player;
 	
 	/**

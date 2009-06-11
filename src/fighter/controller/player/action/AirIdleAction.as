@@ -1,4 +1,4 @@
-﻿package fighter.model.player.action 
+﻿package fighter.controller.player.action 
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
@@ -10,7 +10,7 @@
 	public class AirIdleAction implements Action
 	{
 		
-		/* INTERFACE fighter.model.player.action.Action */
+		/* INTERFACE fighter.controller.player.action.Action */
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{

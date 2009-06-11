@@ -1,16 +1,16 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.condition 
 {
-	import fighter.model.player.action.AvailableActions;
+	import fighter.controller.player.action.AvailableActions;
 	import flash.ui.Keyboard;
 	import flash.utils.getQualifiedClassName;
 	import fighter.model.game.Game;
-	import fighter.model.player.action.Action;
-	import fighter.model.player.action.AirKickAction;
-	import fighter.model.player.action.GroundKickAction;
-	import fighter.model.player.action.JumpAwayAction;
-	import fighter.model.player.action.JumpTowardsAction;
-	import fighter.model.player.action.MoveAwayAction;
-	import fighter.model.player.action.MoveTowardsAction;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.AirKickAction;
+	import fighter.controller.player.action.GroundKickAction;
+	import fighter.controller.player.action.JumpAwayAction;
+	import fighter.controller.player.action.JumpTowardsAction;
+	import fighter.controller.player.action.MoveAwayAction;
+	import fighter.controller.player.action.MoveTowardsAction;
 	import fighter.model.player.Player;
 	import fighter.util.KeyObject;
 	
@@ -38,7 +38,7 @@
 			possibleActionsWhenFalse = AvailableActions.GetAllActions();
 		}
 		
-		/* INTERFACE fighter.model.player.condition.Condition */
+		/* INTERFACE fighter.controller.player.condition.Condition */
 		
 		public function EvaluateCondition(player:Player, game:Game):Boolean
 		{

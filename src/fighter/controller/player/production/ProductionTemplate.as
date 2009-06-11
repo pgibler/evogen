@@ -1,7 +1,8 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.production
 {
+	import fighter.controller.player.condition.Condition;
 	import flash.errors.IllegalOperationError;
-	import fighter.model.player.action.Action;
+	import fighter.controller.player.action.Action;
 	
 	/**
 	 * ...

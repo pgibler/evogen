@@ -1,8 +1,8 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.condition 
 {
 	import flash.utils.getQualifiedClassName;
-	import fighter.model.player.action.Action;
-	import fighter.model.player.action.AvailableActions;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.AvailableActions;
 	import fighter.model.player.Player;
 	import fighter.model.fighter.Game;
 	

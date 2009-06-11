@@ -1,13 +1,7 @@
-﻿package fighter.model.player.condition.human 
+﻿package fighter.controller.player.production
 {
-	import fighter.model.player.action.Action;
-	import fighter.model.player.condition.Condition;
-	import fighter.model.player.condition.JumpKeyDownCondition;
-	import fighter.model.player.condition.KickKeyDownCondition;
-	import fighter.model.player.condition.LeftKeyDownCondition;
-	import fighter.model.player.condition.Production;
-	import fighter.model.player.condition.ProductionTemplate;
-	import fighter.model.player.condition.RightKeyDownCondition;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.condition.*;
 	import fighter.util.MathUtil;
 	
 	/**

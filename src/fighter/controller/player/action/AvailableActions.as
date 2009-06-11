@@ -1,4 +1,4 @@
-﻿package fighter.model.player.action 
+﻿package fighter.controller.player.action 
 {
 	
 	/**

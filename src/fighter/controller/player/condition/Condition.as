@@ -1,7 +1,7 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.condition 
 {
 	import fighter.model.game.Game;
-	import fighter.model.player.action.Action;
+	import fighter.controller.player.action.Action;
 	import fighter.model.player.Player;
 	
 	/**

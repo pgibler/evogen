@@ -1,7 +1,7 @@
-﻿package fighter.model.player.condition.human 
+﻿package fighter.controller.player.production
 {
-	import fighter.model.player.action.Action;
-	import fighter.model.player.condition.ActionSelector;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.condition.ActionSelector;
 	
 	/**
 	 * ...

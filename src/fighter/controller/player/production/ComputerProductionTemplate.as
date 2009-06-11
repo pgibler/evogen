@@ -1,8 +1,8 @@
-﻿package fighter.model.player.condition.computer
+﻿package fighter.controller.player.production
 {
 	import flash.utils.getQualifiedClassName;
-	import fighter.model.player.action.Action;
-	import fighter.model.player.condition.ProductionTemplate;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.condition.ProductionTemplate;
 	import fighter.util.MathUtil;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -10,7 +10,7 @@
 	import org.evogen.genetics.trait.ProbabilisticTrait;
 	import org.evogen.genetics.trait.ProbabilisticTraitTemplate;
 	import org.evogen.genetics.trait.Trait;
-	import fighter.model.player.condition.*;
+	import fighter.controller.player.condition.*;
 	
 	/**
 	 * ...

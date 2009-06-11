@@ -1,10 +1,10 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.condition 
 {
 	import flash.geom.Point;
 	import flash.utils.getQualifiedClassName;
 	import fighter.model.fighter.Game;
-	import fighter.model.player.action.Action;
-	import fighter.model.player.action.AvailableActions;
+	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.AvailableActions;
 	import fighter.model.player.Player;
 	
 	/**

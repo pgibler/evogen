@@ -10,9 +10,9 @@
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.runner.GameRunner;
 	import fighter.model.game.Game;
-	import fighter.model.player.condition.human.HumanProductionTemplate;
-	import fighter.model.player.condition.Production;
-	import fighter.model.player.condition.ProductionTemplate;
+	import fighter.controller.player.production.HumanProductionTemplate;
+	import fighter.controller.player.production.Production;
+	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
 	import org.evogen.entity.Breeder;

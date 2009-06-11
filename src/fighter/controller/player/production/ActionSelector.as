@@ -1,6 +1,6 @@
-﻿package fighter.model.player.condition 
+﻿package fighter.controller.player.production 
 {
-	import fighter.model.player.action.Action;
+	import fighter.controller.player.action.Action;
 	
 	/**
 	 * ...

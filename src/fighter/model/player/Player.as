@@ -1,6 +1,6 @@
 ﻿package fighter.model.player
 {
-	import fighter.model.player.action.Action;
+	import fighter.controller.player.action.Action;
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import fighter.controller.player.PlayerController;
