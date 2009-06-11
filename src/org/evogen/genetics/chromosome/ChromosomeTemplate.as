@@ -32,12 +32,12 @@
 		}
 		
 		/**
-		 * Generates a chromosome from DNA that matches this particular template.
+		 * Generates a chromosome from DNA that gamees this particular template.
 		 * A DNA string is structured as follows:
 		 * 	- Traits are a variable series of numbers in a DNA string.
 		 *  - Traits are ordered in the DNA. However, due to the varying size of the traits, their starting indice is not guaranteed.
 		 * @param	dna The dna which is used to generate the chromosome.
-		 * @return	A chromosome from DNA that matches this particular template.
+		 * @return	A chromosome from DNA that gamees this particular template.
 		 */
 		public function FromDNA(dna:String):Chromosome
 		{

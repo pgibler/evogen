@@ -1,15 +1,20 @@
 ﻿package 
 {
 	import adobe.utils.CustomActions;
+	import fighter.model.game.Level;
+	import fighter.util.KeyObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.utils.getQualifiedClassName;
-	import game.controller.callback.MatchCallbackImpl;
-	import game.controller.player.PlayerController;
-	import game.controller.runner.MatchRunner;
-	import game.model.match.Match;
-	import game.model.player.condition.Production;
-	import game.model.player.Player;
+	import fighter.controller.callback.GameCallbackImpl;
+	import fighter.controller.player.PlayerController;
+	import fighter.controller.runner.GameRunner;
+	import fighter.model.game.Game;
+	import fighter.model.player.condition.human.HumanProductionTemplate;
+	import fighter.model.player.condition.Production;
+	import fighter.model.player.condition.ProductionTemplate;
+	import fighter.model.player.Player;
+	import fighter.model.tournament.TournamentSettings;
 	import org.evogen.entity.Breeder;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -32,17 +37,27 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			testMatch();
+			testGame();
 			
 		}
 		
-		private function testMatch():void
+		private function testGame():void
 		{
-			var prod : Production = new PlayerProduction
-			var pc : PlayerController = new PlayerController(
-			var p1 : Player = new Player(
-			var match : Match = new Match(
-			var mr : MatchRunner = new MatchRunner(new MatchCallbackImpl(), 
+			KeyObject.initialize(stage);
+			
+			var prodTemp : ProductionTemplate = new HumanProductionTemplate();
+			var prod : Production = prodTemp.GenerateProduction();
+			var pc : PlayerController = new PlayerController(prod);
+			var p1 : Player = new Player(pc);
+			prod = prodTemp.GenerateProduction();
+			pc = new PlayerController(prod);
+			var p2 : Player = new Player(pc);
+			var game : Game = new Game(p1, p2, new Level(null, null));
+			var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, new TournamentSettings());
+			
+			gr.Start();
+			
+			addEventListener(Event.ENTER_FRAME, gr.Update);
 		}
 		
 		private function testGenetics():void
