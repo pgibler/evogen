@@ -71,14 +71,14 @@
 					actionVectors.push(currentActions);
 				}
 			}
-			
 			for (i = 0; i < actionVectors.length; i++)
 			{
 				currentActions = actionVectors[i];
-				leastActions.filter(function(item:*, index:int, array:Vector.<Action>):Boolean {
-					return currentActions.indexOf(item) != -1;
+				leastActions = currentActions.filter(function(item:Action, index:int, array:Vector.<Action>):Boolean {
+					return leastActions.indexOf(item.Name) != -1;
 				});
 			}
+			trace(leastActions);
 			return leastActions;
 		}
 		

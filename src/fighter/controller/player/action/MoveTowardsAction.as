@@ -2,6 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	 * ...
@@ -9,6 +10,18 @@
 	 */
 	public class MoveTowardsAction implements Action
 	{
+		
+		public function MoveTowardsAction()
+		{
+			this.name = getQualifiedClassName(this);
+		}
+		
+		private var name : String;
+		
+		public function get Name():String
+		{
+			return name;
+		}
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{

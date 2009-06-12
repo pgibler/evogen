@@ -35,6 +35,10 @@
 		 * @return	Returns this action.
 		 */
 		function OnComplete(player:Player, game:Game):Action;
+		/**
+		 * Returns th name of the action.
+		 */
+		function get Name():String;
 	}
 	
 }

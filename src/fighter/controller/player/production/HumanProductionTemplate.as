@@ -30,7 +30,6 @@
 				var actions : Vector.<Action> = GetIntersectionOfActions(conditionString);
 				if (actions.length == 1)
 				{
-					trace(conditionString, actions[0]);
 					prod.AddRule(conditionString, new SingleActionSelector(actions[0]));
 				}
 				else

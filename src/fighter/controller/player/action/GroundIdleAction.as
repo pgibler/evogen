@@ -2,6 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	 * ...
@@ -10,7 +11,17 @@
 	public class GroundIdleAction implements Action
 	{
 		
-		/* INTERFACE fighter.controller.player.action.Action */
+		public function GroundIdleAction()
+		{
+			this.name = getQualifiedClassName(this);
+		}
+		
+		private var name : String;
+		
+		public function get Name():String
+		{
+			return name;
+		}
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{

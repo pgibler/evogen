@@ -31,7 +31,6 @@
 		public function SelectAction(conditionString:String):Action
 		{
 			var index : int = MathUtil.ConvertBinaryStringToBaseTenInteger(conditionString);
-			trace(index);
 			var actionSelector : ActionSelector = actionSelectors[index];
 			var a : Action = actionSelector == null ? null : actionSelector.SelectAction();
 			return a;

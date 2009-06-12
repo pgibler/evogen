@@ -33,17 +33,16 @@
 		public static function GetAllActionsExcluding(excluded : Vector.<Action>):Vector.<Action>
 		{
 			var excludedNames : Vector.<String> = new Vector.<String>();
-			excluded.forEach(function(action:Action, index:int, vector:Vector.<Action>):void
+			excluded.forEach(function(a:Action, index:int, vector:Vector.<Action>):void
 			{
-				excludedNames.push(getQualifiedClassName(action));
+				excludedNames.push(a.Name);
 			});
 			
 			var all : Vector.<Action> = GetAllActions();
 			
-			all = all.filter(function(action:Action, index:int, vector:Vector.<Action>):Boolean
+			all = all.filter(function(a:Action, index:int, vector:Vector.<Action>):Boolean
 			{
-				var name : String = getQualifiedClassName(action);
-				return excludedNames.indexOf(name) == -1;
+				return excludedNames.indexOf(a.Name) == -1;
 			});
 			return all;
 		}
