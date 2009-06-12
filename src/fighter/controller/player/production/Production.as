@@ -24,13 +24,16 @@
 		{
 			this.productionTemplate = productionTemplate;
 			this.conditions = productionTemplate.Conditions;
+			this.conditionStrings = new Vector.<String>();
 			this.actionSelectors = new Vector.<ActionSelector>();
 		}
 		
 		public function SelectAction(conditionString:String):Action
 		{
 			var index : int = MathUtil.ConvertBinaryStringToBaseTenInteger(conditionString);
-			return actionSelectors[index].SelectAction();
+			var actionSelector : ActionSelector = actionSelectors[index];
+			var a : Action = actionSelector == null ? null : actionSelector.SelectAction();
+			return a;
 		}
 		
 		public function AddRule(condition:String, actionSelector:ActionSelector):Production

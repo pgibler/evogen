@@ -27,10 +27,13 @@
 			{
 				var conditionString : String = MathUtil.ConvertBaseTenIntegerToBinaryString(i, Conditions.length);
 				var actions : Vector.<Action> = GetIntersectionOfActions(conditionString);
-				if (actions.length > 1)
+				if (actions.length == 1)
 				{
-					trace(conditionString, actions);
-					throw new Error("HumanProductionTemplate cannot generate a production with more than 1 action per intersection of conditions");
+					prod.AddRule(conditionString, new SingleActionSelector(actions[0]));
+				}
+				else
+				{
+					prod.AddRule(conditionString, null);
 				}
 				
 			}

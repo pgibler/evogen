@@ -39,7 +39,8 @@
 		
 		public function EvaluateCondition(player:Player, game:Game):Boolean
 		{
-			return KeyObject.instance.isDown(Keyboard.RIGHT);
+			var keyDown : Boolean = KeyObject.instance.isDown(Keyboard.RIGHT);
+			return keyDown;
 		}
 		
 		public function get PossibleActionsWhenTrue():Vector.<Action>

@@ -1,7 +1,6 @@
 ﻿package fighter.controller.player.production
 {
 	import fighter.controller.player.action.Action;
-	import fighter.controller.player.condition.ActionSelector;
 	
 	/**
 	 * ...
