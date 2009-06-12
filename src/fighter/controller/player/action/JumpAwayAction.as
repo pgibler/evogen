@@ -17,8 +17,9 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			player.XSpeed = player.WalkSpeed * -1 * player.FacingDirection;
-			player.YSpeed = player.JumpSpeed;
+			var angle : Number = 70;
+			var jumpX : Number = -player.FacingDirection * Math.cos(angle) * player.JumpSpeed;
+			var jumpY : Number = Math.sin(angle) * player.JumpSpeed;
 			return this;
 		}
 		

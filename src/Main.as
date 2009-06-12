@@ -37,8 +37,22 @@
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			testGame();
+			testAngle();
 			
+		}
+		
+		private var spr : Sprite = new Sprite();
+		private function testAngle():void
+		{
+			stage.addChild(spr);
+			stage.addEventListener(Event.ENTER_FRAME, draw);
+		}
+		private function draw(e:Event):void
+		{
+			spr.graphics.clear();
+			spr.graphics.lineStyle(1, 0x00FF00);
+			spr.graphics.moveTo(0, 0);
+			spr.graphics.lineTo(mouseX, mouseY);
 		}
 		
 		private function testGame():void
