@@ -1,5 +1,6 @@
 ﻿package fighter.controller.player.condition 
 {
+	import fighter.controller.player.action.AvailableActions;
 	import flash.ui.Keyboard;
 	import flash.utils.getQualifiedClassName;
 	import fighter.model.game.Game;
@@ -32,7 +33,7 @@
 			possibleActionsWhenTrue.push(new MoveAwayAction());
 			possibleActionsWhenTrue.push(new MoveTowardsAction());
 			
-			possibleActionsWhenFalse = possibleActionsWhenTrue
+			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding( possibleActionsWhenTrue );
 		}
 		
 		/* INTERFACE fighter.controller.player.condition.Condition */

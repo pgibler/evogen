@@ -24,12 +24,7 @@
 			possibleActionsWhenTrue.push(new AirKickAction());
 			possibleActionsWhenTrue.push(new GroundKickAction());
 			
-			possibleActionsWhenFalse = new Vector.<Action>();
-			possibleActionsWhenFalse.push(new MoveAwayAction());
-			possibleActionsWhenFalse.push(new MoveTowardsAction());
-			possibleActionsWhenFalse.push(new JumpAwayAction());
-			possibleActionsWhenFalse.push(new JumpTowardsAction());
-			possibleActionsWhenFalse.push(new BlockAction());
+			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(possibleActionsWhenTrue);
 		}
 		
 		/* INTERFACE fighter.controller.player.condition.Condition */

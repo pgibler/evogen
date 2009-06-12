@@ -11,9 +11,10 @@
 		public static function ConvertBinaryStringToBaseTenInteger(str:String):int
 		{
 			var returnval : int = 0;
-			for (var i : int = 0; i < str.length; i++)
+			var strLen : int = str.length;
+			for (var i : int = 0; i < strLen; i++)
 			{
-				returnval += parseInt(str.charAt(i)) * Math.pow(2, i);
+				returnval += parseInt(str.charAt(i)) * Math.pow(2, strLen-i-1);
 			}
 			return returnval;
 		}

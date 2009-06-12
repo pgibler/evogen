@@ -15,8 +15,8 @@
 		{
 			super(Vector.<Condition>([	new LeftKeyDownCondition(),
 										new RightKeyDownCondition(),
-										new KickKeyDownCondition(),
 										new JumpKeyDownCondition(),
+										new KickKeyDownCondition(),
 										new BlockKeyDownCondition() ]));
 		}
 		
@@ -30,6 +30,7 @@
 				var actions : Vector.<Action> = GetIntersectionOfActions(conditionString);
 				if (actions.length == 1)
 				{
+					trace(conditionString, actions[0]);
 					prod.AddRule(conditionString, new SingleActionSelector(actions[0]));
 				}
 				else

@@ -30,7 +30,7 @@
 			this.possibleActionsWhenTrue = new Vector.<Action>();
 			possibleActionsWhenTrue.push(new BlockAction());
 			
-			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(Vector.<Action>([new BlockAction()]));
+			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(possibleActionsWhenTrue);
 		}
 		
 		/* INTERFACE fighter.controller.player.condition.Condition */
