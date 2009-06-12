@@ -53,17 +53,14 @@
 		{
 			return health;
 		}
-		
 		public function get HealthMax():Number
 		{
 			return Player.healthMax;
 		}
-		
 		public function get DisplayContainer():Sprite
 		{
 			return displaycontainer;
 		}
-		
 		public function get PlayerSpecimen():Specimen
 		{
 			return specimen;

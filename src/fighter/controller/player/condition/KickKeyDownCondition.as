@@ -3,13 +3,7 @@
 	import flash.ui.Keyboard;
 	import flash.utils.getQualifiedClassName;
 	import fighter.model.game.Game;
-	import fighter.controller.player.action.Action;
-	import fighter.controller.player.action.AirKickAction;
-	import fighter.controller.player.action.GroundKickAction;
-	import fighter.controller.player.action.JumpAwayAction;
-	import fighter.controller.player.action.JumpTowardsAction;
-	import fighter.controller.player.action.MoveAwayAction;
-	import fighter.controller.player.action.MoveTowardsAction;
+	import fighter.controller.player.action.*;
 	import fighter.model.player.Player;
 	import fighter.util.KeyObject;
 	
@@ -25,16 +19,17 @@
 			super();
 			this.name = getQualifiedClassName(this);
 			
-			this.possibleActionsWhenTrue = new Vector.<Action>();
+			possibleActionsWhenTrue = new Vector.<Action>();
 			
 			possibleActionsWhenTrue.push(new AirKickAction());
 			possibleActionsWhenTrue.push(new GroundKickAction());
-			possibleActionsWhenTrue.push(new MoveTowardsAction());
-			possibleActionsWhenTrue.push(new MoveAwayAction());
-			possibleActionsWhenTrue.push(new JumpTowardsAction());
-			possibleActionsWhenTrue.push(new JumpAwayAction());
 			
-			possibleActionsWhenFalse = possibleActionsWhenTrue
+			possibleActionsWhenFalse = new Vector.<Action>();
+			possibleActionsWhenFalse.push(new MoveAwayAction());
+			possibleActionsWhenFalse.push(new MoveTowardsAction());
+			possibleActionsWhenFalse.push(new JumpAwayAction());
+			possibleActionsWhenFalse.push(new JumpTowardsAction());
+			possibleActionsWhenFalse.push(new BlockAction());
 		}
 		
 		/* INTERFACE fighter.controller.player.condition.Condition */

@@ -25,12 +25,10 @@
 			this.name = getQualifiedClassName(this);
 			this.possibleActionsWhenTrue = new Vector.<Action>();
 			
-			possibleActionsWhenTrue.push(new AirKickAction());
-			possibleActionsWhenTrue.push(new GroundKickAction());
-			possibleActionsWhenTrue.push(new MoveTowardsAction());
-			possibleActionsWhenTrue.push(new MoveAwayAction());
-			possibleActionsWhenTrue.push(new JumpTowardsAction());
 			possibleActionsWhenTrue.push(new JumpAwayAction());
+			possibleActionsWhenTrue.push(new JumpTowardsAction());
+			possibleActionsWhenTrue.push(new MoveAwayAction());
+			possibleActionsWhenTrue.push(new MoveTowardsAction());
 			
 			possibleActionsWhenFalse = possibleActionsWhenTrue
 		}

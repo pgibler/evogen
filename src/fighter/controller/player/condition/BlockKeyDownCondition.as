@@ -1,6 +1,7 @@
 ﻿package fighter.controller.player.condition 
 {
 	import fighter.controller.player.action.AvailableActions;
+	import fighter.controller.player.action.BlockAction;
 	import flash.ui.Keyboard;
 	import flash.utils.getQualifiedClassName;
 	import fighter.model.game.Game;
@@ -18,22 +19,25 @@
 	 * ...
 	 * @author 
 	 */
-	public class JumpKeyDownCondition implements Condition
+	public class BlockKeyDownCondition implements Condition
 	{
 		
-		public function JumpKeyDownCondition()
+		public function BlockKeyDownCondition()
 		{
 			super();
 			this.name = getQualifiedClassName(this);
 			
 			this.possibleActionsWhenTrue = new Vector.<Action>();
 			
-			possibleActionsWhenTrue.push(new AirKickAction());
-			possibleActionsWhenTrue.push(new GroundKickAction());
-			possibleActionsWhenTrue.push(new MoveTowardsAction());
-			possibleActionsWhenTrue.push(new MoveAwayAction());
-			possibleActionsWhenTrue.push(new JumpTowardsAction());
-			possibleActionsWhenTrue.push(new JumpAwayAction());
+			possibleActionsWhenTrue.push(new BlockAction());
+			
+			possibleActionsWhenFalse.push(new AirKickAction());
+			possibleActionsWhenFalse.push(new GroundKickAction());
+			possibleActionsWhenFalse = new Vector.<Action>();
+			possibleActionsWhenFalse.push(new MoveAwayAction());
+			possibleActionsWhenFalse.push(new MoveTowardsAction());
+			possibleActionsWhenFalse.push(new JumpAwayAction());
+			possibleActionsWhenFalse.push(new JumpTowardsAction());
 			
 			possibleActionsWhenFalse = AvailableActions.GetAllActions();
 		}

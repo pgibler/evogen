@@ -15,14 +15,19 @@
 			return !player.OnGround && !player.IsAttacking;
 		}
 		
-		public function PerformAction(player:Player, game:Game):Player
+		public function PerformAction(player:Player, game:Game):Action
 		{
-			return player;
+			return this;
 		}
 		
-		public function FrameLag():int
+		public function get FrameLag():int
 		{
 			return 20;
+		}
+		
+		public function OnComplete(player:Player, game:Game):Action
+		{
+			return this;
 		}
 		
 	}
