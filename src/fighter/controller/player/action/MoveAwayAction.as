@@ -17,6 +17,7 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.IsIdle = false;
 			if (player.Position.x > player.CurrentOpponent.Position.x)
 			{
 				player.Position.x += player.WalkSpeed;
@@ -35,6 +36,7 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
+			player.IsIdle = true;
 			return this;
 		}
 		

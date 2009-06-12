@@ -106,9 +106,22 @@
 			return facingDirection;
 		}
 		
+		public function set IsAttacking(val:Boolean):void
+		{
+			this.isAttacking = val;
+		}
 		public function get IsAttacking():Boolean
 		{
 			return isAttacking;
+		}
+		
+		public function set IsIdle(val:Boolean):void
+		{
+			this.isIdle = val;
+		}
+		public function get IsIdle():Boolean
+		{
+			return !isAttacking && !isBlocking;
 		}
 		
 		public function Player(controller:PlayerController)
@@ -151,6 +164,8 @@
 		private var displaycontainer : Sprite;
 		private var specimen : Specimen;
 		private var isAttacking : Boolean;
+		private var isBlocking : Boolean;
+		private var isIdle : Boolean;
 		private var position : Point;
 		
 	}

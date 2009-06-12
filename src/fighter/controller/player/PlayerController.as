@@ -27,7 +27,6 @@
 				for (var i : int = 0; i < rules.Conditions.length; i++)
 				{
 					conditionString += int(rules.Conditions[i].EvaluateCondition(player, game));
-					trace(conditionString);
 				}
 				var a : Action = rules.SelectAction(conditionString);
 				if (a != null && a.IsValid(player, game))

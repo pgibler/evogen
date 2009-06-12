@@ -14,10 +14,10 @@
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{
-			return this;
+			return true;
 		}
 		
-		public function PerformAction(player:Player, game:Game):Player
+		public function PerformAction(player:Player, game:Game):Action
 		{
 			return this;
 		}
@@ -27,7 +27,7 @@
 			return 0;
 		}
 		
-		public function OnComplete():Action
+		public function OnComplete(player:Player, game:Game):Action
 		{
 			return this;
 		}

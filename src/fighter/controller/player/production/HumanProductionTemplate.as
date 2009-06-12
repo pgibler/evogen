@@ -16,7 +16,8 @@
 			super(Vector.<Condition>([	new LeftKeyDownCondition(),
 										new RightKeyDownCondition(),
 										new KickKeyDownCondition(),
-										new JumpKeyDownCondition() ]));
+										new JumpKeyDownCondition(),
+										new BlockKeyDownCondition() ]));
 		}
 		
 		override public function GenerateProduction():Production 

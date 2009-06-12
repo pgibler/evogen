@@ -28,25 +28,16 @@
 			this.name = getQualifiedClassName(this);
 			
 			this.possibleActionsWhenTrue = new Vector.<Action>();
-			
 			possibleActionsWhenTrue.push(new BlockAction());
 			
-			possibleActionsWhenFalse.push(new AirKickAction());
-			possibleActionsWhenFalse.push(new GroundKickAction());
-			possibleActionsWhenFalse = new Vector.<Action>();
-			possibleActionsWhenFalse.push(new MoveAwayAction());
-			possibleActionsWhenFalse.push(new MoveTowardsAction());
-			possibleActionsWhenFalse.push(new JumpAwayAction());
-			possibleActionsWhenFalse.push(new JumpTowardsAction());
-			
-			possibleActionsWhenFalse = AvailableActions.GetAllActions();
+			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(Vector.<Action>([new BlockAction()]));
 		}
 		
 		/* INTERFACE fighter.controller.player.condition.Condition */
 		
 		public function EvaluateCondition(player:Player, game:Game):Boolean
 		{
-			return KeyObject.instance.isDown(65);
+			return KeyObject.instance.isDown(68);
 		}
 		
 		public function get PossibleActionsWhenTrue():Vector.<Action>

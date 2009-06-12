@@ -17,6 +17,7 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.IsAttacking = true;
 			return this;
 		}
 		
@@ -27,6 +28,7 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
+			player.IsAttacking = false;
 			return this;
 		}
 		

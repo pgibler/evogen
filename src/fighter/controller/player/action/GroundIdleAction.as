@@ -14,22 +14,22 @@
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{
-			
+			return !player.IsAttacking && player.IsIdle;
 		}
 		
-		public function PerformAction(player:Player, game:Game):Player
+		public function PerformAction(player:Player, game:Game):Action
 		{
-			
+			return this;
+		}
+		
+		public function OnComplete(player:Player, game:Game):Action
+		{
+			return this;
 		}
 		
 		public function get FrameLag():int
 		{
 			return 0;
-		}
-		
-		public function OnComplete():Action
-		{
-			return this;
 		}
 		
 	}
