@@ -17,6 +17,7 @@
 			{
 				returnme = new Vector.<Action>();
 				returnme.push(new JumpAwayAction());
+				returnme.push(new JumpUpAction());
 				returnme.push(new JumpTowardsAction());
 				returnme.push(new MoveAwayAction());
 				returnme.push(new MoveTowardsAction());
