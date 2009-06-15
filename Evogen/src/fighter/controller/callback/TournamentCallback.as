@@ -11,7 +11,7 @@
 	{
 		function OnTournamentStart(tournament:Tournament):void;
 		function OnTournamentEnd(tournament:Tournament):void;
-		function OnTournamentGameStart(tournament:Tournament, game:Game):void;
+		function OnTournamentUpdate(tournament:Tournament, game:Game):void;
 		function OnTournamentGameEnd(tournament:Tournament, game:Game):void;
 	}
 	

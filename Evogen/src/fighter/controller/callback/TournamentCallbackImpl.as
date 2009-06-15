@@ -39,8 +39,9 @@ package fighter.controller.callback
 			this.dispatchEvent(new TournamentEvent(tournament, TournamentEvent.TOURNAMENT_OVER));
 		}
 		
-		public function OnTournamentGameStart(tournament:Tournament, game:Game):void
+		public function OnTournamentUpdate(tournament:Tournament, game:Game):void
 		{
+			
 		}
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void

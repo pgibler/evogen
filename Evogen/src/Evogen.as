@@ -6,7 +6,6 @@ package
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
 	import fighter.controller.player.production.ProductionTemplate;
-	import fighter.controller.runner.GameRunner;
 	import fighter.controller.runner.GeneticAlgorithmRunner;
 	import fighter.model.game.Game;
 	import fighter.model.game.Level;

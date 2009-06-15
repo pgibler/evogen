@@ -1,8 +1,10 @@
 ﻿package fighter.model.game
 {
+	import fighter.controller.callback.GameCallback;
+	import fighter.model.player.Player;
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.geom.Point;
-	import fighter.model.player.Player;
 	
 	/**
 	 * ...
@@ -10,6 +12,10 @@
 	 */
 	public class Game 
 	{
+		public function get Callback():GameCallback
+		{
+			return this.Callback;
+		}
 		public function get StartingPositions():Vector.<Point>
 		{
 			return startingPositions;

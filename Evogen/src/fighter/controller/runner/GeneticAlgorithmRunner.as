@@ -1,5 +1,6 @@
 package fighter.controller.runner
 {
+	import fighter.controller.callback.TournamentCallback;
 	import fighter.controller.callback.TournamentCallbackImpl;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.ComputerProductionTemplate;
@@ -39,12 +40,15 @@ package fighter.controller.runner
 			this.currentGeneration = 0;
 			this.mode = mode;
 			var players : Vector.<Player> = GeneratePlayers(populationSize);
-			this.tournament = new Tournament( new TournamentCallbackImpl(), players, players[0], gamesToWinMatch);
+			trace("Starting Genetic Algorithm Runner with population size " + populationSize + " with top player " + players[0]);
+			tourneyCallback = new TournamentCallbackImpl();
+			this.tournament = new Tournament(tourneyCallback , players, players[0], gamesToWinMatch);
+			tourneyCallback.OnTournamentStart( tournament );
 		}
 		
 		public function Update(event:Event = null):void
 		{
-			
+			tourneyCallback.OnTournamentUpdate( tournament, tournament.CurrentGame );
 		}
 		
 		private function GeneratePlayers(populationSize:int):Vector.<Player>
@@ -58,6 +62,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private var tourneyCallback : TournamentCallback;
 		private var gamesToWinMatch: int;
 		private var populationSize : int;
 		private var mode : int;

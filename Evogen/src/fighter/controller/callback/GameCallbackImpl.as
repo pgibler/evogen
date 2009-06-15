@@ -15,23 +15,20 @@
 		
 		/* INTERFACE fighter.controller.callback.GameCallback */
 		
-		public function OnFrameStart(game:Game):void
-		{
-			
-		}
-		
 		public function OnFrameUpdate(game:Game):void
 		{
-			var p1 : Player = game.Player1;
-			var p2 : Player = game.Player2;
-			p1.Controller.Update(p1, game);
-			p2.Controller.Update(p2, game);
-			game.TimeElapsed += 1;
-		}
-		
-		public function OnFrameEnd(game:Game):void
-		{
-			
+			if (game.IsComplete)
+			{
+				OnGameEnd(game);
+			}
+			else
+			{
+				var p1 : Player = game.Player1;
+				var p2 : Player = game.Player2;
+				p1.Controller.Update(p1, game);
+				p2.Controller.Update(p2, game);
+				game.TimeElapsed += 1;
+			}
 		}
 		
 		public function OnGameStart(game:Game):void
