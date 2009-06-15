@@ -59,14 +59,13 @@ package fighter.controller.callback
 			this.dispatchEvent(new TournamentEvent(tournament, TournamentEvent.TOURNAMENT_OVER));
 		}
 		
-		public function OnTournamentGameStart(event:GameEvent):void
+		public function OnTournamentGameStart(tournament:Tournament, game:Game):void
 		{
-			var g : Game = event.GetGame();
 		}
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void
 		{
-			dispatchEvent(new TournamentEvent(tournament
+			dispatchEvent(new TournamentEvent(tournament, TournamentEvent.TOURNAMENT_OVER));
 		}
 		 
 	}

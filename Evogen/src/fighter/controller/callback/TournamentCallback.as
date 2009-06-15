@@ -1,6 +1,6 @@
 ﻿package fighter.controller.callback
 {
-	import fighter.model.game.GameEvent;
+	import fighter.model.game.Game;
 	import fighter.model.tournament.Tournament;
 	
 	/**
@@ -11,8 +11,8 @@
 	{
 		function OnTournamentStart(tournament:Tournament):void;
 		function OnTournamentEnd(tournament:Tournament):void;
-		function OnTournamentGameStart(event:GameEvent):void;
-		function OnTournamentGameEnd(event:GameEvent):void;
+		function OnTournamentGameStart(tournament:Tournament, game:Game):void;
+		function OnTournamentGameEnd(tournament:Tournament, game:Game):void;
 	}
 	
 }

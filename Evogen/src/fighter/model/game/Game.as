@@ -65,7 +65,7 @@
 			{
 				return player1;
 			}
-			throw new Error("Player isn't in this fighter.");
+			throw new Error("Player isn't in this game.");
 		}
 		
 		private static var timeMax : Number;
