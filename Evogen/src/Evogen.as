@@ -7,6 +7,7 @@ package
 	import fighter.controller.player.production.Production;
 	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.controller.runner.GameRunner;
+	import fighter.controller.runner.GeneticAlgorithmRunner;
 	import fighter.model.game.Game;
 	import fighter.model.game.Level;
 	import fighter.model.player.Player;
@@ -38,8 +39,14 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			testGame();
+			testGA();
 			
+		}
+		
+		private function testGA():void
+		{
+			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(5, GeneticAlgorithmRunner.SIMULATION);
+			addEventListener( Event.ENTER_FRAME, ga.Update );
 		}
 		
 		private function testGame():void
@@ -55,12 +62,12 @@ package
 			pc = new PlayerController(prod);
 			var p2 : Player = new Player(pc);
 			var game : Game = new Game(p1, p2, new Level(null, null));
-			var tourney : Tournament = new Tournament(new TournamentCallbackImpl(), 100, 1);
-			var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, tourney);
+			//var tourney : Tournament = new Tournament(new TournamentCallbackImpl(),
+			//var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, tourney);
 			
-			gr.Start();
+			//gr.Start();
 			
-			addEventListener(Event.ENTER_FRAME, gr.Update);
+			//addEventListener(Event.ENTER_FRAME, gr.Update);
 		}
 		
 		private function testGenetics():void

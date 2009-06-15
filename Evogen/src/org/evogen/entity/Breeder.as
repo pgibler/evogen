@@ -48,11 +48,15 @@
 		
 		/**
 		 * Breeds a new set of chromosomes from the specimen population.
-		 * @param	population The population of specimens from which a child generation of chromosomes will be formed.
+		 * @param	breedablePopulation The population of specimens from which a child generation of chromosomes will be formed.
 		 * @return	The set of bred chromosomes as determined by the fitness function.
 		 */
-		public function breed(population:Vector.<Specimen>, chromosomesReturned:int = ALL_CHROMOSOMES):Vector.<Chromosome>
+		public function breed(breedablePopulation:Vector.<Breedable>, chromosomesReturned:int = ALL_CHROMOSOMES):Vector.<Chromosome>
 		{
+			var population : Vector.<Specimen> = breedablePopulation.map(function(breedable:Breedable, index:int, vec:Vector.<Breedable>):Specimen
+			{
+				return breedable.BreedableSpecimen;
+			});
 			// Sorts Specimens by which are most fit according to the fitness function
 			population.sort(function(a:Specimen, b:Specimen):int
 			{

@@ -1,6 +1,7 @@
 ﻿package org.evogen.entity
 {
 	import flash.utils.Dictionary;
+	
 	import org.evogen.genetics.chromosome.Chromosome;
 	
 	/**
@@ -9,7 +10,7 @@
 	 * specimen and chromosome are.
 	 * @author Paul Gibler
 	 */
-	public class Specimen 
+	public class Specimen implements Breedable
 	{
 		
 		public function get SpecimenChromosome() : Chromosome
@@ -20,6 +21,11 @@
 		public function get Data() : Dictionary
 		{
 			return data;
+		}
+		
+		public function get BreedableSpecimen():Specimen
+		{
+			return this;
 		}
 		
 		/**

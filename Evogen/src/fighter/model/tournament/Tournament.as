@@ -56,9 +56,9 @@
 			return games;
 		}
 		
-		public function get PopulationSize():int
+		public function get TournamentPlayers():Vector.<Player>
 		{
-			return populationSize;
+			return players;
 		}
 		
 		public function get GameWinsToWinMatch():int
@@ -66,15 +66,14 @@
 			return gameWinsToWinMatch;
 		}
 		
-		public function Tournament(tournamentCallback:TournamentCallback, populationSize:int=100, gameWinsToWinMatch:int=1) 
+		public function Tournament(tournamentCallback:TournamentCallback, players:Vector.<Player>, topPlayer:Player, gameWinsToWinMatch:int=1) 
 		{
 			this.tournamentCallback = tournamentCallback;
 			this.tournamentSettings = tournamentSettings;
-			this.populationSize = populationSize;
+			this.players = players;
 			this.gameWinsToWinMatch = gameWinsToWinMatch;
 		}
 		
-		private var populationSize : int;
 		private var gameWinsToWinMatch : int;
 		private var topPlayer : Player;
 		private var currentGame : Game;
