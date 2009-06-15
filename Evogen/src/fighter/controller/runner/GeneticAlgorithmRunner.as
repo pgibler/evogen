@@ -39,16 +39,32 @@ package fighter.controller.runner
 			this.populationSize = populationSize;
 			this.currentGeneration = 0;
 			this.mode = mode;
-			var players : Vector.<Player> = GeneratePlayers(populationSize);
-			trace("Starting Genetic Algorithm Runner with population size " + populationSize + " with top player " + players[0]);
-			tourneyCallback = new TournamentCallbackImpl();
-			this.tournament = new Tournament(tourneyCallback , players, players[0], gamesToWinMatch);
-			tourneyCallback.OnTournamentStart( tournament );
+			trace("Starting tournaments...");
+			StartTournament(currentGeneration);
 		}
 		
 		public function Update(event:Event = null):void
 		{
-			tourneyCallback.OnTournamentUpdate( tournament, tournament.CurrentGame );
+			if(tournament.IsComplete)
+			{
+				if(currentGeneration < generations)
+				{
+					currentGeneration++;
+				}
+			}
+			else
+			{
+				tourneyCallback.OnTournamentUpdate( tournament, tournament.CurrentGame );
+			}
+		}
+		
+		private function StartTournament(currGen:int):void
+		{
+			var players : Vector.<Player> = GeneratePlayers(populationSize);
+			trace("Running Tournament "+currGen+" with population size " + populationSize + " with top player " + players[0]);
+			tourneyCallback = new TournamentCallbackImpl();			
+			this.tournament = new Tournament(tourneyCallback , players, players[0], gamesToWinMatch);
+			tourneyCallback.OnTournamentStart( tournament );
 		}
 		
 		private function GeneratePlayers(populationSize:int):Vector.<Player>

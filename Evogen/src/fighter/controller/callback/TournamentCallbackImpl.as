@@ -13,26 +13,13 @@ package fighter.controller.callback
 		
 		public function OnTournamentStart(tournament:Tournament):void
 		{
-			tournament.Games = new Vector.<Game>();
-			var level : Level = new Level(new Sprite(), new Sprite());
-			
-			for(var i : int = 0; i < tournament.Players.length; i++)
-			{
-				var currentPlayer : Player = tournament.Players[i];
-				if( currentPlayer !== tournament.TopPlayer )
-				{
-					tournament.Games.push( new Game( currentPlayer, tournament.TopPlayer, level, new GameCallbackImpl() ) );
-				}
-			}
-			
-			tournament.CurrentGame = tournament.Games[0];
-			
+			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.Players[1], tournament);
 			tournament.CurrentGame.Callback.OnGameStart( tournament.CurrentGame );
 		}
 		
 		public function OnTournamentEnd(tournament:Tournament):void
 		{
-			
+			trace("Tournament complete");
 		}
 		
 		public function OnTournamentUpdate(tournament:Tournament, game:Game):void
@@ -40,27 +27,42 @@ package fighter.controller.callback
 			tournament.CurrentGame.Callback.OnFrameUpdate( tournament.CurrentGame );
 			if(tournament.CurrentGame.IsComplete)
 			{
-				if(game.Player1.Health <= 0 && game.Player2.Health <= 0)
-				{
-					game.Player1.PlayerSpecimen.Data["draws"] = game.Player1.PlayerSpecimen.Data["draws"] + 1;
-					game.Player2.PlayerSpecimen.Data["draws"] = game.Player2.PlayerSpecimen.Data["draws"] + 1;
-				}
-				else if(game.Player1.Health <= 0)
-				{
-					game.Player1.PlayerSpecimen.Data["losses"] = game.Player1.PlayerSpecimen.Data["losses"] + 1;
-					game.Player2.PlayerSpecimen.Data["wins"] = game.Player2.PlayerSpecimen.Data["wins"] + 1;
-				}
-				else if(game.Player2.Health <= 0)
-				{
-					game.Player1.PlayerSpecimen.Data["wins"] = game.Player1.PlayerSpecimen.Data["wins"] + 1;
-					game.Player2.PlayerSpecimen.Data["losses"] = game.Player2.PlayerSpecimen.Data["losses"] + 1;
-				}
+				OnTournamentGameEnd( tournament, game );
 			}
 		}
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void
 		{
+			if(game.Player1.Health <= 0 && game.Player2.Health <= 0)
+			{
+				game.Player1.PlayerSpecimen.Data["draws"] = game.Player1.PlayerSpecimen.Data["draws"] + 1;
+				game.Player2.PlayerSpecimen.Data["draws"] = game.Player2.PlayerSpecimen.Data["draws"] + 1;
+			}
+			else if(game.Player1.Health <= 0)
+			{
+				game.Player1.PlayerSpecimen.Data["losses"] = game.Player1.PlayerSpecimen.Data["losses"] + 1;
+				game.Player2.PlayerSpecimen.Data["wins"] = game.Player2.PlayerSpecimen.Data["wins"] + 1;
+				
+				tournament.TopPlayer = game.Player2;
+			}
+			else if(game.Player2.Health <= 0)
+			{
+				game.Player1.PlayerSpecimen.Data["wins"] = game.Player1.PlayerSpecimen.Data["wins"] + 1;
+				game.Player2.PlayerSpecimen.Data["losses"] = game.Player2.PlayerSpecimen.Data["losses"] + 1;
+				
+				tournament.TopPlayer = game.Player1;
+			}
 			
+			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.NextPlayer, tournament);
+		}
+		
+		private function GenerateGameAndSetAsCurrent(player1:Player, player2:Player, tournament:Tournament):Game
+		{
+			var level : Level = new Level(new Sprite(), new Sprite());
+			var game : Game = new Game( player1, player2, level, new GameCallbackImpl() );
+			tournament.Games.push(game);
+			tournament.CurrentGame = game;
+			return game;
 		}
 		 
 	}

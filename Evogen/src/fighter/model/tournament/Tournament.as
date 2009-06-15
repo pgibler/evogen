@@ -11,6 +11,17 @@
 	public class Tournament
 	{
 		
+		public function get NextPlayer():Player
+		{
+			currentPlayer++;
+			return currentPlayer < players.length-1 ? players[currentPlayer] : null;
+		}
+		
+		public function get IsComplete():Boolean
+		{
+			return gamesCompleted == gamesRequiredToComplete; 
+		}
+		
 		public function get TopPlayer():Player
 		{
 			return topPlayer;
@@ -36,19 +47,9 @@
 			return tournamentSettings;
 		}
 		
-		public function set Players(val:Vector.<Player>):void
-		{
-			this.players = val;
-		}
-		
 		public function get Players():Vector.<Player>
 		{
 			return players;
-		}
-		
-		public function set Games(val:Vector.<Game>):void
-		{
-			this.games = val;
 		}
 		
 		public function get Games():Vector.<Game>
@@ -73,10 +74,17 @@
 			this.players = players;
 			this.topPlayer = topPlayer;
 			this.gameWinsToWinMatch = gameWinsToWinMatch;
+			this.gamesCompleted = 0;
+			this.gamesRequiredToComplete = players.length-1;
+			this.games = new Vector.<Game>();
+			this.currentPlayer = 1;
 		}
 		
+		private var currentPlayer : int;
 		private var gameWinsToWinMatch : int;
 		private var topPlayer : Player;
+		private var gamesCompleted : int;
+		private var gamesRequiredToComplete : int;
 		private var currentGame : Game;
 		private var games : Vector.<Game>;
 		private var players : Vector.<Player>;
