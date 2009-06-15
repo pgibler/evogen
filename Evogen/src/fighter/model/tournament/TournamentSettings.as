@@ -8,18 +8,24 @@
 	public class TournamentSettings 
 	{
 		
-		public function get RoundWinsToWinGame():int
+		public function get PopulationSize():int
 		{
-			return roundWinsToWinGame;
+			return populationSize;
 		}
 		
-		public function TournamentSettings() 
+		public function get GameWinsToWinMatch():int
 		{
-			
+			return gameWinsToWinMatch;
 		}
 		
-		private var roundWinsToWinGame : int;
-		private var numberOfRounds : int;
+		public function TournamentSettings(populationSize:int, gameWinsToWinMatch:int=1) 
+		{
+			this.populationSize = populationSize;
+			this.gameWinsToWinMatch = gameWinsToWinMatch;
+		}
+		
+		private var populationSize : int;
+		private var gameWinsToWinMatch : int;
 		
 	}
 	

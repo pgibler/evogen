@@ -1,26 +1,27 @@
 package 
 {
-	import adobe.utils.CustomActions;
-	import fighter.model.game.Level;
-	import fighter.util.KeyObject;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.utils.getQualifiedClassName;
 	import fighter.controller.callback.GameCallbackImpl;
+	import fighter.controller.callback.TournamentCallbackImpl;
 	import fighter.controller.player.PlayerController;
-	import fighter.controller.runner.GameRunner;
-	import fighter.model.game.Game;
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
 	import fighter.controller.player.production.ProductionTemplate;
+	import fighter.controller.runner.GameRunner;
+	import fighter.model.game.Game;
+	import fighter.model.game.Level;
 	import fighter.model.player.Player;
-	import fighter.model.tournament.TournamentSettings;
+	import fighter.model.tournament.Tournament;
+	import fighter.util.KeyObject;
+	
+	import flash.display.Sprite;
+	import flash.events.Event;
+	
 	import org.evogen.entity.Breeder;
+	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
 	import org.evogen.genetics.trait.*;
-	import org.evogen.entity.Specimen;
-	
+
 	/**
 	 * ...
 	 * @author Paul Gibler
@@ -54,7 +55,8 @@ package
 			pc = new PlayerController(prod);
 			var p2 : Player = new Player(pc);
 			var game : Game = new Game(p1, p2, new Level(null, null));
-			var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, new TournamentSettings());
+			var tourney : Tournament = new Tournament(new TournamentCallbackImpl(), 100, 1);
+			var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, tourney);
 			
 			gr.Start();
 			

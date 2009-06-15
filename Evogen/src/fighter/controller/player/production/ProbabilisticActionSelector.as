@@ -1,7 +1,6 @@
 ﻿package fighter.controller.player.production
 {
 	import fighter.controller.player.action.Action;
-	import fighter.controller.player.condition.ActionSelector;
 	
 	/**
 	 * ...
@@ -16,12 +15,6 @@
 			this.actionProbabilities = actionProbabilities;
 		}
 		
-		public function AddActionProbabilistic(action:Action, actionProbability:Number):ProbabilisticActionSelector
-		{
-			actions.push(action);
-			actionProbabilities.push(actionProbability);
-		}
-		
 		public function SelectAction():Action
 		{
 			var prob : Number = Math.random();
@@ -34,6 +27,7 @@
 					return actions[i];
 				}
 			}
+			throw new Error("Could not select action successfully");
 		}
 		
 		private var actions : Vector.<Action>;

@@ -4,7 +4,7 @@
 	import fighter.controller.player.action.Action;
 	import fighter.controller.player.action.AvailableActions;
 	import fighter.model.player.Player;
-	import fighter.model.fighter.Game;
+	import fighter.model.game.Game;
 	
 	/**
 	 * ...
@@ -25,11 +25,6 @@
 			return player.CurrentOpponent.OnGround;
 		}
 		
-		public function get Name():String
-		{
-			return name;
-		}
-		
 		public function get PossibleActionsWhenTrue():Vector.<Action>
 		{
 			return AvailableActions.GetAllActions();
@@ -38,6 +33,11 @@
 		public function get PossibleActionsWhenFalse():Vector.<Action>
 		{
 			return AvailableActions.GetAllActions();
+		}
+		
+		public function get Name():String
+		{
+			return name;
 		}
 		
 		private var name : String;

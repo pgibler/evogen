@@ -49,11 +49,6 @@
 			this.player2 = player2;
 			this.level = level;
 			
-			player1.CurrentGame = this;
-			player2.CurrentGame = this;
-			player1.CurrentOpponent = player2;
-			player2.CurrentOpponent = player1;
-			
 			var threshhold : Number = 30;
 			startingPositions = new Vector.<Point>();
 			startingPositions.push(new Point(level.LeftWallX + threshhold, level.GroundY));

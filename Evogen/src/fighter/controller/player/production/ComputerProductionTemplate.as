@@ -1,16 +1,14 @@
 ﻿package fighter.controller.player.production
 {
-	import flash.utils.getQualifiedClassName;
-	import fighter.controller.player.action.Action;
-	import fighter.controller.player.condition.ProductionTemplate;
+	import fighter.controller.player.condition.*;
 	import fighter.util.MathUtil;
+	
+	import flash.utils.getQualifiedClassName;
+	
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
-	import org.evogen.genetics.trait.BinaryTraitTemplate;
 	import org.evogen.genetics.trait.ProbabilisticTrait;
 	import org.evogen.genetics.trait.ProbabilisticTraitTemplate;
-	import org.evogen.genetics.trait.Trait;
-	import fighter.controller.player.condition.*;
 	
 	/**
 	 * ...
@@ -33,9 +31,9 @@
 			var conditionCombinations : Number = ConditionCombinations;
 			for (var i : int = 0; i < conditionCombinations; i++)
 			{
-				conditionString = MathUtil.ConvertDecimalIntegerToBinaryString(i);
+				conditionString = MathUtil.ConvertBaseTenIntegerToBinaryString(i, Conditions.length-1);
 				tt = new ProbabilisticTraitTemplate(conditionString);
-				for each(var clazz : Class in GetIntersectionOfActions(conditionString)
+				for each(var clazz : Class in GetIntersectionOfActions(conditionString) )
 				{
 					tt.AddState(getQualifiedClassName(clazz));
 				}
@@ -45,14 +43,14 @@
 		
 		override public function GenerateProduction():Production
 		{
-			var p : Production = new Production(conditions);
+			var p : Production = new Production(this);
 			var c : Chromosome = chromosomeTemplate.GenerateRandomChromosome();
 			var actions : Vector.<Class>;
 			for each(var t : ProbabilisticTrait in c.Traits)
 			{
 				var probs : Vector.<Number> = t.StateProbabilities;
 				var conditionString : String = t.Name;
-				var apm : ActionProbabilityMap = new ActionProbabilityMap(GetIntersectionOfActions(conditionString), probs);
+				var apm : ActionSelector = new ProbabilisticActionSelector(GetIntersectionOfActions(conditionString), probs);
 				p.AddRule(conditionString, apm);
 			}
 			return p;
@@ -61,8 +59,11 @@
 		
 		public function GenerateProductionFromDNA(dna:String):Production
 		{
-			var p : Production = new Production();
+			var p : Production = new Production(this);
+			return p;
 		}
+		
+		private var chromosomeTemplate : ChromosomeTemplate;
 		
 	}
 	

@@ -52,6 +52,11 @@
 				game.Player1.Position = startPos2;
 				game.Player2.Position = startPos1;
 			}
+			
+			game.Player1.CurrentGame = game;
+			game.Player2.CurrentGame = game;
+			game.Player1.CurrentOpponent = game.Player2;
+			game.Player2.CurrentOpponent = game.Player1;
 		}
 		
 		public function OnGameEnd(game:Game):void
