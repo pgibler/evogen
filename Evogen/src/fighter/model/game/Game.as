@@ -14,7 +14,7 @@
 	{
 		public function get Callback():GameCallback
 		{
-			return this.Callback;
+			return this.callback;
 		}
 		public function get StartingPositions():Vector.<Point>
 		{
@@ -49,8 +49,9 @@
 			return timeElapsed;
 		}
 		
-		public function Game(player1:Player, player2:Player, level:Level) 
+		public function Game(player1:Player, player2:Player, level:Level, callback : GameCallback) 
 		{
+			this.callback = callback;
 			this.player1 = player1;
 			this.player2 = player2;
 			this.level = level;
@@ -75,6 +76,7 @@
 		}
 		
 		private static var timeMax : Number;
+		private var callback : GameCallback;
 		private var startingPositions : Vector.<Point>;
 		private var viewContainer : DisplayObjectContainer;
 		private var timeElapsed : Number;

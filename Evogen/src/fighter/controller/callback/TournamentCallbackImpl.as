@@ -1,11 +1,6 @@
 package fighter.controller.callback
 {
-	import fighter.controller.player.PlayerController;
-	import fighter.controller.player.production.ComputerProductionTemplate;
-	import fighter.controller.player.production.Production;
-	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.model.game.Game;
-	import fighter.model.game.GameEvent;
 	import fighter.model.game.Level;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.Tournament;
@@ -21,13 +16,14 @@ package fighter.controller.callback
 		{
 			tournament.Games = new Vector.<Game>();
 			var level : Level = new Level(new Sprite(), new Sprite());
+			var gameCallback : GameCallback = new GameCallbackImpl();
 			
 			for(var i : int = 0; i < tournament.Players.length; i++)
 			{
 				var currentPlayer : Player = tournament.Players[i];
 				if( currentPlayer !== tournament.TopPlayer )
 				{
-					tournament.Games.push( new Game( currentPlayer, tournament.TopPlayer, level ) );
+					tournament.Games.push( new Game( currentPlayer, tournament.TopPlayer, level, gameCallback ) );
 				}
 			}
 			
@@ -41,7 +37,7 @@ package fighter.controller.callback
 		
 		public function OnTournamentUpdate(tournament:Tournament, game:Game):void
 		{
-			
+			tournament.CurrentGame.Callback.OnFrameUpdate( tournament.CurrentGame );
 		}
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void

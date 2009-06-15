@@ -60,7 +60,7 @@ package
 			prod = prodTemp.GenerateProduction();
 			pc = new PlayerController(prod);
 			var p2 : Player = new Player(pc);
-			var game : Game = new Game(p1, p2, new Level(null, null));
+			//var game : Game = new Game(p1, p2, new Level(null, null));
 			//var tourney : Tournament = new Tournament(new TournamentCallbackImpl(),
 			//var gr : GameRunner = new GameRunner(new GameCallbackImpl(), game, tourney);
 			
