@@ -29,16 +29,7 @@
 		
 		public function Update(event:Event = null):void
 		{
-			if (game.IsComplete)
-			{
-				callback.OnGameEnd(game);
-			}
-			else
-			{
-				callback.OnFrameStart(game);
-				callback.OnFrameUpdate(game);
-				callback.OnFrameEnd(game);
-			}
+			callback.OnFrameUpdate( game );
 		}
 		
 		private var tournament : Tournament;

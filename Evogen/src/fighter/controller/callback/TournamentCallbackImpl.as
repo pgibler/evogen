@@ -14,7 +14,7 @@ package fighter.controller.callback
 	import flash.display.Sprite;
 	import flash.events.EventDispatcher;
 	
-	public class TournamentCallbackImpl  extends EventDispatcher implements TournamentCallback
+	public class TournamentCallbackImpl extends EventDispatcher implements TournamentCallback
 	{
 		
 		public function OnTournamentStart(tournament:Tournament):void
