@@ -1,16 +1,16 @@
 ﻿package fighter.controller.callback 
 {
-	import fighter.model.game.GameEvent;
-	import flash.events.EventDispatcher;
-	import flash.geom.Point;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	
+	import flash.events.EventDispatcher;
+	import flash.geom.Point;
 	
 	/**
 	 * ...
 	 * @author 
 	 */
-	public class GameCallbackImpl extends EventDispatcher implements GameCallback
+	public class GameCallbackImpl implements GameCallback
 	{
 		
 		/* INTERFACE fighter.controller.callback.GameCallback */
@@ -58,7 +58,7 @@
 		
 		public function OnGameEnd(game:Game):void
 		{
-			dispatchEvent(new GameEvent(game, GameEvent.GAME_OVER));
+			trace("Game ended");
 		}
 		
 	}

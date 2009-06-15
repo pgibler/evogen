@@ -71,6 +71,7 @@
 			this.tournamentCallback = tournamentCallback;
 			this.tournamentSettings = tournamentSettings;
 			this.players = players;
+			this.topPlayer = topPlayer;
 			this.gameWinsToWinMatch = gameWinsToWinMatch;
 		}
 		
