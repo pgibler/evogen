@@ -1,9 +1,8 @@
 ﻿package fighter.controller.player.production
 {
+	import fighter.controller.player.action.Action;
 	import fighter.controller.player.condition.*;
 	import fighter.util.MathUtil;
-	
-	import flash.utils.getQualifiedClassName;
 	
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -33,9 +32,11 @@
 			{
 				conditionString = MathUtil.ConvertBaseTenIntegerToBinaryString(i, Conditions.length-1);
 				tt = new ProbabilisticTraitTemplate(conditionString);
-				for each(var clazz : Class in GetIntersectionOfActions(conditionString) )
+				var actions : Vector.<Action> = GetIntersectionOfActions(conditionString);
+				var action : Action;
+				for each(action in  actions)
 				{
-					tt.AddState(getQualifiedClassName(clazz));
+					tt.AddState(action.Name);
 				}
 				chromosomeTemplate.AddTraitTemplate(tt);
 			}

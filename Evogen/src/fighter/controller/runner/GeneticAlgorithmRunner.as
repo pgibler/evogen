@@ -17,6 +17,22 @@ package fighter.controller.runner
 		
 		public function GeneticAlgorithmRunner(generations:int, populationSize : int = 100, frameIntervalsPerTick:int = 100, gamesToWinMatch : int = 1, mode:int = 0)
 		{
+			if(populationSize <= 2)
+			{
+				throw new Error("Population size must be greater than 2");
+			}
+			if(frameIntervalsPerTick <= 0)
+			{
+				throw new Error("Frame intervals per tick must be greater than 0");
+			}
+			if(gamesToWinMatch <= 0)
+			{
+				throw new Error("Games to win match must be greater than 0");
+			}
+			if(mode != GeneticAlgorithmRunner.SIMULATION && mode != GeneticAlgorithmRunner.GRAPHICAL)
+			{
+				throw new Error("Genetic algorithm runner mode must be SIMULATION or GRAPHICAL");
+			}
 			this.generations = generations;
 			this.frameIntervalsPerTick = frameIntervalsPerTick;
 			this.populationSize = populationSize;
