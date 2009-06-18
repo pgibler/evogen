@@ -30,7 +30,7 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			player.IsIdle = false;
+			player.IsBlocking = false;
 			return this;
 		}
 		
@@ -41,7 +41,7 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.IsIdle = true;
+			player.IsBlocking = true;
 			return this;
 		}
 		

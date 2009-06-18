@@ -21,6 +21,7 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
+			trace("Player position: " + player.Position);
 			if (lag <= 0)
 			{
 				var conditionString : String = "";
@@ -46,12 +47,19 @@
 				}
 			}
 			
+			player.XSpeed *= player.Friction;
+			player.Position.y += player.YSpeed;
+			trace(player.YSpeed);
+			
 			if (player.Position.y < game.GameLevel.GroundY)
 			{
 				player.YSpeed += player.Gravity;
 			}
-			player.XSpeed *= player.Friction;
-			player.Position.y += player.YSpeed;
+			else if(player.Position.y > game.GameLevel.GroundY)
+			{
+				player.YSpeed = 0;
+				player.Position.y = game.GameLevel.GroundY;
+			}
 			if (player.XSpeed > 0)
 			{
 				player.Position.x = Math.min(player.Position.x + player.XSpeed, game.GameLevel.RightWallX);

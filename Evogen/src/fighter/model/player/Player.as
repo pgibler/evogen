@@ -29,7 +29,7 @@
 		}
 		public function get Gravity():Number
 		{
-			return 2;
+			return 1;
 		}
 		public function set YSpeed(val:Number):void
 		{
@@ -49,7 +49,7 @@
 		}
 		public function get JumpSpeed():Number
 		{
-			return -20;
+			return 20;
 		}
 		public function get WalkSpeed():Number
 		{
@@ -78,7 +78,7 @@
 		
 		public function get OnGround():Boolean
 		{
-			return displaycontainer.y <= currentGame.GameLevel.GroundY;
+			return position.y >= currentGame.GameLevel.GroundY;
 		}
 		
 		public function set Position(p:Point):void
@@ -125,13 +125,13 @@
 			return isAttacking;
 		}
 		
-		public function set IsIdle(val:Boolean):void
+		public function set IsBlocking(val:Boolean):void
 		{
-			this.isIdle = val;
+			this.isBlocking = val;
 		}
-		public function get IsIdle():Boolean
+		public function get IsBlocking():Boolean
 		{
-			return !isAttacking && !isBlocking;
+			return isBlocking;
 		}
 		
 		public function Player(controller:PlayerController)
@@ -175,7 +175,6 @@
 		private var specimen : Specimen;
 		private var isAttacking : Boolean;
 		private var isBlocking : Boolean;
-		private var isIdle : Boolean;
 		private var position : Point;
 		
 	}

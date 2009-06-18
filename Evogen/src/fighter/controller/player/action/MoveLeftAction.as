@@ -30,7 +30,6 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			player.IsIdle = false;
 			player.Position.x -= player.WalkSpeed;
 			return this;
 		}
@@ -42,7 +41,6 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.IsIdle = true;
 			return this;
 		}
 		
