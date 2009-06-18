@@ -14,7 +14,6 @@ package fighter.controller.callback
 		public function OnTournamentStart(tournament:Tournament):void
 		{
 			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.Players[1], tournament);
-			tournament.CurrentGame.Callback.OnGameStart( tournament.CurrentGame );
 		}
 		
 		public function OnTournamentEnd(tournament:Tournament):void
@@ -62,6 +61,7 @@ package fighter.controller.callback
 			var game : Game = new Game( player1, player2, level, new GameCallbackImpl() );
 			tournament.Games.push(game);
 			tournament.CurrentGame = game;
+			tournament.CurrentGame.Callback.OnGameStart(tournament.CurrentGame);
 			return game;
 		}
 		 

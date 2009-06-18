@@ -14,7 +14,7 @@
 		
 		public function get ConditionCombinations():Number
 		{
-			return Math.pow(2, Conditions.length-1);
+			return Math.pow(2, Conditions.length);
 		}
 		
 		public function get Conditions():Vector.<Condition>

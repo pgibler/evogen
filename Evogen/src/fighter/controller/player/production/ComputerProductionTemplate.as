@@ -30,11 +30,10 @@
 			var conditionCombinations : Number = ConditionCombinations;
 			for (var i : int = 0; i < conditionCombinations; i++)
 			{
-				conditionString = MathUtil.ConvertBaseTenIntegerToBinaryString(i, Conditions.length-1);
+				conditionString = MathUtil.ConvertBaseTenIntegerToBinaryString(i, Conditions.length);
 				tt = new ProbabilisticTraitTemplate(conditionString);
 				var actions : Vector.<Action> = GetIntersectionOfActions(conditionString);
-				var action : Action;
-				for each(action in  actions)
+				for each(var action : Action in actions)
 				{
 					tt.AddState(action.Name);
 				}
@@ -46,7 +45,6 @@
 		{
 			var p : Production = new Production(this);
 			var c : Chromosome = chromosomeTemplate.GenerateRandomChromosome();
-			var actions : Vector.<Class>;
 			for each(var t : ProbabilisticTrait in c.Traits)
 			{
 				var probs : Vector.<Number> = t.StateProbabilities;

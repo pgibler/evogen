@@ -89,9 +89,9 @@
 			return this.currentGame;
 		}
 		
-		public function set CurrentOpponent(opponent:Player):void
+		public function set CurrentOpponent(currentOpponent:Player):void
 		{
-			this.opponent = opponent;
+			this.currentOpponent = currentOpponent;
 		}
 		public function get CurrentOpponent():Player
 		{
@@ -160,7 +160,6 @@
 		private var currentOpponent : Player;
 		private var currentGame : Game;
 		private var health : Number;
-		private var opponent : Player;
 		private var displaycontainer : Sprite;
 		private var specimen : Specimen;
 		private var isAttacking : Boolean;
