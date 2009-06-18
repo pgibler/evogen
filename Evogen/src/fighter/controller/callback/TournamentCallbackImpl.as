@@ -32,25 +32,11 @@ package fighter.controller.callback
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void
 		{
-			if(game.Player1.Health <= 0 && game.Player2.Health <= 0)
-			{
-				game.Player1.PlayerSpecimen.Data["draws"] = game.Player1.PlayerSpecimen.Data["draws"] + 1;
-				game.Player2.PlayerSpecimen.Data["draws"] = game.Player2.PlayerSpecimen.Data["draws"] + 1;
-			}
-			else if(game.Player1.Health <= 0)
-			{
-				game.Player1.PlayerSpecimen.Data["losses"] = game.Player1.PlayerSpecimen.Data["losses"] + 1;
-				game.Player2.PlayerSpecimen.Data["wins"] = game.Player2.PlayerSpecimen.Data["wins"] + 1;
-				
-				tournament.TopPlayer = game.Player2;
-			}
-			else if(game.Player2.Health <= 0)
-			{
-				game.Player1.PlayerSpecimen.Data["wins"] = game.Player1.PlayerSpecimen.Data["wins"] + 1;
-				game.Player2.PlayerSpecimen.Data["losses"] = game.Player2.PlayerSpecimen.Data["losses"] + 1;
-				
-				tournament.TopPlayer = game.Player1;
-			}
+			var winner : Player = game.Player1.Health > game.Player2.Health ? game.Player1 : game.Player2;
+			var loser : Player = winner.CurrentOpponent;
+			
+			winner.PlayerSpecimen.Data["wins"] += 1;
+			loser.PlayerSpecimen.Data["losses"] += 1;
 			
 			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.NextPlayer, tournament);
 		}

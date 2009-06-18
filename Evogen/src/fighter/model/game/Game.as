@@ -30,7 +30,7 @@
 		}
 		public function get IsComplete():Boolean
 		{
-			return player1.Health <= 0 || player2.Health <= 0;
+			return (player1.Health <= 0 || player2.Health <= 0) || timeElapsed >= timeMax;
 		}
 		public function get Player1():Player
 		{
