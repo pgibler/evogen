@@ -32,11 +32,13 @@
 				if (a != null && a.IsValid(player, game))
 				{
 					a.PerformAction(player, game);
+					trace("Player " + player + " is performing action " + a.Name);
 					lag = a.FrameLag;
 				}
 			}
 			else
 			{
+				trace("Lag left on player " + player + ": " +lag);
 				lag--;
 			}
 			

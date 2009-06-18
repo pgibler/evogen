@@ -10,25 +10,13 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class IsOpponentToMyLeftCondition implements Condition
+	public class IsToLeftOfOpponentCondition implements Condition
 	{
 		
-		public function IsOnGroundCondition()
+		public function IsToLeftOfOpponentCondition()
 		{
-			possibleActionsWhenTrue = new Vector.<Action>();
-			possibleActionsWhenFalse = new Vector.<Action>();
-			
-			possibleActionsWhenTrue.push(new GroundIdleAction());
-			possibleActionsWhenTrue.push(new GroundKickAction());
-			possibleActionsWhenTrue.push(new BlockAction());
-			possibleActionsWhenTrue.push(new JumpLeftCondition());
-			possibleActionsWhenTrue.push(new JumpRightCondition());
-			possibleActionsWhenTrue.push(new JumpUpAction());
-			possibleActionsWhenTrue.push(new MoveLeftCondition());
-			possibleActionsWhenTrue.push(new MoveRightCondition());
-			
-			possibleActionsWhenFalse.push(new AirIdleAction());
-			possibleActionsWhenFalse.push(new AirKickAction());
+			possibleActionsWhenTrue = AvailableActions.GetAllActions();
+			possibleActionsWhenFalse = AvailableActions.GetAllActions();
 			
 			this.name = getQualifiedClassName(this);
 		}
@@ -37,7 +25,7 @@
 		
 		public function EvaluateCondition(player:Player, game:Game):Boolean
 		{
-			return player.x > player.CurrentOpponent.x;
+			return player.Position.x < player.CurrentOpponent.Position.x;
 		}
 		
 		/* INTERFACE fighter.model.player.computer.Condition */
