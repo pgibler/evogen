@@ -39,7 +39,6 @@
 			}
 			else
 			{
-				trace("Lag left on player " + player + ": " +lag);
 				lag--;
 				if(lag <= 0 && player.CurrentAction != null)
 				{
