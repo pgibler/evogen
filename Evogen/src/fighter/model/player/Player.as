@@ -1,10 +1,12 @@
 ﻿package fighter.model.player
 {
+	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.action.Action;
+	import fighter.model.game.Game;
+	
 	import flash.display.Sprite;
 	import flash.geom.Point;
-	import fighter.controller.player.PlayerController;
-	import fighter.model.game.Game;
+	
 	import org.evogen.entity.Specimen;
 	
 	/**
@@ -13,6 +15,14 @@
 	*/
 	public class Player
 	{
+		public function get CurrentAction():Action
+		{
+			return currentAction;
+		}
+		public function set CurrentAction(currentAction:Action):void
+		{
+			this.currentAction = currentAction;
+		}
 		public function get Friction():Number
 		{
 			return .9
@@ -155,6 +165,7 @@
 		private static var healthMax : Number = 100;
 		private var xSpeed : Number;
 		private var ySpeed : Number;
+		private var currentAction : Action;
 		private var facingDirection : Number;
 		private var controller : PlayerController;
 		private var currentOpponent : Player;

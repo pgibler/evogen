@@ -28,7 +28,8 @@
 				{
 					conditionString += int(rules.Conditions[i].EvaluateCondition(player, game));
 				}
-				var a : Action = rules.SelectAction(conditionString);
+				player.CurrentAction = rules.SelectAction(conditionString);
+				var a : Action = player.CurrentAction;
 				if (a != null && a.IsValid(player, game))
 				{
 					a.PerformAction(player, game);
@@ -40,6 +41,10 @@
 			{
 				trace("Lag left on player " + player + ": " +lag);
 				lag--;
+				if(lag <= 0 && player.CurrentAction != null)
+				{
+					player.CurrentAction.OnComplete(player, game);
+				}
 			}
 			
 			if (player.Position.y < game.GameLevel.GroundY)
