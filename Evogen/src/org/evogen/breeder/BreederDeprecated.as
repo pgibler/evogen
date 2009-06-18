@@ -1,36 +1,24 @@
-﻿package org.evogen.entity
+﻿package org.evogen.breeder
 {
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.trait.Trait;
+	import org.evogen.entity.Specimen;
+	import org.evogen.entity.Breedable;
 	
 	/**
 	 * The <code>Breeder</code> picks and chooses chromosomes from a population and breeds them together
 	 * to create a new population of chromosomes.
 	 * @author Paul Gibler
 	 */
-	public class Breeder 
+	public interface BreederDeprecated 
 	{
 		public static const ALL_CHROMOSOMES : int = -1;
 		
 		/**
-		 * The fitness function used to generate the child population.
+		 * The fitness function used to evaluate specimens in the current population.
 		 */
-		public var Fitness : Function;
-		/**
-		 * The top percentile of specimens. These will be bred into the next generation.
-		 */
-		public var TopPercentile : Number;
-		/**
-		 * Breeding distributions determine the range at which breeding will occur. A breeding distribution of 1 will cause uniform
-		 * breeding amongst all specimens in the population. A breeding distribution of 0 means only adjacent specimens will be
-		 * bred together.
-		 */
-		public var BreedingDistribution : Number;
-		/**
-		 * Determines the probability that a trait will be mutated upon crossover. A value of 1 will cause all traits to be mutated,
-		 * whereas a value of 0 will cause no traits to be mutated.
-		 */
-		public var MutationProbability : Number;
+		public function get Fitness() : SpecimenEvaluator;
+		public function get 
 		
 		/**
 		 * Creates an instance of Breeder.
@@ -39,7 +27,7 @@
 		 * @param	breedingDistribution
 		 * @param	mutationProbability
 		 */
-		public function Breeder(fitness:Function, topPercentile:Number=1/4, breedingDistribution:Number=1, mutationProbability:Number=.1) 
+		public function BreederDeprecated(fitness:Function, breed:Function, topPercentile:Number=1/4, breedingDistribution:Number=1, mutationProbability:Number=.1) 
 		{
 			this.Fitness = fitness;
 			this.TopPercentile = topPercentile;

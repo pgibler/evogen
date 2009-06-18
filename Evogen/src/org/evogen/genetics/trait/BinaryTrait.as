@@ -29,8 +29,8 @@
 		
 		public function Mutate():Trait
 		{
-			active = !active;
-			return this;
+			active = !active
+			return this;;
 		}
 		
 		public function get Name():String
@@ -41,6 +41,11 @@
 		public function set Name(val:String):void
 		{
 			name = val;
+		}
+		
+		public function Copy():Trait
+		{
+			return new BinaryTrait(name, template, active);
 		}
 		
 		private var name : String;

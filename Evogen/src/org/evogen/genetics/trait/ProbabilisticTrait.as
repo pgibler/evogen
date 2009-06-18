@@ -1,7 +1,6 @@
 ﻿package org.evogen.genetics.trait 
 {
-	import flash.errors.IllegalOperationError;
-	import flash.utils.Dictionary;
+	
 	
 	/**
 	 * A <code>ProbabilisticTrait</code> is characteristic that has more than one discrete possible state.
@@ -103,6 +102,14 @@
 		public function get Name():String
 		{
 			return name;
+		}
+		
+		public function Copy():Trait
+		{
+			var t : ProbabilisticTrait = new ProbabilisticTrait(name, template);
+			t.states = states.slice();
+			t.stateProbabilities = stateProbabilities.slice();
+			return t;
 		}
 
 		private var template : ProbabilisticTraitTemplate;

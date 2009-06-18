@@ -8,7 +8,7 @@
 	public class DiscreteTrait implements Trait
 	{
 		
-		public function DiscreteTrait(name:String, template:DiscreteTraitTemplate) 
+		public function DiscreteTrait(name:String, template:TraitTemplate) 
 		{
 			this.name = name;
 			this.template = template;
@@ -61,6 +61,14 @@
 		public function set Name(val:String):void
 		{
 			name = val;
+		}
+		
+		public function Copy():Trait
+		{
+			var discreteTrait : DiscreteTrait = new DiscreteTrait(name, template);
+			discreteTrait.CurrentState = currentState;
+			discreteTrait.states = states.slice();
+			return discreteTrait;
 		}
 		
 		public function get CurrentState():String {

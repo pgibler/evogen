@@ -20,10 +20,15 @@
 		 */
 		function get Template():TraitTemplate;
 		/**
-		 * Mutates the trait.
-		 * @return A reference to itself.
+		 * Mutates this trait.
+		 * @return A reference to this trait.
 		 */
 		function Mutate():Trait;
+		/**
+		 * Copies the trait.
+		 * @return The copy of the trait.
+		 */
+		function Copy():Trait;
 	}
 	
 }

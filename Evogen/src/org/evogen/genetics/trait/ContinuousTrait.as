@@ -53,6 +53,11 @@
 			name = val;
 		}
 		
+		public function Copy():Trait
+		{
+			return new ContinuousTrait(name, template, value);
+		}
+		
 		private var template : ContinuousTraitTemplate;
 		private var name : String;
 		private var value : Number;

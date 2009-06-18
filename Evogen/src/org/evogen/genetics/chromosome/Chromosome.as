@@ -1,8 +1,7 @@
 ﻿package org.evogen.genetics.chromosome
 {
-	import flash.utils.Dictionary;
+	import org.evogen.genetics.trait.Trait;
 	import org.evogen.util.Nameable;
-	import org.evogen.genetics.trait.Trait
 	
 	/**
 	 * A <code>Chromosome</code> defines the set of traits that a creature can have.
@@ -53,9 +52,13 @@
 		 */
 		public function Mutate(mutationProbability:Number):Chromosome
 		{
+			if(mutationProbability < 0 || mutationProbability >= 1)
+			{
+				throw new Error("Mutation probability must be greater than or equal to 0 and less than 1.")
+			}
 			for each(var t:Trait in traits)
 			{
-				var chanceToMutate : Number = Math.random();
+				var chanceToMutate : Number = Math.random()();
 				if (chanceToMutate <= mutationProbability)
 				{
 					t.Mutate();
@@ -83,6 +86,16 @@
 		public function GetTrait(traitStr:String):Trait
 		{
 			return traits[ traitNames.indexOf(traitStr) ];
+		}
+		
+		public function Copy():Chromosome
+		{
+			var c : Chromosome = new Chromosome(this.template);
+			for each(var t : Trait in traits)
+			{
+				c.traits.push(t.Copy());
+			}
+			return c;
 		}
 		
 		public function ToDNA():String
