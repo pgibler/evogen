@@ -42,7 +42,7 @@
 		
 		public function get FrameLag():int
 		{
-			return 100;
+			return 30;
 		}
 		
 	}

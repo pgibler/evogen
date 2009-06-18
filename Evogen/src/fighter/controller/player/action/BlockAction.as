@@ -36,7 +36,7 @@
 		
 		public function get FrameLag():int
 		{
-			return 20;
+			return 15;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
