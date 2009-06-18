@@ -16,7 +16,6 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import org.evogen.entity.Breeder;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -84,11 +83,6 @@ package
 			var c : Chromosome = ct.GenerateRandomChromosome();
 			trace(c.ToDNA());
 			trace(c.Mutate(.5).ToDNA());
-			
-			var b : Breeder = new Breeder(function Fitness(specimen:Specimen):Number
-			{
-				return 1;
-			});
 		}
 		
 	}
