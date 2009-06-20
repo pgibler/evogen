@@ -55,6 +55,8 @@
 			game.Player2.CurrentGame = game;
 			game.Player1.CurrentOpponent = game.Player2;
 			game.Player2.CurrentOpponent = game.Player1;
+			
+			game.TimeElapsed = 0;
 		}
 		
 		public function OnGameEnd(game:Game):void

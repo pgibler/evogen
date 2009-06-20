@@ -35,7 +35,7 @@
 		public function Specimen(chromosome:Chromosome, data:Dictionary = null) 
 		{
 			this.chromosome = chromosome;
-			data = data = null ? new Dictionary() : data;
+			this.data = (data == null) ? new Dictionary() : data;
 		}
 		
 		private var chromosome : Chromosome;

@@ -164,7 +164,7 @@
 			this.isStunned = val;
 		}
 		
-		public function Player(controller:PlayerController)
+		public function Player(controller:PlayerController, specimen:Specimen)
 		{
 			this.specimen = specimen;
 			this.displaycontainer = new Sprite();

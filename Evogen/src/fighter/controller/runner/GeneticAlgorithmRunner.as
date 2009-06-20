@@ -4,11 +4,12 @@ package fighter.controller.runner
 	import fighter.controller.callback.TournamentCallbackImpl;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.ComputerProductionTemplate;
-	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.Tournament;
 	
 	import flash.events.Event;
+	
+	import org.evogen.entity.Specimen;
 	
 	public class GeneticAlgorithmRunner
 	{
@@ -45,16 +46,19 @@ package fighter.controller.runner
 		
 		public function Update(event:Event = null):void
 		{
-			if(tournament.IsComplete)
+			for(var i : int = 0; i < frameIntervalsPerTick; i++)
 			{
-				if(currentGeneration < generations)
+				if(tournament.IsComplete)
 				{
-					currentGeneration++;
+					if(currentGeneration < generations)
+					{
+						currentGeneration++;
+					}
 				}
-			}
-			else
-			{
-				tourneyCallback.OnTournamentUpdate( tournament, tournament.CurrentGame );
+				else
+				{
+					tourneyCallback.OnTournamentUpdate( tournament, tournament.CurrentGame );
+				}
 			}
 		}
 		
@@ -70,10 +74,10 @@ package fighter.controller.runner
 		private function GeneratePlayers(populationSize:int):Vector.<Player>
 		{
 			var players : Vector.<Player> = new Vector.<Player>();
-			var compProd : ProductionTemplate = new ComputerProductionTemplate();
+			var compProd : ComputerProductionTemplate = new ComputerProductionTemplate();
 			for(var i : int = 0 ; i < populationSize; i++)
 			{
-				players.push( new Player( new PlayerController( compProd.GenerateProduction() ) ) );
+				players.push( new Player( new PlayerController( compProd.GenerateProduction() ), new Specimen(compProd.LastGeneratedProductionChromosome) ) );
 			}
 			return players;
 		}

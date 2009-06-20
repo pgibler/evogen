@@ -79,7 +79,7 @@
 			throw new Error("Player isn't in this game.");
 		}
 		
-		private static var timeMax : Number;
+		private static var timeMax : Number = 3600;
 		private var callback : GameCallback;
 		private var startingPositions : Vector.<Point>;
 		private var viewContainer : DisplayObjectContainer;
