@@ -72,7 +72,6 @@
 			
 			player.XSpeed *= player.Friction;
 			player.Position.y += player.YSpeed;
-			trace(player.YSpeed);
 			
 			if (player.Position.y < game.GameLevel.GroundY)
 			{

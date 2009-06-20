@@ -180,6 +180,7 @@
 			this.isAttacking = false;
 			this.isStunned = false;
 			this.isBlocking = false;
+			this.animation = new MovieClip();
 		}
 		
 		public function FacePlayer(player:Player):Player

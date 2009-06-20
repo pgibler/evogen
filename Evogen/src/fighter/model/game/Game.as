@@ -48,6 +48,10 @@
 		{
 			return timeElapsed;
 		}
+		public function get TimeMax():Number
+		{
+			return Game.timeMax;
+		}
 		
 		public function Game(player1:Player, player2:Player, level:Level, callback : GameCallback) 
 		{

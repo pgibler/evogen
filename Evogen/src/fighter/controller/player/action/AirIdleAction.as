@@ -32,14 +32,17 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			// TODO: implement animation playing
+			/*
 			player.CurrentAnimation = animation;
 			animation.play();
+			*/
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			animation.stop();
+			//animation.stop();
 			return 0;
 		}
 		

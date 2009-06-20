@@ -32,14 +32,17 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			// TODO: implement animation playing
+			/*
 			player.CurrentAnimation = animation;
 			animation.play();
+			*/
 			return this;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			animation.stop();
+			//animation.stop();
 			return this;
 		}
 		
