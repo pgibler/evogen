@@ -2,6 +2,8 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	
+	import flash.display.MovieClip;
 	import flash.utils.getQualifiedClassName;
 	
 	/**
@@ -30,11 +32,14 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.CurrentAnimation = animation;
+			animation.play();
 			return this;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
+			animation.stop();
 			return this;
 		}
 		
@@ -42,6 +47,8 @@
 		{
 			return 0;
 		}
+		
+		private static var animation : MovieClip;
 		
 	}
 	

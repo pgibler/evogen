@@ -4,6 +4,7 @@
 	import fighter.controller.player.action.Action;
 	import fighter.model.game.Game;
 	
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	
@@ -74,6 +75,14 @@
 		public function get PlayerSpecimen():Specimen
 		{
 			return specimen;
+		}
+		public function set CurrentAnimation(anim:MovieClip):void
+		{
+			this.animation = anim;
+		}
+		public function get CurrentAnimation():MovieClip
+		{
+			return this.animation;
 		}
 		
 		public function get OnGround():Boolean
@@ -176,6 +185,7 @@
 		private var isAttacking : Boolean;
 		private var isBlocking : Boolean;
 		private var position : Point;
+		private var animation : MovieClip;
 		
 	}
 	

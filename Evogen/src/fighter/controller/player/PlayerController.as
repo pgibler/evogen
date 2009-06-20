@@ -1,10 +1,9 @@
 ﻿package fighter.controller.player 
 {
-	import flash.display.Stage;
-	import flash.ui.Keyboard;
-	import fighter.model.game.Game;
 	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.GroundIdleAction;
 	import fighter.controller.player.production.Production;
+	import fighter.model.game.Game;
 	import fighter.model.player.Player;
 	
 	/**
@@ -17,6 +16,12 @@
 		public function PlayerController(rules:Production) 
 		{
 			this.rules = rules;
+		}
+		
+		public function Initialize(player:Player, game:Game):PlayerController
+		{
+			new GroundIdleAction().PerformAction(player, game);
+			return this;
 		}
 		
 		public function Update(player:Player, game:Game):PlayerController 
