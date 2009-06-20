@@ -2,28 +2,16 @@
 {
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
+	
 
 	public interface Breeder
 	{
 		/**
-		 * Crosses over two specimens and produces a child chromosome from them.
-		 * @param	specimen1 The first specimen to cross over with.
-		 * @param	specimen2 The second specimen to cross over with.
-		 * @return	A child chromosome from the two specimens.
+		 * Breeds a new set of chromosomes from the specimen population.
+		 * @param	breedablePopulation The population of specimens from which a child generation of chromosomes will be formed.
+		 * @param	evaluator The fitness function to determine the most fit specimens.
+		 * @return	The set of bred chromosomes as determined by the fitness function.
 		 */
-		function Crossover(specimen1:Specimen, specimen2:Specimen):Chromosome;
-		/**
-		 * Generates and returns a mutated version of a chromosome, without modifying it.
-		 * @param	chromosome The chromosome to mutate.
-		 * @return	The mutated chromosome.
-		 */
-		function Mutate(chromosome:Chromosome):Chromosome;
-		/**
-		 * Chooses a specimen from a population to breed with.
-		 * @param	population A population of specimens.
-		 * @param	evaluator The evaluation function for the specimens.
-		 * @return	A specimen to be used for breeding.
-		 */
-		function ChooseSpecimenForBreeding(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Specimen;
+		function Breed(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Vector.<Chromosome>;
 	}
 }
