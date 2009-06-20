@@ -30,14 +30,9 @@ package fighter.controller.player.action
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			if(player.OnGround)
-			{
-				new GroundIdleAction().PerformAction(player, game);
-			}
-			else
-			{
+			player.OnGround ?
+				new GroundIdleAction().PerformAction(player, game):
 				new AirIdleAction().PerformAction(player, game);
-			}
 			return this;
 		}
 		

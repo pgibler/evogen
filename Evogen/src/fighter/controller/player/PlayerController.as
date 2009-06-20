@@ -8,6 +8,8 @@
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
 	
+	import flash.display.DisplayObject;
+	
 	/**
 	 * ...
 	 * @author 
@@ -30,12 +32,17 @@
 		{
 			trace("Player position: " + player.Position);
 			
-			if(!player.IsStunned && player.CurrentOpponent.CurrentAnimation.getChildByName("HitBox") != null)
+			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
+			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");
+			if(!player.IsStunned && oppDmgBox != null)
 			{
-				player.Health -= player.CurrentOpponent.HitDamage;
-				player.OnGround ? 
-					new GroundStunnedAnimation().PerformAction(player,game) : 
-					new AirStunnedAction().PerformAction(player, game);
+				if(oppDmgBox.hitTestObject(hitBox))
+				{
+					player.Health -= player.CurrentOpponent.HitDamage;
+					player.OnGround ? 
+						new GroundStunnedAnimation().PerformAction(player,game) : 
+						new AirStunnedAction().PerformAction(player, game);
+				}
 			}
 			
 			if (lag <= 0)

@@ -20,17 +20,19 @@ package fighter.controller.player.action
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.IsStunned = true;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 0;
+			return 10;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			return null;
+			player.IsStunned = false;
+			return this;
 		}
 		
 		public function get Name():String

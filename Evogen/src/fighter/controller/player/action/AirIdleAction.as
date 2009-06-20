@@ -45,6 +45,9 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
+			player.OnGround ?
+				new GroundIdleAction().PerformAction(player, game):
+				this.PerformAction(player, game);
 			return this;
 		}
 		
