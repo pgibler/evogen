@@ -30,7 +30,7 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
-			trace("Player position: " + player.Position);
+			//trace("Player position: " + player.Position);
 			
 			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
 			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");
@@ -57,7 +57,7 @@
 				if (a != null && a.IsValid(player, game))
 				{
 					a.PerformAction(player, game);
-					trace("Player " + player + " is performing action " + a.Name);
+					//trace("Player " + player + " is performing action " + a.Name);
 					lag = a.FrameLag;
 				}
 			}

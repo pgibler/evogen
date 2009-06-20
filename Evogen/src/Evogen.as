@@ -43,7 +43,7 @@ package
 		
 		private function testGA():void
 		{
-			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(5, 100, 100, 1, GeneticAlgorithmRunner.SIMULATION);
+			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(5, 10, 300, 1, GeneticAlgorithmRunner.SIMULATION);
 			addEventListener( Event.ENTER_FRAME, ga.Update );
 		}
 		
