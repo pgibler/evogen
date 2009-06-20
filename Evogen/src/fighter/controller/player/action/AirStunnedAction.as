@@ -5,10 +5,10 @@ package fighter.controller.player.action
 	
 	import flash.utils.getQualifiedClassName;
 	
-	public class AirHitAction implements Action
+	public class AirStunnedAction implements Action
 	{
 		
-		public function AirHitAction()
+		public function AirStunnedAction()
 		{
 			this.name = getQualifiedClassName(this);
 		}

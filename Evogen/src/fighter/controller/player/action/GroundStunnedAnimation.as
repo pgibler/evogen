@@ -5,10 +5,10 @@ package fighter.controller.player.action
 	
 	import flash.utils.getQualifiedClassName;
 	
-	public class GroundHitAnimation implements Action
+	public class GroundStunnedAnimation implements Action
 	{
 		
-		public function GroundHitAnimation()
+		public function GroundStunnedAnimation()
 		{
 			this.name = getQualifiedClassName(this);
 		}
@@ -46,6 +46,6 @@ package fighter.controller.player.action
 			return name;
 		}
 		
-		private var name;
+		private var name : String;
 	}
 }

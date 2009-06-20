@@ -1,7 +1,9 @@
 ﻿package fighter.controller.player 
 {
 	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.AirStunnedAction;
 	import fighter.controller.player.action.GroundIdleAction;
+	import fighter.controller.player.action.GroundStunnedAnimation;
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
@@ -27,6 +29,15 @@
 		public function Update(player:Player, game:Game):PlayerController 
 		{
 			trace("Player position: " + player.Position);
+			
+			if(!player.IsStunned && player.CurrentOpponent.CurrentAnimation.getChildByName("HitBox") != null)
+			{
+				player.Health -= player.CurrentOpponent.HitDamage;
+				player.OnGround ? 
+					new GroundStunnedAnimation().PerformAction(player,game) : 
+					new AirStunnedAction().PerformAction(player, game);
+			}
+			
 			if (lag <= 0)
 			{
 				var conditionString : String = "";

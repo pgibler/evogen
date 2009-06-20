@@ -64,6 +64,10 @@
 		{
 			return health;
 		}
+		public function set Health(val:Number):void
+		{
+			this.health = val;
+		}
 		public function get HealthMax():Number
 		{
 			return Player.healthMax;
@@ -117,6 +121,15 @@
 			return this.currentOpponent;
 		}
 		
+		public function get HitDamage():Number
+		{
+			return this.hitDamage;
+		}
+		public function set HitDamage(num:Number):void
+		{
+			this.hitDamage = num;
+		}
+		
 		/**
 		 * Returns the direction the player is facing. -1 means left, 1 means right.
 		 */
@@ -142,6 +155,14 @@
 		{
 			return isBlocking;
 		}
+		public function get IsStunned():Boolean
+		{
+			return this.isStunned;
+		}
+		public function set IsStunned(val:Boolean):void
+		{
+			this.isStunned = val;
+		}
 		
 		public function Player(controller:PlayerController)
 		{
@@ -152,10 +173,13 @@
 		
 		public function Initialize():void
 		{
+			this.hitDamage = 0;
 			this.health = 100;
 			this.xSpeed = 0;
 			this.ySpeed = 0;
 			this.isAttacking = false;
+			this.isStunned = false;
+			this.isBlocking = false;
 		}
 		
 		public function FacePlayer(player:Player):Player
@@ -172,6 +196,7 @@
 		}
 		
 		private static var healthMax : Number = 100;
+		private var isStunned : Boolean;
 		private var xSpeed : Number;
 		private var ySpeed : Number;
 		private var currentAction : Action;
@@ -185,6 +210,7 @@
 		private var isAttacking : Boolean;
 		private var isBlocking : Boolean;
 		private var position : Point;
+		private var hitDamage : Number;
 		private var animation : MovieClip;
 		
 	}

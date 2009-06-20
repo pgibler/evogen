@@ -31,6 +31,7 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.IsAttacking = true;
+			player.HitDamage = 12;
 			return this;
 		}
 		
@@ -42,6 +43,7 @@
 		public function OnComplete(player:Player, game:Game):Action
 		{
 			player.IsAttacking = false;
+			player.HitDamage = 0;
 			return this;
 		}
 		
