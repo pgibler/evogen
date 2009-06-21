@@ -74,15 +74,15 @@ package org.evogen.breeder
 			
 			for(var n : int = topPercentile; n < popSize; n++)
 			{
-				/*if(Math.random() < .5)
+				if(Math.random() < .5)
 				{
 					returnme.push(ChooseSpecimenForMutationAndMutate());
 				}
 				else
 				{
 					returnme.push(ChooseTwoSpecimensAndCrossover());					
-				}*/
-				returnme.push(ChooseSpecimenForMutationAndMutate());
+				}
+				returnme.push(ChooseTwoSpecimensAndCrossover());
 			} 
 			
 			return returnme;
@@ -111,8 +111,8 @@ package org.evogen.breeder
 				topChrom = specimen2.BreedableSpecimen.SpecimenChromosome;
 				botChrom = specimen1.BreedableSpecimen.SpecimenChromosome;
 			}
-			chromosome.Traits = chromosome.Traits.concat(topChrom.Traits.slice(0, crossoverPoint-1));
-			chromosome.Traits = chromosome.Traits.concat(botChrom.Traits.slice(crossoverPoint, botChrom.Traits.length));
+			chromosome.Traits = chromosome.Traits.concat(topChrom.Traits.slice(0, crossoverPoint));
+			chromosome.Traits = chromosome.Traits.concat(botChrom.Traits.slice(crossoverPoint));
 			return chromosome;
 		}
 		
@@ -184,7 +184,11 @@ package org.evogen.breeder
 		{
 			var s1 : Specimen = ChooseSpecimen();
 			var s1Index : int = population.indexOf(s1);
-			var s2 : Specimen = ChooseSpecimen(population.slice().splice(s1Index, 1), selectionProbabilities.slice().splice(s1Index, 1));
+			var myPop : Vector.<Specimen> = population.slice();
+			myPop.splice(s1Index, 1)
+			var mySelectProb : Vector.<Number> = selectionProbabilities.slice();
+			mySelectProb.splice(s1Index, 1);
+			var s2 : Specimen = ChooseSpecimen(myPop, mySelectProb);
 			return Crossover(s1, s2);
 		}
 		
