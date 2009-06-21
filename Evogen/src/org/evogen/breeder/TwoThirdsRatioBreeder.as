@@ -8,7 +8,8 @@ package org.evogen.breeder
 		
 		public function Breed(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
-			var fitness : Function = evaluator.EvaluateFitness;
+			this.population = population;
+			this.fitness = evaluator.EvaluateFitness;
 			population = population.sort(function(a:Specimen, b:Specimen):Number
 			{
 				if(fitness(a) > fitness(b))
@@ -33,6 +34,8 @@ package org.evogen.breeder
 			var numLeft : Number = 1;
 			var ratio : Number = 2.0/3.0;
 			var popSize : int = population.length;
+			populationMinusLowestNumber = new Vector.<Specimen>();
+			populationOfLowestNumber = new Vector.<Specimen>();
 			for(var i : int = 0; i < popSize; i++)
 			{				
 				if(lastFitness != -1)
@@ -46,11 +49,13 @@ package org.evogen.breeder
 							for(var j : int = i; j < popSize; j++)
 							{
 								selectionProbability.push(splitRatio);
+								populationOfLowestNumber.push(population[j]);
 							}
 							break;
 						}
 					}
 				} else {
+					populationMinusLowestNumber.push(population[i]);
 					lastFitness = fitness(population[i]);
 				}
 				selectionProbability.push(numLeft*ratio);
@@ -59,19 +64,20 @@ package org.evogen.breeder
 			
 			population.slice(0, popSize/2).forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
 			{
-				returnme.push( spec.BreedableSpecimen );
+				returnme.push( spec.BreedableSpecimen.SpecimenChromosome );
 			});
 			
 			for(var n : int = popSize/2 + 1; n < popSize; n++)
 			{
-				if(Math.random() < .5)
+				/*if(Math.random() < .5)
 				{
 					returnme.push(ChooseSpecimenForMutationAndMutate(population, selectionProbability, evaluator));
 				}
 				else
 				{
 					returnme.push(ChooseTwoSpecimensAndCrossover(population, selectionProbability, evaluator));
-				}
+				}*/
+				returnme.push(ChooseSpecimenForMutationAndMutate());
 			} 
 			
 			return returnme;
@@ -107,23 +113,35 @@ package org.evogen.breeder
 		
 		/**
 		 * Chooses a specimen for crossover and returns the new chromosome.
-		 * @param	population A population of specimens.
-		 * @param	selectionProbabilities The probability to select a specimen.
-		 * @param	evaluator The evaluation function for the specimens.
 		 * @return	A crossed over chromosome.
 		 */
-		private function ChooseSpecimen(population:Vector.<Specimen>, selectionProbabilities:Vector.<Number>, evaluator:SpecimenEvaluator):Specimen
+		private function ChooseSpecimen():Specimen
 		{
 			var randNum : Number = Math.random();
+			var total : Number = 0;
 			var specimen : Specimen;
-			for(var i : int = 0; i < population.length; i++)
+			
+			var totalOfLowest : Number = 0;
+			var i : int;
+			for(i = population.length-populationOfLowestNumber.length; i < population.length; i++)
 			{
-				if(selectionProbabilities[i] < randNum)
+				totalOfLowest += selectionProbabilities[i];
+			}
+			
+			if(randNum < totalOfLowest)
+			{
+				return populationOfLowestNumber[Math.round(Math.random()*populationOfLowestNumber.length-1)];
+			}
+			
+			for(i = populationMinusLowestNumber.length-1; i > 0; i--)
+			{
+				total += selectionProbabilities[i];
+				if(total >= randNum)
 				{
 					// Determine if there are other specimens with the same selection probability
 					var sameProbs : Vector.<Specimen> = new Vector.<Specimen>();
 					sameProbs.push(population[i]);
-					for(var j : int = i; j < population.length; j++)
+					for(var j : int = 0; j < population.length; j++)
 					{
 						if(selectionProbabilities[j] == selectionProbabilities[i])
 						{
@@ -134,7 +152,7 @@ package org.evogen.breeder
 							break;
 						}
 					}
-					return sameProbs[Math.random()*sameProbs.length-1]
+					return sameProbs[Math.round(Math.random()*sameProbs.length-1)]
 				}
 			}
 			throw new Error("This shouldn't have happened.");
@@ -142,31 +160,31 @@ package org.evogen.breeder
 		
 		/**
 		 * Chooses a specimen mutation and returns the new chromosome.
-		 * @param	population A population of specimens.
-		 * @param	selectionProbabilities The probability to select a specimen.
-		 * @param	evaluator The evaluation function for the specimens.
 		 * @return	A mutated chromosome.
 		 */
-		private function ChooseSpecimenForMutationAndMutate(population:Vector.<Specimen>, selectionProbabilities:Vector.<Number>, evaluator:SpecimenEvaluator):Chromosome
+		private function ChooseSpecimenForMutationAndMutate():Chromosome
 		{
-			return ChooseSpecimen(population, selectionProbabilities, evaluator).BreedableSpecimen.SpecimenChromosome.Mutate(.1);
+			return ChooseSpecimen().BreedableSpecimen.SpecimenChromosome.Mutate(.1);
 		}
 		
 		/**
 		 * Chooses two specimen from a population and crosses them over.
-		 * @param	population A population of specimens.
-		 * @param	selectionProbabilities The probability to select a specimen.
-		 * @param	evaluator The evaluation function for the specimens.
 		 * @return	A crossed over chromosome.
 		 */
-		private function ChooseTwoSpecimensAndCrossover(population:Vector.<Specimen>, selectionProbabilities:Vector.<Number>, evaluator:SpecimenEvaluator):Chromosome
+		private function ChooseTwoSpecimensAndCrossover():Chromosome
 		{
-			var s1 : Specimen = ChooseSpecimen(population, selectionProbabilities, evaluator);
+			var s1 : Specimen = ChooseSpecimen();
 			var s1Index : int = population.indexOf(s1);
 			population.splice(s1Index, 1);
 			selectionProbabilities.splice(s1Index, 1);
-			var s2 : Specimen = ChooseSpecimen(population, selectionProbabilities, evaluator);
+			var s2 : Specimen = ChooseSpecimen();
 			return Crossover(s1, s2);
 		}
+		
+		private var populationMinusLowestNumber : Vector.<Specimen>;
+		private var populationOfLowestNumber : Vector.<Specimen>;
+		private var population : Vector.<Specimen>;
+		private var selectionProbabilities : Vector.<Number>;
+		private var fitness : Function;
 	}
 }
