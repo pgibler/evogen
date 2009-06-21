@@ -93,7 +93,7 @@ package fighter.controller.runner
 			for each(var c : Chromosome in chromosomes)
 			{
 				var rules : Production = generator.GenerateProductionFromChromosome(c);
-				var p : Player = new Player(new PlayerController(rules), new Specimen(c));
+				returnme.push( new Player(new PlayerController(rules), new Specimen(c)) );
 			}
 			return returnme;
 		}
