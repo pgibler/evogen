@@ -32,7 +32,7 @@ package fighter.controller.callback
 		
 		public function OnTournamentGameEnd(tournament:Tournament, game:Game):void
 		{
-			var winner : Player = game.Player1.Health > game.Player2.Health ? game.Player1 : game.Player2;
+			var winner : Player = game.Player1.Health >= game.Player2.Health ? game.Player1 : game.Player2;
 			var loser : Player = winner.CurrentOpponent;
 			
 			winner.BreedableSpecimen.Data["wins"] += 1;

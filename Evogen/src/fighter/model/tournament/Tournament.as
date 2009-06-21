@@ -20,12 +20,12 @@
 		public function get NextPlayer():Player
 		{
 			currentPlayer++;
-			return currentPlayer < players.length-1 ? players[currentPlayer] : null;
+			return currentPlayer < players.length ? players[currentPlayer] : null;
 		}
 		
 		public function get IsComplete():Boolean
 		{
-			return gamesCompleted == gamesRequiredToComplete; 
+			return currentPlayer >= players.length; 
 		}
 		
 		public function get TopPlayer():Player
@@ -74,10 +74,8 @@
 			this.players = players;
 			this.topPlayer = topPlayer;
 			this.settings = settings;
-			this.gamesCompleted = 0;
-			this.gamesRequiredToComplete = players.length-1;
 			this.games = new Vector.<Game>();
-			this.currentPlayer = 1;
+			this.currentPlayer = 0;
 			this.gameSettings = gameSettings;
 		}
 		
@@ -85,8 +83,6 @@
 		private var settings : TournamentSettings;
 		private var gameSettings : GameSettings;
 		private var topPlayer : Player;
-		private var gamesCompleted : int;
-		private var gamesRequiredToComplete : int;
 		private var currentGame : Game;
 		private var games : Vector.<Game>;
 		private var players : Vector.<Player>;

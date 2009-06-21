@@ -76,9 +76,10 @@ package fighter.controller.runner
 		
 		private function SpawnNextGeneration():void
 		{
-			var specimens : Vector.<Specimen> = this.tournament.Players.map(function(player:Player, index:int, vec:Vector.<Player>):Specimen
+			var specimens : Vector.<Specimen> = new Vector.<Specimen>();
+			this.tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 			{
-				return player.BreedableSpecimen;
+				specimens.push( player.BreedableSpecimen );
 			});
 			var chromosomes : Vector.<Chromosome> = breederSettings.SettingsBreeder.Breed(specimens, breederSettings.Evaluator);
 			var players : Vector.<Player> = GeneratePlayers(chromosomes);

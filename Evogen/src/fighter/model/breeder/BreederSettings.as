@@ -29,7 +29,7 @@ package fighter.model.breeder
 		{
 			this.generations = generations;
 			this.populationSize = populationSize;
-			this.settingsBreeder = settingsBreeder;
+			this.settingsBreeder = breeder;
 			this.evaluator = evaluator;
 		}
 		

@@ -9,9 +9,9 @@ package org.evogen.breeder
 		public function Breed(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
 			var fitness : Function = evaluator.EvaluateFitness;
-			population = population.sort(function(a:Specimen, b:Specimen):int
+			population = population.sort(function(a:Specimen, b:Specimen):Number
 			{
-				return fitness(a) == 0 ? 0 : (fitness(b) - fitness(a))/Math.abs(fitness(b)/fitness(a));
+				return fitness(a) > fitness(b) ? -1 : 0;
 			});
 			var selectionProbability : Vector.<Number> = new Vector.<Number>();
 			var returnme : Vector.<Chromosome> = new Vector.<Chromosome>();
