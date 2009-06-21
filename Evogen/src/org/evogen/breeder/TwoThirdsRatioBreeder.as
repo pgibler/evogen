@@ -71,15 +71,14 @@ package org.evogen.breeder
 			
 			for(var n : int = topPercentile + 1; n < popSize; n++)
 			{
-				/*if(Math.random() < .5)
+				if(Math.random() < .5)
 				{
-					returnme.push(ChooseSpecimenForMutationAndMutate(population, selectionProbability, evaluator));
+					returnme.push(ChooseSpecimenForMutationAndMutate());
 				}
 				else
 				{
-					returnme.push(ChooseTwoSpecimensAndCrossover(population, selectionProbability, evaluator));
-				}*/
-				returnme.push(ChooseSpecimenForMutationAndMutate());
+					returnme.push(ChooseTwoSpecimensAndCrossover());
+				}
 			} 
 			
 			return returnme;
@@ -93,7 +92,7 @@ package org.evogen.breeder
 		 */
 		private function Crossover(specimen1:Specimen, specimen2:Specimen):Chromosome
 		{
-			var crossoverPoint : int = int(Math.random() * specimen1.SpecimenChromosome.Traits.length);
+			var crossoverPoint : int = int(Math.random() * (specimen1.SpecimenChromosome.Traits.length-1));
 			var chromosome : Chromosome = new Chromosome(specimen1.BreedableSpecimen.SpecimenChromosome.Template);
 			chromosome.TraitNames = specimen1.SpecimenChromosome.TraitNames.slice();
 			var topChrom : Chromosome;
