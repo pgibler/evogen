@@ -8,13 +8,14 @@
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	
+	import org.evogen.entity.Breedable;
 	import org.evogen.entity.Specimen;
 	
 	/**
 	 * ...
 	 * @author Paul Gibler
 	*/
-	public class Player
+	public class Player implements Breedable
 	{
 		public function get CurrentAction():Action
 		{
@@ -76,7 +77,7 @@
 		{
 			return displaycontainer;
 		}
-		public function get PlayerSpecimen():Specimen
+		public function get BreedableSpecimen():Specimen
 		{
 			return specimen;
 		}

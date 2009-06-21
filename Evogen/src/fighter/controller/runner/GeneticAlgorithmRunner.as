@@ -50,6 +50,11 @@ package fighter.controller.runner
 				if(currentGeneration < breederSettings.Generations)
 				{
 					currentGeneration++;
+					SpawnNextGeneration();
+				}
+				else
+				{
+					trace("Genetic algorithm runner completed.");
 				}
 			}
 			else
@@ -65,6 +70,14 @@ package fighter.controller.runner
 			tourneyCallback = new TournamentCallbackImpl();			
 			this.tournament = new Tournament(tourneyCallback , players, players[0], tournamentSettings, gameSettings);
 			tourneyCallback.OnTournamentStart( tournament );
+		}
+		
+		private function SpawnNextGeneration():void
+		{
+			var specimens : Vector.<Specimen> = this.tournament.Players.map(function(player:Player, index:int, vec:Vector.<Player>):Specimen
+			{
+				return player.PlayerSpecimen
+			}
 		}
 		
 		private function GeneratePlayers(populationSize:int):Vector.<Player>

@@ -35,10 +35,19 @@ package fighter.controller.callback
 			var winner : Player = game.Player1.Health > game.Player2.Health ? game.Player1 : game.Player2;
 			var loser : Player = winner.CurrentOpponent;
 			
-			winner.PlayerSpecimen.Data["wins"] += 1;
-			loser.PlayerSpecimen.Data["losses"] += 1;
+			winner.BreedableSpecimen.Data["wins"] += 1;
+			loser.BreedableSpecimen.Data["losses"] += 1;
 			
-			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.NextPlayer, tournament);
+			var nextPlayer : Player = tournament.NextPlayer;
+			
+			if(nextPlayer != null)
+			{
+				GenerateGameAndSetAsCurrent(tournament.TopPlayer, nextPlayer, tournament);
+			}
+			else
+			{
+				OnTournamentEnd(tournament);
+			}
 		}
 		
 		private function GenerateGameAndSetAsCurrent(player1:Player, player2:Player, tournament:Tournament):Game
