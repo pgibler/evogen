@@ -104,10 +104,11 @@ package fighter.controller.runner
 			var compProd : ComputerProductionTemplate = new ComputerProductionTemplate();
 			for(var i : int = 0 ; i < populationSize; i++)
 			{
+				var prod : Production = compProd.GenerateProduction();
 				var spec : Specimen = new Specimen(compProd.LastGeneratedProductionChromosome);
 				spec.Data["wins"] = 0;
 				spec.Data["losses"] = 0;
-				players.push( new Player( new PlayerController( compProd.GenerateProduction() ), spec ) );
+				players.push( new Player( new PlayerController( prod ), spec ) );
 			}
 			return players;
 		}

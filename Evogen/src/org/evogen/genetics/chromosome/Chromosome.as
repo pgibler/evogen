@@ -58,7 +58,7 @@
 			}
 			for each(var t:Trait in traits)
 			{
-				var chanceToMutate : Number = Math.random()();
+				var chanceToMutate : Number = Math.random();
 				if (chanceToMutate <= mutationProbability)
 				{
 					t.Mutate();

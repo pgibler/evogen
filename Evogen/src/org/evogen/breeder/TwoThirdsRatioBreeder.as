@@ -27,7 +27,7 @@ package org.evogen.breeder
 			{
 				fitnesses.push( fitness(spec) );
 			});
-			var selectionProbability : Vector.<Number> = new Vector.<Number>();
+			selectionProbabilities = new Vector.<Number>();
 			var returnme : Vector.<Chromosome> = new Vector.<Chromosome>();
 			var nextHasHigherFitness : Boolean = true;
 			var lastFitness : Number = -1;
@@ -45,10 +45,10 @@ package org.evogen.breeder
 						nextHasHigherFitness = fitnesses[i+1] > fitnesses[i];
 						if(!nextHasHigherFitness)
 						{
-							var splitRatio : Number = ratio / (population.length - i);
+							var splitRatio : Number = numLeft / (population.length - i);
 							for(var j : int = i; j < popSize; j++)
 							{
-								selectionProbability.push(splitRatio);
+								selectionProbabilities.push(splitRatio);
 								populationOfLowestNumber.push(population[j]);
 							}
 							break;
@@ -58,16 +58,18 @@ package org.evogen.breeder
 					populationMinusLowestNumber.push(population[i]);
 					lastFitness = fitness(population[i]);
 				}
-				selectionProbability.push(numLeft*ratio);
+				selectionProbabilities.push(numLeft*ratio);
 				numLeft -= numLeft*ratio;
 			}
 			
-			population.slice(0, popSize/2).forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
+			var topPercentile : int = popSize/2;
+			
+			population.slice(0, topPercentile).forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
 			{
 				returnme.push( spec.BreedableSpecimen.SpecimenChromosome );
 			});
 			
-			for(var n : int = popSize/2 + 1; n < popSize; n++)
+			for(var n : int = topPercentile + 1; n < popSize; n++)
 			{
 				/*if(Math.random() < .5)
 				{
@@ -117,7 +119,7 @@ package org.evogen.breeder
 		 */
 		private function ChooseSpecimen():Specimen
 		{
-			var randNum : Number = Math.random();
+			var randNum : Number = .3//Math.random();
 			var total : Number = 0;
 			var specimen : Specimen;
 			
@@ -130,7 +132,8 @@ package org.evogen.breeder
 			
 			if(randNum < totalOfLowest)
 			{
-				return populationOfLowestNumber[Math.round(Math.random()*populationOfLowestNumber.length-1)];
+				var indx : int = Math.round(Math.random()*populationOfLowestNumber.length-1);
+				return populationOfLowestNumber[indx];
 			}
 			
 			for(i = populationMinusLowestNumber.length-1; i > 0; i--)
@@ -152,7 +155,7 @@ package org.evogen.breeder
 							break;
 						}
 					}
-					return sameProbs[Math.round(Math.random()*sameProbs.length-1)]
+					return sameProbs[Math.round(Math.random()*sameProbs.length-1)];
 				}
 			}
 			throw new Error("This shouldn't have happened.");
