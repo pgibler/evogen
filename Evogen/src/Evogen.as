@@ -47,7 +47,11 @@ package
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,20);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			var specimens:Vector.<Specimen> = ga.Run();
-			trace("Most fit specimens are : "+specimens);
+			trace("Most fit specimens are : ");
+			specimens.forEach(function(spec:Specimen, i:int, vec:Vector.<Specimen>):void
+			{
+				trace(i + " : " + spec.SpecimenChromosome);
+			});
 		}
 		
 		private function testGame():void
