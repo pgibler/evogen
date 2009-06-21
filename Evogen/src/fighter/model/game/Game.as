@@ -12,6 +12,10 @@
 	 */
 	public class Game 
 	{
+		
+		public static const SIMULATION : int = 0;
+		public static const GRAPHICAL : int = 1;
+		
 		public function get Callback():GameCallback
 		{
 			return this.callback;
@@ -52,9 +56,14 @@
 		{
 			return Game.timeMax;
 		}
-		
-		public function Game(player1:Player, player2:Player, level:Level, callback : GameCallback) 
+		public function get Settings():GameSettings
 		{
+			return settings;
+		}
+		
+		public function Game(player1:Player, player2:Player, level:Level, callback : GameCallback, settings:GameSettings) 
+		{
+			this.settings = settings;
 			this.callback = callback;
 			this.player1 = player1;
 			this.player2 = player2;
@@ -85,6 +94,7 @@
 		private var viewContainer : DisplayObjectContainer;
 		private var timeElapsed : Number;
 		private var level : Level;
+		private var settings : GameSettings;
 		private var player1 : Player;
 		private var player2 : Player;
 		

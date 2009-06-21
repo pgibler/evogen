@@ -2,6 +2,7 @@
 {
 	import fighter.controller.callback.TournamentCallback;
 	import fighter.model.game.Game;
+	import fighter.model.game.GameSettings;
 	import fighter.model.player.Player;
 	
 	/**
@@ -10,6 +11,11 @@
 	 */
 	public class Tournament
 	{
+		
+		public function get TournamentGameSettings():GameSettings
+		{
+			return gameSettings;
+		}
 		
 		public function get NextPlayer():Player
 		{
@@ -44,7 +50,7 @@
 		
 		public function get Settings():TournamentSettings
 		{
-			return tournamentSettings;
+			return settings;
 		}
 		
 		public function get Players():Vector.<Player>
@@ -62,26 +68,22 @@
 			return players;
 		}
 		
-		public function get GameWinsToWinMatch():int
-		{
-			return gameWinsToWinMatch;
-		}
-		
-		public function Tournament(tournamentCallback:TournamentCallback, players:Vector.<Player>, topPlayer:Player, gameWinsToWinMatch:int=1) 
+		public function Tournament(tournamentCallback:TournamentCallback, players:Vector.<Player>, topPlayer:Player, settings:TournamentSettings, gameSettings:GameSettings) 
 		{
 			this.tournamentCallback = tournamentCallback;
-			this.tournamentSettings = tournamentSettings;
 			this.players = players;
 			this.topPlayer = topPlayer;
-			this.gameWinsToWinMatch = gameWinsToWinMatch;
+			this.settings = settings;
 			this.gamesCompleted = 0;
 			this.gamesRequiredToComplete = players.length-1;
 			this.games = new Vector.<Game>();
 			this.currentPlayer = 1;
+			this.gameSettings = gameSettings;
 		}
 		
 		private var currentPlayer : int;
-		private var gameWinsToWinMatch : int;
+		private var settings : TournamentSettings;
+		private var gameSettings : GameSettings;
 		private var topPlayer : Player;
 		private var gamesCompleted : int;
 		private var gamesRequiredToComplete : int;
@@ -89,7 +91,6 @@
 		private var games : Vector.<Game>;
 		private var players : Vector.<Player>;
 		private var tournamentCallback : TournamentCallback;
-		private var tournamentSettings : TournamentSettings;
 		
 	}
 	

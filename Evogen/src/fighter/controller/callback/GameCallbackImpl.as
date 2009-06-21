@@ -17,18 +17,22 @@
 		
 		public function OnFrameUpdate(game:Game):void
 		{
-			if (game.IsComplete)
+			for(var i : int = 0; i < game.Settings.FrameIntervalsPerTick; i++)
 			{
-				OnGameEnd(game);
-			}
-			else
-			{
-				var p1 : Player = game.Player1;
-				var p2 : Player = game.Player2;
-				p1.Controller.Update(p1, game);
-				p2.Controller.Update(p2, game);
-				game.TimeElapsed += 1;
-				//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax);
+				if (game.IsComplete)
+				{
+					OnGameEnd(game);
+					break;
+				}
+				else
+				{
+					var p1 : Player = game.Player1;
+					var p2 : Player = game.Player2;
+					p1.Controller.Update(p1, game);
+					p2.Controller.Update(p2, game);
+					game.TimeElapsed += 1;
+					//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax);
+				}
 			}
 		}
 		

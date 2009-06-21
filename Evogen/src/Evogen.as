@@ -1,22 +1,18 @@
 package 
 {
-	import fighter.controller.callback.GameCallbackImpl;
-	import fighter.controller.callback.TournamentCallbackImpl;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
 	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.controller.runner.GeneticAlgorithmRunner;
-	import fighter.model.game.Game;
-	import fighter.model.game.Level;
-	import fighter.model.player.Player;
-	import fighter.model.tournament.Tournament;
+	import fighter.model.breeder.BreederSettings;
+	import fighter.model.game.GameSettings;
+	import fighter.model.tournament.TournamentSettings;
 	import fighter.util.KeyObject;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
 	import org.evogen.genetics.trait.*;
@@ -43,7 +39,10 @@ package
 		
 		private function testGA():void
 		{
-			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(5, 10, 300, 1, GeneticAlgorithmRunner.SIMULATION);
+			var gameSettings : GameSettings = new GameSettings();
+			var tournamentSettings : TournamentSettings = new TournamentSettings();
+			var breederSettings:BreederSettings = new BreederSettings(3,10);
+			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			addEventListener( Event.ENTER_FRAME, ga.Update );
 		}
 		
