@@ -11,11 +11,24 @@ package org.evogen.breeder
 			var fitness : Function = evaluator.EvaluateFitness;
 			population = population.sort(function(a:Specimen, b:Specimen):Number
 			{
-				return fitness(a) > fitness(b) ? -1 : 0;
+				if(fitness(a) > fitness(b))
+				{
+					return -1;
+				}
+				else if(fitness(a) < fitness(b))
+				{
+					return 1;
+				}
+				return 0;
+			});
+			var fitnesses : Vector.<Number> = new Vector.<Number>();
+			population.forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
+			{
+				fitnesses.push( fitness(spec) );
 			});
 			var selectionProbability : Vector.<Number> = new Vector.<Number>();
 			var returnme : Vector.<Chromosome> = new Vector.<Chromosome>();
-			var hasHigherFitness : Boolean = true;
+			var nextHasHigherFitness : Boolean = true;
 			var lastFitness : Number = -1;
 			var numLeft : Number = 1;
 			var ratio : Number = 2.0/3.0;
@@ -24,24 +37,30 @@ package org.evogen.breeder
 			{				
 				if(lastFitness != -1)
 				{
-					hasHigherFitness = fitness(i) > fitness(i-1);
-					if(!hasHigherFitness)
+					if(i+1 < fitnesses.length)
 					{
-						var splitRatio : Number = ratio / (population.length - i);
-						for(var j : int = i; j < popSize; j++)
+						nextHasHigherFitness = fitnesses[i+1] > fitnesses[i];
+						if(!nextHasHigherFitness)
 						{
-							selectionProbability.push(splitRatio);
+							var splitRatio : Number = ratio / (population.length - i);
+							for(var j : int = i; j < popSize; j++)
+							{
+								selectionProbability.push(splitRatio);
+							}
+							break;
 						}
-						break;
 					}
 				} else {
 					lastFitness = fitness(population[i]);
 				}
-				selectionProbability.push(numLeft/ratio);
-				numLeft /= ratio;
+				selectionProbability.push(numLeft*ratio);
+				numLeft -= numLeft*ratio;
 			}
 			
-			returnme.concat(population.slice(0, popSize/2));
+			population.slice(0, popSize/2).forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
+			{
+				returnme.push( spec.BreedableSpecimen );
+			});
 			
 			for(var n : int = popSize/2 + 1; n < popSize; n++)
 			{
