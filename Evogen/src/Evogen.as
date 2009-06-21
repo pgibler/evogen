@@ -1,6 +1,6 @@
 package 
 {
-	import breeder.FighterSpecimenEvaluator;
+	import fighter.util.FighterSpecimenEvaluator;
 	
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.HumanProductionTemplate;

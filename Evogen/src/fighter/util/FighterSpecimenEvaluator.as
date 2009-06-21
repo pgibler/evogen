@@ -1,4 +1,4 @@
-package breeder
+package fighter.util
 {
 	import org.evogen.breeder.SpecimenEvaluator;
 	import org.evogen.entity.Specimen;
