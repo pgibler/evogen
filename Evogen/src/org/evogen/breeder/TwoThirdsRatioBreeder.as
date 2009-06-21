@@ -82,7 +82,6 @@ package org.evogen.breeder
 				{
 					returnme.push(ChooseTwoSpecimensAndCrossover());					
 				}
-				returnme.push(ChooseTwoSpecimensAndCrossover());
 			} 
 			
 			return returnme;
