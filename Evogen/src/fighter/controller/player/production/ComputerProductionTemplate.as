@@ -57,7 +57,7 @@
 		public function GenerateProductionFromChromosome(c:Chromosome):Production
 		{
 			var p : Production = new Production(this);
-			for each(var t : ProbabilisticTrait in c)
+			for each(var t : ProbabilisticTrait in c.Traits)
 			{
 				var probs : Vector.<Number> = t.StateProbabilities;
 				var conditionString : String = t.Name;
