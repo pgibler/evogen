@@ -10,18 +10,7 @@ package org.evogen.breeder
 		{
 			this.population = population;
 			this.fitness = evaluator.EvaluateFitness;
-			population = population.sort(function(a:Specimen, b:Specimen):Number
-			{
-				if(fitness(a) > fitness(b))
-				{
-					return -1;
-				}
-				else if(fitness(a) < fitness(b))
-				{
-					return 1;
-				}
-				return 0;
-			});
+			population = evaluator.SortSpecimens(population);
 			var fitnesses : Vector.<Number> = new Vector.<Number>();
 			population.forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
 			{

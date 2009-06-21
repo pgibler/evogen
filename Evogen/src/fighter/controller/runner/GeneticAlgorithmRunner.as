@@ -41,17 +41,20 @@ package fighter.controller.runner
 			this.gameSettings = gameSettings;
 			this.tournamentSettings = tournamentSettings;
 			this.breederSettings = breederSettings;
+			this.currentGeneration = 1;
+			this.mostFitSpecimens = new Vector.<Specimen>();
 			trace("Starting tournaments...");
 			var players : Vector.<Player> = GenerateInitialPlayers(breederSettings.PopulationSize);
 			StartTournament(players);
 		}
 		
-		public function Run():void
+		public function Run():Vector.<Specimen>
 		{
 			while(!this.isComplete)
 			{
 				Update();
 			}
+			return mostFitSpecimens;
 		}
 		
 		public function Update(event:Event = null):void
@@ -67,6 +70,11 @@ package fighter.controller.runner
 				{
 					trace("Genetic algorithm runner completed.");
 					this.isComplete = true;
+					this.tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
+					{
+						mostFitSpecimens.push(player.BreedableSpecimen);
+					});
+					mostFitSpecimens = breederSettings.Evaluator.SortSpecimens(mostFitSpecimens);
 				}
 			}
 			else
@@ -122,6 +130,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private var mostFitSpecimens : Vector.<Specimen>;
 		private var isComplete : Boolean = false;
 		private var currentGeneration : int;
 		private var tourneyCallback : TournamentCallback;

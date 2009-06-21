@@ -1,7 +1,5 @@
 package 
 {
-	import fighter.util.FighterSpecimenEvaluator;
-	
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
@@ -10,12 +8,14 @@ package
 	import fighter.model.breeder.BreederSettings;
 	import fighter.model.game.GameSettings;
 	import fighter.model.tournament.TournamentSettings;
+	import fighter.util.FighterSpecimenEvaluator;
 	import fighter.util.KeyObject;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import org.evogen.breeder.TwoThirdsRatioBreeder;
+	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
 	import org.evogen.genetics.trait.*;
@@ -44,9 +44,10 @@ package
 		{
 			var gameSettings : GameSettings = new GameSettings();
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,5);
+			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,20);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
-			ga.Run();
+			var specimens:Vector.<Specimen> = ga.Run();
+			trace("Most fit specimens are : "+specimens);
 		}
 		
 		private function testGame():void
