@@ -76,8 +76,8 @@ package fighter.controller.runner
 		{
 			var specimens : Vector.<Specimen> = this.tournament.Players.map(function(player:Player, index:int, vec:Vector.<Player>):Specimen
 			{
-				return player.PlayerSpecimen
-			}
+				return player.BreedableSpecimen;
+			});
 		}
 		
 		private function GeneratePlayers(populationSize:int):Vector.<Player>
