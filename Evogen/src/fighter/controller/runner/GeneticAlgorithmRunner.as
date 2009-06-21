@@ -4,6 +4,7 @@ package fighter.controller.runner
 	import fighter.controller.callback.TournamentCallbackImpl;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.ComputerProductionTemplate;
+	import fighter.controller.player.production.Production;
 	import fighter.model.breeder.BreederSettings;
 	import fighter.model.game.Game;
 	import fighter.model.game.GameSettings;
@@ -14,6 +15,7 @@ package fighter.controller.runner
 	import flash.events.Event;
 	
 	import org.evogen.entity.Specimen;
+	import org.evogen.genetics.chromosome.Chromosome;
 	
 	public class GeneticAlgorithmRunner
 	{
@@ -40,7 +42,8 @@ package fighter.controller.runner
 			this.tournamentSettings = tournamentSettings;
 			this.breederSettings = breederSettings;
 			trace("Starting tournaments...");
-			StartTournament(currentGeneration);
+			var players : Vector.<Player> = GenerateInitialPlayers(breederSettings.PopulationSize);
+			StartTournament(players);
 		}
 		
 		public function Update(event:Event = null):void
@@ -63,10 +66,9 @@ package fighter.controller.runner
 			}
 		}
 		
-		private function StartTournament(currGen:int):void
+		private function StartTournament(players:Vector.<Player>):void
 		{
-			var players : Vector.<Player> = GeneratePlayers(breederSettings.PopulationSize);
-			trace("Running Tournament "+currGen+" with population size " + breederSettings.PopulationSize + " with top player " + players[0]);
+			trace("Running Tournament "+currentGeneration+" with population size " + breederSettings.PopulationSize + " with top player " + players[0]);
 			tourneyCallback = new TournamentCallbackImpl();			
 			this.tournament = new Tournament(tourneyCallback , players, players[0], tournamentSettings, gameSettings);
 			tourneyCallback.OnTournamentStart( tournament );
@@ -78,15 +80,33 @@ package fighter.controller.runner
 			{
 				return player.BreedableSpecimen;
 			});
+			var chromosomes : Vector.<Chromosome> = breederSettings.SettingsBreeder.Breed(specimens, breederSettings.Evaluator);
+			var players : Vector.<Player> = GeneratePlayers(chromosomes);
+			StartTournament(players);
 		}
 		
-		private function GeneratePlayers(populationSize:int):Vector.<Player>
+		private function GeneratePlayers(chromosomes:Vector.<Chromosome>):Vector.<Player>
+		{
+			var returnme : Vector.<Player> = new Vector.<Player>();
+			var generator : ComputerProductionTemplate = new ComputerProductionTemplate();
+			for each(var c : Chromosome in chromosomes)
+			{
+				var rules : Production = generator.GenerateProductionFromChromosome(c);
+				var p : Player = new Player(new PlayerController(rules), new Specimen(c));
+			}
+			return returnme;
+		}
+		
+		private function GenerateInitialPlayers(populationSize:int):Vector.<Player>
 		{
 			var players : Vector.<Player> = new Vector.<Player>();
 			var compProd : ComputerProductionTemplate = new ComputerProductionTemplate();
 			for(var i : int = 0 ; i < populationSize; i++)
 			{
-				players.push( new Player( new PlayerController( compProd.GenerateProduction() ), new Specimen(compProd.LastGeneratedProductionChromosome) ) );
+				var spec : Specimen = new Specimen(compProd.LastGeneratedProductionChromosome);
+				spec.Data["wins"] = 0;
+				spec.Data["losses"] = 0;
+				players.push( new Player( new PlayerController( compProd.GenerateProduction() ), spec ) );
 			}
 			return players;
 		}

@@ -1,5 +1,7 @@
 package 
 {
+	import breeder.FighterSpecimenEvaluator;
+	
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
@@ -13,6 +15,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
+	import org.evogen.breeder.TwoThirdsRatioBreeder;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
 	import org.evogen.genetics.trait.*;
@@ -41,7 +44,7 @@ package
 		{
 			var gameSettings : GameSettings = new GameSettings();
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(3,10);
+			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 3,10);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			addEventListener( Event.ENTER_FRAME, ga.Update );
 		}

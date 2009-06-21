@@ -11,7 +11,7 @@ package org.evogen.breeder
 			var fitness : Function = evaluator.EvaluateFitness;
 			population = population.sort(function(a:Specimen, b:Specimen):int
 			{
-				return fitness(a) == 0 ? 0 : ((b) - fitness(a))/Math.abs(fitness(b)/fitness(a));
+				return fitness(a) == 0 ? 0 : (fitness(b) - fitness(a))/Math.abs(fitness(b)/fitness(a));
 			});
 			var selectionProbability : Vector.<Number> = new Vector.<Number>();
 			var returnme : Vector.<Chromosome> = new Vector.<Chromosome>();
@@ -19,7 +19,7 @@ package org.evogen.breeder
 			var lastFitness : Number = -1;
 			var numLeft : Number = 1;
 			var ratio : Number = 2.0/3.0;
-			var popSize = population.length;
+			var popSize : int = population.length;
 			for(var i : int = 0; i < popSize; i++)
 			{				
 				if(lastFitness != -1)
@@ -35,7 +35,7 @@ package org.evogen.breeder
 						break;
 					}
 				} else {
-					lastFitness = population[i];
+					lastFitness = fitness(population[i]);
 				}
 				selectionProbability.push(numLeft/ratio);
 				numLeft /= ratio;
@@ -47,11 +47,11 @@ package org.evogen.breeder
 			{
 				if(Math.random() < .5)
 				{
-					returnme.push(ChooseSpecimenForMutationAndMutate(population, selectionProbability, evaluator);
+					returnme.push(ChooseSpecimenForMutationAndMutate(population, selectionProbability, evaluator));
 				}
 				else
 				{
-					returnme.push(ChooseTwoSpecimensAndCrossover(population, selectionProbability, evaluator);
+					returnme.push(ChooseTwoSpecimensAndCrossover(population, selectionProbability, evaluator));
 				}
 			} 
 			
@@ -81,8 +81,8 @@ package org.evogen.breeder
 				topChrom = specimen2.BreedableSpecimen.SpecimenChromosome;
 				botChrom = specimen1.BreedableSpecimen.SpecimenChromosome;
 			}
-			chromosome = chromosome.Traits.concat(topChrom.Traits.slice(0, crossoverPoint-1));
-			chromosome = chromosome.Traits.concat(botChrom.Traits.slice(crossoverPoint, botChrom.Traits.length));
+			chromosome.Traits = chromosome.Traits.concat(topChrom.Traits.slice(0, crossoverPoint-1));
+			chromosome.Traits = chromosome.Traits.concat(botChrom.Traits.slice(crossoverPoint, botChrom.Traits.length));
 			return chromosome;
 		}
 		

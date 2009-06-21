@@ -44,9 +44,20 @@
 		
 		override public function GenerateProduction():Production
 		{
-			var p : Production = new Production(this);
 			lastProductionChromosome = chromosomeTemplate.GenerateRandomChromosome();
-			for each(var t : ProbabilisticTrait in lastProductionChromosome.Traits)
+			return GenerateProductionFromChromosome(lastProductionChromosome);;
+			
+		}
+		
+		public function get LastGeneratedProductionChromosome():Chromosome
+		{
+			return lastProductionChromosome;
+		}
+		
+		public function GenerateProductionFromChromosome(c:Chromosome):Production
+		{
+			var p : Production = new Production(this);
+			for each(var t : ProbabilisticTrait in c)
 			{
 				var probs : Vector.<Number> = t.StateProbabilities;
 				var conditionString : String = t.Name;
@@ -54,12 +65,6 @@
 				p.AddRule(conditionString, apm);
 			}
 			return p;
-			
-		}
-		
-		public function get LastGeneratedProductionChromosome():Chromosome
-		{
-			return lastProductionChromosome;
 		}
 		
 		public function GenerateProductionFromDNA(dna:String):Production
