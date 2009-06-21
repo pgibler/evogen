@@ -132,7 +132,7 @@ package org.evogen.breeder
 			
 			if(randNum < totalOfLowest)
 			{
-				var indx : int = Math.round(Math.random()*populationOfLowestNumber.length-1);
+				var indx : int = Math.round(Math.random()*(populationOfLowestNumber.length-1));
 				return populationOfLowestNumber[indx];
 			}
 			
@@ -155,7 +155,7 @@ package org.evogen.breeder
 							break;
 						}
 					}
-					return sameProbs[Math.round(Math.random()*sameProbs.length-1)];
+					return sameProbs[Math.round(Math.random()*(sameProbs.length-1))];
 				}
 			}
 			throw new Error("This shouldn't have happened.");

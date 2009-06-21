@@ -46,6 +46,14 @@ package fighter.controller.runner
 			StartTournament(players);
 		}
 		
+		public function Run():void
+		{
+			while(!this.isComplete)
+			{
+				Update();
+			}
+		}
+		
 		public function Update(event:Event = null):void
 		{
 			if(tournament.IsComplete)
@@ -58,6 +66,7 @@ package fighter.controller.runner
 				else
 				{
 					trace("Genetic algorithm runner completed.");
+					this.isComplete = true;
 				}
 			}
 			else
@@ -113,6 +122,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private var isComplete : Boolean = false;
 		private var currentGeneration : int;
 		private var tourneyCallback : TournamentCallback;
 		private var gameSettings : GameSettings;
