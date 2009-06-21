@@ -53,6 +53,9 @@ package org.evogen.breeder
 							}
 							break;
 						}
+					} else {
+						populationMinusLowestNumber.push(population[i]);
+						lastFitness = fitness(population[i]);
 					}
 				} else {
 					populationMinusLowestNumber.push(population[i]);
@@ -69,16 +72,17 @@ package org.evogen.breeder
 				returnme.push( spec.BreedableSpecimen.SpecimenChromosome );
 			});
 			
-			for(var n : int = topPercentile + 1; n < popSize; n++)
+			for(var n : int = topPercentile; n < popSize; n++)
 			{
-				if(Math.random() < .5)
+				/*if(Math.random() < .5)
 				{
 					returnme.push(ChooseSpecimenForMutationAndMutate());
 				}
 				else
 				{
-					returnme.push(ChooseTwoSpecimensAndCrossover());
-				}
+					returnme.push(ChooseTwoSpecimensAndCrossover());					
+				}*/
+				returnme.push(ChooseSpecimenForMutationAndMutate());
 			} 
 			
 			return returnme;
@@ -116,8 +120,11 @@ package org.evogen.breeder
 		 * Chooses a specimen for crossover and returns the new chromosome.
 		 * @return	A crossed over chromosome.
 		 */
-		private function ChooseSpecimen():Specimen
+		private function ChooseSpecimen(population:Vector.<Specimen> = null, selectionProbabilities : Vector.<Number> = null):Specimen
 		{
+			population = population == null ? this.population : population;
+			selectionProbabilities = selectionProbabilities == null ? this.selectionProbabilities : selectionProbabilities;
+			
 			var randNum : Number = .3//Math.random();
 			var total : Number = 0;
 			var specimen : Specimen;
@@ -177,9 +184,7 @@ package org.evogen.breeder
 		{
 			var s1 : Specimen = ChooseSpecimen();
 			var s1Index : int = population.indexOf(s1);
-			population.splice(s1Index, 1);
-			selectionProbabilities.splice(s1Index, 1);
-			var s2 : Specimen = ChooseSpecimen();
+			var s2 : Specimen = ChooseSpecimen(population.slice().splice(s1Index, 1), selectionProbabilities.slice().splice(s1Index, 1));
 			return Crossover(s1, s2);
 		}
 		
