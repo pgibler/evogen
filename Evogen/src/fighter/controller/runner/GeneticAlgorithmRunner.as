@@ -118,7 +118,10 @@ package fighter.controller.runner
 			for each(var c : Chromosome in chromosomes)
 			{
 				var rules : Production = generator.GenerateProductionFromChromosome(c);
-				returnme.push( new Player(new PlayerController(rules), new Specimen(c)) );
+				var spec : Specimen = new Specimen(c);
+				spec.Data["wins"] = 0;
+				spec.Data["losses"] = 0;
+				returnme.push( new Player(new PlayerController(rules), spec) );
 			}
 			return returnme;
 		}
