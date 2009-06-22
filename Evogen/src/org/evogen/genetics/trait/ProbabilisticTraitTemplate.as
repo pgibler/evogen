@@ -105,7 +105,7 @@
 			name = name;
 		}
 		
-		internal static const FUZZY_STRING_LENGTH : int = 4;
+		internal static const FUZZY_STRING_LENGTH : int = 2;
 		internal var states : Vector.<String>;
 		
 		private var name : String;

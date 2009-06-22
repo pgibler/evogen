@@ -93,7 +93,7 @@ package fighter.controller.runner
 		
 		private function StartTournament(players:Vector.<Player>):void
 		{
-			trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0]);
+			trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0].BreedableSpecimen.SpecimenChromosome);
 			tourneyCallback = new TournamentCallbackImpl();			
 			this.tournament = new Tournament(tourneyCallback , players, players[0], tournamentSettings, gameSettings);
 			tourneyCallback.OnTournamentStart( tournament );
