@@ -13,6 +13,12 @@ package fighter.controller.callback
 		
 		public function OnTournamentStart(tournament:Tournament):void
 		{
+			for each(var p : Player in tournament.Players)
+			{
+				p.BreedableSpecimen.Data["wins"] = 0;
+				p.BreedableSpecimen.Data["losses"] = 0;
+			}
+			
 			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.Players[1], tournament);
 		}
 		

@@ -119,8 +119,6 @@ package fighter.controller.runner
 			{
 				var rules : Production = generator.GenerateProductionFromChromosome(c);
 				var spec : Specimen = new Specimen(c);
-				spec.Data["wins"] = 0;
-				spec.Data["losses"] = 0;
 				returnme.push( new Player(new PlayerController(rules), spec) );
 			}
 			return returnme;
@@ -134,8 +132,6 @@ package fighter.controller.runner
 			{
 				var prod : Production = compProd.GenerateProduction();
 				var spec : Specimen = new Specimen(compProd.LastGeneratedProductionChromosome);
-				spec.Data["wins"] = 0;
-				spec.Data["losses"] = 0;
 				players.push( new Player( new PlayerController( prod ), spec ) );
 			}
 			return players;
