@@ -24,7 +24,7 @@ package fighter.controller.callback
 		
 		public function OnTournamentEnd(tournament:Tournament):void
 		{
-			trace("Tournament complete");
+			trace("Tournament complete. " + tournament.Games.length + " games played.");
 		}
 		
 		public function OnTournamentUpdate(tournament:Tournament, game:Game):void
@@ -43,12 +43,6 @@ package fighter.controller.callback
 			
 			winner.BreedableSpecimen.Data["wins"] += 1;
 			loser.BreedableSpecimen.Data["losses"] += 1;
-			
-			trace("Game ended");
-			if(loser.BreedableSpecimen.Data["losses"] == 2)
-			{
-				trace(loser);
-			}
 			
 			var nextPlayer : Player = tournament.NextPlayer;
 			
