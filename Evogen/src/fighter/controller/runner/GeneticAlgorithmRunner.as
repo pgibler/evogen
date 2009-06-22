@@ -22,7 +22,7 @@ package fighter.controller.runner
 		
 		public function get Players():Vector.<Player>
 		{
-			return tournament.Players;
+			return players;
 		}
 		
 		public function GeneticAlgorithmRunner(breederSettings:BreederSettings, tournamentSettings:TournamentSettings, gameSettings:GameSettings)
@@ -48,9 +48,7 @@ package fighter.controller.runner
 			this.breederSettings = breederSettings;
 			this.currentGeneration = 1;
 			this.mostFitSpecimens = new Vector.<Specimen>();
-			trace("Starting tournaments...");
-			var players : Vector.<Player> = GenerateInitialPlayers(breederSettings.PopulationSize);
-			StartTournament(players);
+			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
 		}
 		
 		public function Run():Vector.<Specimen>
@@ -64,7 +62,12 @@ package fighter.controller.runner
 		
 		public function Update(event:Event = null):void
 		{
-			if(tournament.IsComplete)
+			if(tournament == null)
+			{
+				trace("Starting tournaments...");
+				StartTournament(players);
+			}
+			else if(tournament.IsComplete)
 			{
 				if(currentGeneration < breederSettings.Generations)
 				{
@@ -99,12 +102,12 @@ package fighter.controller.runner
 		private function SpawnNextGeneration():void
 		{
 			var specimens : Vector.<Specimen> = new Vector.<Specimen>();
-			this.tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
+			players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 			{
 				specimens.push( player.BreedableSpecimen );
 			});
 			var chromosomes : Vector.<Chromosome> = breederSettings.SettingsBreeder.Breed(specimens, breederSettings.Evaluator);
-			var players : Vector.<Player> = GeneratePlayers(chromosomes);
+			players = GeneratePlayers(chromosomes);
 			StartTournament(players);
 		}
 		
@@ -122,7 +125,7 @@ package fighter.controller.runner
 		
 		private function GenerateInitialPlayers(populationSize:int):Vector.<Player>
 		{
-			var players : Vector.<Player> = new Vector.<Player>();
+			players = new Vector.<Player>();
 			var compProd : ComputerProductionTemplate = new ComputerProductionTemplate();
 			for(var i : int = 0 ; i < populationSize; i++)
 			{
@@ -135,6 +138,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private var players : Vector.<Player>;
 		private var mostFitSpecimens : Vector.<Specimen>;
 		private var isComplete : Boolean = false;
 		private var currentGeneration : int;
