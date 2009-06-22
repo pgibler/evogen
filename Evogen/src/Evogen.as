@@ -14,6 +14,7 @@ package
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.utils.getTimer;
 	
 	import org.evogen.breeder.TwoThirdsRatioBreeder;
 	import org.evogen.entity.Specimen;
@@ -43,9 +44,10 @@ package
 		
 		private function testGA():void
 		{
+			var startTime : Number = getTimer();
 			var gameSettings : GameSettings = new GameSettings(stage, 2);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,20);
+			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 20,100);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			
 			trace("Initial population:");
@@ -61,6 +63,7 @@ package
 			{
 				trace(i + " : " + spec.SpecimenChromosome);
 			});
+			trace("Algorithm run time: "+((getTimer() - startTime))+" milliseconds");
 		}
 		
 		private function testGame():void
