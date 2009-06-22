@@ -7,6 +7,7 @@ package
 	import fighter.controller.runner.GeneticAlgorithmRunner;
 	import fighter.model.breeder.BreederSettings;
 	import fighter.model.game.GameSettings;
+	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
 	import fighter.util.FighterSpecimenEvaluator;
 	import fighter.util.KeyObject;
@@ -46,8 +47,16 @@ package
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,20);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
+			
+			trace("Initial population:");
+			ga.Players.forEach(function(player:Player, i:int, vec:Vector.<Player>):void
+			{
+				trace(i + " : " + player.BreedableSpecimen.SpecimenChromosome);
+			});
+			
 			var specimens:Vector.<Specimen> = ga.Run();
-			trace("Most fit specimens are : ");
+			
+			trace("Most fit specimens are:");
 			specimens.forEach(function(spec:Specimen, i:int, vec:Vector.<Specimen>):void
 			{
 				trace(i + " : " + spec.SpecimenChromosome);

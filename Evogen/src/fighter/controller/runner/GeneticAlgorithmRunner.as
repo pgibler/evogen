@@ -20,6 +20,11 @@ package fighter.controller.runner
 	public class GeneticAlgorithmRunner
 	{
 		
+		public function get Players():Vector.<Player>
+		{
+			return tournament.Players;
+		}
+		
 		public function GeneticAlgorithmRunner(breederSettings:BreederSettings, tournamentSettings:TournamentSettings, gameSettings:GameSettings)
 		{
 			if(breederSettings.PopulationSize <= 2)

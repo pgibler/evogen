@@ -175,7 +175,12 @@ package org.evogen.breeder
 			var myPop : Vector.<Specimen> = population.slice();
 			myPop.splice(s1Index, 1)
 			var mySelectProb : Vector.<Number> = selectionProbabilities.slice();
-			mySelectProb.splice(s1Index, 1);
+			var prob : Number = mySelectProb.splice(s1Index, 1)[0];
+			prob /= mySelectProb.length;
+			for(var i : int = 0 ; i < mySelectProb.length; i++)
+			{
+				mySelectProb[i] += prob;
+			}
 			var s2 : Specimen = ChooseSpecimen(myPop, mySelectProb);
 			return Crossover(s1, s2);
 		}
