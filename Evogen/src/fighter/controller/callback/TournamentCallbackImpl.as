@@ -19,7 +19,7 @@ package fighter.controller.callback
 				p.BreedableSpecimen.Data["losses"] = 0;
 			}
 			
-			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.Players[1], tournament);
+			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.NextPlayer, tournament);
 		}
 		
 		public function OnTournamentEnd(tournament:Tournament):void
@@ -44,9 +44,15 @@ package fighter.controller.callback
 			winner.BreedableSpecimen.Data["wins"] += 1;
 			loser.BreedableSpecimen.Data["losses"] += 1;
 			
+			trace("Game ended");
+			if(loser.BreedableSpecimen.Data["losses"] == 2)
+			{
+				trace(loser);
+			}
+			
 			var nextPlayer : Player = tournament.NextPlayer;
 			
-			if(nextPlayer != null)
+			if(!tournament.IsComplete)
 			{
 				GenerateGameAndSetAsCurrent(tournament.TopPlayer, nextPlayer, tournament);
 			}
