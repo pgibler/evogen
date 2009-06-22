@@ -74,7 +74,6 @@
 			game.Settings.DisplayContainer.removeChild(game.GameLevel.Ground);
 			game.Settings.DisplayContainer.removeChild(game.Player1.DisplayContainer);
 			game.Settings.DisplayContainer.removeChild(game.Player2.DisplayContainer);
-			trace("Game ended");
 		}
 		
 	}
