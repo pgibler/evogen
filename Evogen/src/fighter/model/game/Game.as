@@ -34,7 +34,7 @@
 		}
 		public function get IsComplete():Boolean
 		{
-			return player1.Health <= 0 || player2.Health <= 0 || timeElapsed >= timeMax;
+			return player1.Health <= 0 || player2.Health <= 0 || timeElapsed >= TimeMax;
 		}
 		public function get Player1():Player
 		{
@@ -54,7 +54,7 @@
 		}
 		public function get TimeMax():Number
 		{
-			return Game.timeMax;
+			return settings.GameRunTime;
 		}
 		public function get Settings():GameSettings
 		{
@@ -88,7 +88,6 @@
 			throw new Error("Player isn't in this game.");
 		}
 		
-		private static var timeMax : Number = 3600;
 		private var callback : GameCallback;
 		private var startingPositions : Vector.<Point>;
 		private var viewContainer : DisplayObjectContainer;
