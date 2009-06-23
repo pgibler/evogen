@@ -42,12 +42,14 @@ package
 			
 		}
 		
+		var ga : GeneticAlgorithmRunner;
+		
 		private function testGA():void
 		{
-			var gameSettings : GameSettings = new GameSettings(stage, 3600);
+			var gameSettings : GameSettings = new GameSettings(stage, 5);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 20,100);
-			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
+			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			
 			trace("Initial population:");
 			ga.Players.forEach(function(player:Player, i:int, vec:Vector.<Player>):void
@@ -55,7 +57,18 @@ package
 				trace(i + " : " + player.BreedableSpecimen.SpecimenChromosome);
 			});
 			
-			var specimens:Vector.<Specimen> = ga.Run();
+			ga.addEventListener("complete", gaComplete);
+			
+			ga.Run();
+		}
+		
+		private function gaComplete(event:Event):void
+		{
+			var specimens:Vector.<Specimen> = new Vector.<Specimen>();
+			ga.Players.forEach(function(player:Player, i:int, vec:Vector.<Player>):void
+			{
+				specimens.push(player.BreedableSpecimen);
+			});
 			
 			trace("Most fit specimens are:");
 			specimens.forEach(function(spec:Specimen, i:int, vec:Vector.<Specimen>):void

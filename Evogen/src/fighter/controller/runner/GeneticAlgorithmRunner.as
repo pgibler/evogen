@@ -13,11 +13,14 @@ package fighter.controller.runner
 	import fighter.model.tournament.TournamentSettings;
 	
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	
-	public class GeneticAlgorithmRunner
+	public class GeneticAlgorithmRunner extends EventDispatcher
 	{
 		
 		public function get Players():Vector.<Player>
@@ -49,30 +52,24 @@ package fighter.controller.runner
 			this.currentGeneration = 1;
 			this.mostFitSpecimens = new Vector.<Specimen>();
 			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
+			this.algorithmTimer = new Timer(0);
 		}
 		
-		public function Run():Vector.<Specimen>
+		public function Run():void
 		{
-			// This exception handling is used to deal with the 15-second script run time limit as
-			// imposed by the AVM2. This thwarts it completely.
-			try
-			{
-				while(!this.isComplete)
-				{
-					Update();
-				}
-			}
-			catch(e:Error)
-			{
-				//trace("Actionscript = OWNED");
-				return Run();
-			}
-			return mostFitSpecimens;
+			this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+			this.algorithmTimer.start();
 		}
 		
-		public function Update(event:Event = null):void
+		private function Update(event:TimerEvent = null):void
 		{
-			if(tournament == null)
+			if(this.isComplete)
+			{
+				this.algorithmTimer.stop();
+				var ev : Event = new Event("complete");
+				this.dispatchEvent(ev);
+			}
+			else if(tournament == null)
 			{
 				trace("Starting tournaments...");
 				StartTournament(players);
@@ -147,6 +144,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private var algorithmTimer : Timer;
 		private var players : Vector.<Player>;
 		private var mostFitSpecimens : Vector.<Specimen>;
 		private var isComplete : Boolean = false;
