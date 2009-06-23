@@ -53,9 +53,19 @@ package fighter.controller.runner
 		
 		public function Run():Vector.<Specimen>
 		{
-			while(!this.isComplete)
+			// This exception handling is used to deal with the 15-second script run time limit as
+			// imposed by the AVM2. This thwarts it completely.
+			try
 			{
-				Update();
+				while(!this.isComplete)
+				{
+					Update();
+				}
+			}
+			catch(e:Error)
+			{
+				//trace("Actionscript = OWNED");
+				return Run();
 			}
 			return mostFitSpecimens;
 		}

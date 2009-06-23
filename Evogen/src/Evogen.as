@@ -44,8 +44,7 @@ package
 		
 		private function testGA():void
 		{
-			var startTime : Number = getTimer();
-			var gameSettings : GameSettings = new GameSettings(stage, 2);
+			var gameSettings : GameSettings = new GameSettings(stage, 3600);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 20,100);
 			var ga : GeneticAlgorithmRunner = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
@@ -63,7 +62,7 @@ package
 			{
 				trace(i + " : " + spec.SpecimenChromosome);
 			});
-			trace("Algorithm run time: "+((getTimer() - startTime))+" milliseconds");
+			trace("Algorithm run time: "+(getTimer()/1000)+" seconds");
 		}
 		
 		private function testGame():void
