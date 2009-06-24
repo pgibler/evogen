@@ -1,15 +1,16 @@
 package 
 {
+	import fighter.controller.breeder.FighterSpecimenEvaluator;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.HumanProductionTemplate;
 	import fighter.controller.player.production.Production;
 	import fighter.controller.player.production.ProductionTemplate;
 	import fighter.controller.runner.GeneticAlgorithmRunner;
+	import fighter.event.GeneticAlgorithmEvent;
 	import fighter.model.breeder.BreederSettings;
 	import fighter.model.game.GameSettings;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
-	import fighter.util.FighterSpecimenEvaluator;
 	import fighter.util.KeyObject;
 	
 	import flash.display.Sprite;
@@ -57,7 +58,7 @@ package
 				trace(i + " : " + player.BreedableSpecimen.SpecimenChromosome);
 			});
 			
-			ga.addEventListener("complete", gaComplete);
+			ga.addEventListener(GeneticAlgorithmEvent.COMPLETE, gaComplete);
 			
 			ga.Run();
 		}

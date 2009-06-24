@@ -5,6 +5,7 @@ package fighter.controller.runner
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.ComputerProductionTemplate;
 	import fighter.controller.player.production.Production;
+	import fighter.event.GeneticAlgorithmEvent;
 	import fighter.model.breeder.BreederSettings;
 	import fighter.model.game.Game;
 	import fighter.model.game.GameSettings;
@@ -12,7 +13,6 @@ package fighter.controller.runner
 	import fighter.model.tournament.Tournament;
 	import fighter.model.tournament.TournamentSettings;
 	
-	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -66,7 +66,7 @@ package fighter.controller.runner
 			if(this.isComplete)
 			{
 				this.algorithmTimer.stop();
-				var ev : Event = new Event("complete");
+				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE);
 				this.dispatchEvent(ev);
 			}
 			else if(tournament == null)
