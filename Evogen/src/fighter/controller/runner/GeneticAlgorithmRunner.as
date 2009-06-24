@@ -66,7 +66,12 @@ package fighter.controller.runner
 			if(this.isComplete)
 			{
 				this.algorithmTimer.stop();
-				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE);
+				var specs :Vector.<Specimen> = new Vector.<Specimen>();
+				tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
+				{
+					specs.push(player.BreedableSpecimen);
+				});
+				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, specs);
 				this.dispatchEvent(ev);
 			}
 			else if(tournament == null)
