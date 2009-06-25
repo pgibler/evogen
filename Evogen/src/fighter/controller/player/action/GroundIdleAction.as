@@ -37,7 +37,6 @@
 				player.CurrentAnimation = player.PlayerAnimations.Idle;
 				player.CurrentAnimation.play();
 			}
-			player.FacePlayer(player.CurrentOpponent);
 			return this;
 		}
 		
