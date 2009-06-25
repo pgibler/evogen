@@ -79,8 +79,8 @@ package fighter.controller.runner
 			}
 			else if(newMode == Game.GRAPHICAL && gameSettings.Mode == Game.SIMULATION)
 			{
-				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
-				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
+				this.algorithmTimer.removeEventListener(TimerEvent.TIMER, Update);
 			}
 		}
 		
@@ -88,7 +88,14 @@ package fighter.controller.runner
 		{
 			if(this.isComplete)
 			{
-				this.algorithmTimer.stop();
+				if(gameSettings.Mode == Game.SIMULATION)
+				{
+					this.algorithmTimer.stop();
+				} 
+				else if(gameSettings.Mode == Game.GRAPHICAL)
+				{
+					this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
+				}
 				var specs :Vector.<Specimen> = new Vector.<Specimen>();
 				tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 				{
