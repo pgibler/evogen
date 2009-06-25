@@ -33,10 +33,8 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			// TODO: implement animation playing
-			/*
 			player.CurrentAnimation = animation;
 			animation.play();
-			*/
 			return this;
 		}
 		
