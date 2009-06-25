@@ -33,11 +33,12 @@
 			
 			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
 			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");
-			if(!player.IsStunned && oppDmgBox != null)
+			if(!player.IsStunned && oppDmgBox != null && hitBox != null)
 			{
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
 					player.Health -= player.CurrentOpponent.HitDamage;
+					trace("hit");
 					player.OnGround ? 
 						new GroundStunnedAnimation().PerformAction(player,game) : 
 						new AirStunnedAction().PerformAction(player, game);
@@ -69,11 +70,11 @@
 				}
 			}
 			
+			player.Position.y += player.YSpeed;
 			if(player.OnGround)
 			{
 				player.XSpeed = 0;
 			}
-			player.Position.y += player.YSpeed;
 			
 			if (player.Position.y < game.GameLevel.GroundY)
 			{

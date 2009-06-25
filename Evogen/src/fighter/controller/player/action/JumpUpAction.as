@@ -2,6 +2,8 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.util.Animations;
+	
 	import flash.utils.getQualifiedClassName;
 	
 	/**
@@ -30,6 +32,8 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.CurrentAnimation = Animations.Instance.CammyJumpUp;
+			player.CurrentAnimation.gotoAndPlay(1);
 			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}
