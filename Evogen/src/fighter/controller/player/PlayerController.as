@@ -85,9 +85,9 @@
 			{
 				player.Position.x = Math.min(player.Position.x + player.XSpeed, game.GameLevel.RightWallX);
 			}
-			else if (player.XSpeed > 0)
+			else if (player.XSpeed < 0)
 			{
-				player.Position.x = Math.max(player.Position.x - player.XSpeed, game.GameLevel.LeftWallX);
+				player.Position.x = Math.max(player.Position.x + player.XSpeed, game.GameLevel.LeftWallX);
 			}
 			player.DisplayContainer.x = player.Position.x;
 			player.DisplayContainer.y = player.Position.y;

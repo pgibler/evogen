@@ -31,7 +31,7 @@
 					p1.Controller.Update(p1, game);
 					p2.Controller.Update(p2, game);
 					game.TimeElapsed += 1;
-					trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax);
+					//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax);
 				}
 			}
 		}
@@ -70,6 +70,8 @@
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
 				game.Settings.DisplayContainer.addChild(game.DisplayContainer);
+				game.DisplayContainer.x += game.DisplayContainer.width;
+				game.DisplayContainer.y += game.DisplayContainer.height/2;
 			}
 		}
 		

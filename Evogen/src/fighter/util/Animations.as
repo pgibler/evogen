@@ -97,7 +97,7 @@ package fighter.util
 		
 		private function AddStopScriptAtLastFrame(mc:MovieClip):void
 		{
-			mc.addFrameScript(mc.totalFrames, function():void
+			mc.addFrameScript(mc.totalFrames-1, function():void
 			{
 				mc.stop();
 			});
