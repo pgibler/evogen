@@ -21,6 +21,7 @@ package fighter.controller.player.action
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			player.HitDamage = 0;
 			player.CurrentAnimation = Animations.Instance.CammyStunned;
 			player.CurrentAnimation.gotoAndPlay(1);
 			return this;
@@ -28,7 +29,7 @@ package fighter.controller.player.action
 		
 		public function get FrameLag():int
 		{
-			return 10;
+			return 20;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
