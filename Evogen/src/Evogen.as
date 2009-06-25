@@ -50,7 +50,7 @@ package
 		private function testGA():void
 		{
 			
-			var gameSettings : GameSettings = new GameSettings(stage, 3600, 1, Game.GRAPHICAL);
+			var gameSettings : GameSettings = new GameSettings(stage, Game.GRAPHICAL);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 1,2);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);

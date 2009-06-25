@@ -25,11 +25,11 @@ package fighter.model.game
 			return container;
 		}
 		
-		public function GameSettings(container:DisplayObjectContainer, gameRunTime:int=3600, frameIntervalsPerTick:int = 100, mode:int = 0)
+		public function GameSettings(container:DisplayObjectContainer, mode:int = 0, gameRunTime:int=3600)
 		{
 			this.container = container;
 			this.gameRunTime = gameRunTime;
-			this.frameIntervalsPerTick = frameIntervalsPerTick;
+			this.frameIntervalsPerTick = mode == 0 ? 500 : 1;
 			this.mode = mode;
 		}
 		
