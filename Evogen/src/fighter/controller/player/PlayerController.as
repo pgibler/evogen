@@ -24,7 +24,6 @@
 		
 		public function Initialize(player:Player, game:Game):PlayerController
 		{
-			new GroundIdleAction().PerformAction(player, game);
 			return this;
 		}
 		

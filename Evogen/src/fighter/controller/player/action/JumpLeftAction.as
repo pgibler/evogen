@@ -32,6 +32,14 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			if(player.Position.x > player.CurrentOpponent.Position.x)
+			{
+				player.CurrentAnimation = Animations.Instance.CammyJumpBackward;
+			}
+			else
+			{
+				player.CurrentAnimation = Animations.Instance.CammyJumpForward;
+			}
 			player.XSpeed = -player.WalkSpeed;
 			player.YSpeed = -player.JumpSpeed;
 			return this;

@@ -13,6 +13,7 @@ package fighter.controller.runner
 	import fighter.model.tournament.Tournament;
 	import fighter.model.tournament.TournamentSettings;
 	
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -57,11 +58,32 @@ package fighter.controller.runner
 		
 		public function Run():void
 		{
-			this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+			if(gameSettings.Mode == Game.SIMULATION)
+			{
+				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+			}
+			else if(gameSettings.Mode == Game.GRAPHICAL)
+			{
+				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
+			}
 			this.algorithmTimer.start();
 		}
 		
-		private function Update(event:TimerEvent = null):void
+		public function SwitchMode(newMode:int):void
+		{
+			if(newMode == Game.SIMULATION && gameSettings.Mode == Game.GRAPHICAL)
+			{
+				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
+				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+			}
+			else if(newMode == Game.GRAPHICAL && gameSettings.Mode == Game.SIMULATION)
+			{
+				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
+				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
+			}
+		}
+		
+		private function Update(event:Event = null):void
 		{
 			if(this.isComplete)
 			{

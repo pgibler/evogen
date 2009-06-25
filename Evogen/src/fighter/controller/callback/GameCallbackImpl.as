@@ -38,8 +38,6 @@
 		
 		public function OnGameStart(game:Game):void
 		{
-			game.Player1.Initialize();
-			game.Player2.Initialize();
 			
 			var startPos1 : Point = game.StartingPositions[0];
 			var startPos2 : Point = game.StartingPositions[1];
@@ -59,8 +57,10 @@
 			game.Player2.CurrentGame = game;
 			game.Player1.CurrentOpponent = game.Player2;
 			game.Player2.CurrentOpponent = game.Player1;
-			
 			game.TimeElapsed = 0;
+			
+			game.Player1.Initialize();
+			game.Player2.Initialize();
 			
 			game.DisplayContainer.addChild(game.GameLevel.Background);
 			game.DisplayContainer.addChild(game.GameLevel.Ground);

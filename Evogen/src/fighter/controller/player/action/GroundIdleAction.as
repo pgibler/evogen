@@ -38,6 +38,7 @@
 				player.CurrentAnimation = Animations.Instance.CammyIdle;
 				player.CurrentAnimation.play();
 			}
+			player.FacePlayer(player.CurrentOpponent);
 			return this;
 		}
 		
