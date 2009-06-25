@@ -128,6 +128,16 @@
 			return this.currentOpponent;
 		}
 		
+		public function set FrameLag(val:uint):void
+		{
+			frameLag = val;
+		}
+		
+		public function get FrameLag():uint
+		{
+			return frameLag;
+		}
+		
 		public function get HitDamage():Number
 		{
 			return this.hitDamage;
@@ -205,6 +215,7 @@
 		}
 		
 		private static var healthMax : Number = 100;
+		private var frameLag : uint;
 		private var isStunned : Boolean;
 		private var xSpeed : Number;
 		private var ySpeed : Number;

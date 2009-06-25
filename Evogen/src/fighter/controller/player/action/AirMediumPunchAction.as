@@ -41,13 +41,20 @@
 		
 		public function get FrameLag():int
 		{
-			return 40;
+			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.IsAttacking = false;
-			player.HitDamage = 0;
+			if(player.OnGround)
+			{
+				player.IsAttacking = false;
+				player.HitDamage = 0;
+			}
+			else
+			{
+				player.FrameLag = 1;
+			}
 			return this;
 		}
 		

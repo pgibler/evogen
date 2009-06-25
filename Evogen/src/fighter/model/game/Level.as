@@ -16,12 +16,12 @@
 		
 		public function get LeftWallX():Number
 		{
-			return -200;
+			return -300;
 		}
 		
 		public function get RightWallX():Number
 		{
-			return 200;
+			return 300;
 		}
 		
 		public function get Background():DisplayObject

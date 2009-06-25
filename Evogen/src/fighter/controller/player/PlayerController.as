@@ -44,7 +44,7 @@
 				}
 			}
 			
-			if (lag <= 0)
+			if (player.FrameLag <= 0)
 			{
 				var conditionString : String = "";
 				for (var i : int = 0; i < rules.Conditions.length; i++)
@@ -57,13 +57,13 @@
 				{
 					a.PerformAction(player, game);
 					//trace("Player " + player + " is performing action " + a.Name);
-					lag = a.FrameLag;
+					player.FrameLag = a.FrameLag;
 				}
 			}
 			else
 			{
-				lag--;
-				if(lag <= 0 && player.CurrentAction != null)
+				player.FrameLag--;
+				if(player.FrameLag <= 0 && player.CurrentAction != null)
 				{
 					player.CurrentAction.OnComplete(player, game);
 				}
@@ -94,7 +94,6 @@
 			return this;
 		}
 		
-		private var lag : int;
 		private var rules : Production;
 		
 	}

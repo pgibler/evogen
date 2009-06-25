@@ -34,14 +34,14 @@
 		{
 			if(player.Position.x > player.CurrentOpponent.Position.x)
 			{
-				player.CurrentAnimation = Animations.Instance.CammyJumpBackward;
+				player.CurrentAnimation = Animations.Instance.CammyJumpForward;
 			}
 			else
 			{
-				player.CurrentAnimation = Animations.Instance.CammyJumpForward;
+				player.CurrentAnimation = Animations.Instance.CammyJumpBackward;
 			}
 			player.CurrentAnimation.gotoAndPlay(1);
-			player.XSpeed = -player.WalkSpeed;
+			player.XSpeed = -player.WalkSpeed * 2;
 			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}
