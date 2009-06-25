@@ -8,20 +8,21 @@ package fighter.model.game
 		[Embed(source="../../../../assets/img/levels/ocean.jpg")]
 		private var imgCls:Class;
 		
+		private var background:Bitmap;
+		private var ground:Sprite;
+		
 		public function DefaultLevel()
 		{
 			var lvlWidth : Number = Math.abs(LeftWallX)+Math.abs(RightWallX);
-			var background:Bitmap = new imgCls();
+			background = new imgCls();
+			ground = new Sprite();
+			super(background, ground);
 			var sizeRatio : Number = lvlWidth / background.width;
 			background.width = lvlWidth;
 			background.height *= sizeRatio;
-			var ground:Sprite = new Sprite();
 			ground.graphics.beginFill(0xFFFFFF*Math.random(),.1);
 			ground.graphics.drawRect(LeftWallX,GroundY,lvlWidth,100);
 			ground.graphics.endFill();
-			super(background, ground);
-			background.x = 0;
-			background.y = 0;
 		}
 	}
 }
