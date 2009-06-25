@@ -2,6 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.util.Animations;
 	
 	import flash.display.MovieClip;
 	import flash.utils.getQualifiedClassName;
@@ -32,15 +33,17 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			// TODO: implement animation playing
-			player.CurrentAnimation = animation;
-			animation.play();
+			if(player.CurrentAnimation !== Animations.Instance.CammyIdle)
+			{
+				player.CurrentAnimation = Animations.Instance.CammyIdle;
+				player.CurrentAnimation.play();
+			}
 			return this;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			//animation.stop();
+			player.CurrentAnimation.stop();
 			return this;
 		}
 		

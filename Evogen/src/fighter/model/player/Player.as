@@ -83,7 +83,12 @@
 		}
 		public function set CurrentAnimation(anim:MovieClip):void
 		{
+			if(this.animation != null)
+			{
+				displaycontainer.removeChild(this.animation);
+			}
 			this.animation = anim;
+			displaycontainer.addChild(anim);
 		}
 		public function get CurrentAnimation():MovieClip
 		{
