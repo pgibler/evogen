@@ -33,14 +33,14 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.CurrentAnimation = Animations.Instance.CammyBlock;
-			player.CurrentAnimation.play();
+			player.CurrentAnimation.gotoAndPlay(1);
 			player.IsBlocking = true;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 15;
+			return 100;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
