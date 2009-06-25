@@ -44,13 +44,12 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.CurrentAnimation.stop();
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 0;
+			return 1;
 		}
 		
 		private static var animation : MovieClip;

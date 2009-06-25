@@ -42,7 +42,7 @@
 		public function get FrameLag():int
 		{
 			//animation.stop();
-			return 0;
+			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action

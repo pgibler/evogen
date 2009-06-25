@@ -2,6 +2,8 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.util.Animations;
+	
 	import flash.utils.getQualifiedClassName;
 	
 	/**
@@ -30,13 +32,21 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
+			if(player.Position.x > player.CurrentOpponent.Position.x)
+			{
+				player.CurrentAnimation = Animations.Instance.CammyWalkToward;
+			}
+			else
+			{
+				player.CurrentAnimation = Animations.Instance.CammyWalkBackward;
+			}
 			player.Position.x -= player.WalkSpeed;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 0;
+			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action

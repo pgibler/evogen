@@ -34,7 +34,7 @@
 		{
 			player.CurrentAnimation = Animations.Instance.CammyBlock;
 			player.CurrentAnimation.play();
-			player.IsBlocking = false;
+			player.IsBlocking = true;
 			return this;
 		}
 		
@@ -45,7 +45,7 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.IsBlocking = true;
+			player.IsBlocking = false;
 			return this;
 		}
 		

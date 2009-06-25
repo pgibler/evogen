@@ -56,7 +56,7 @@
 		}
 		public function get WalkSpeed():Number
 		{
-			return 6;
+			return 10;
 		}
 		public function get Controller():PlayerController
 		{

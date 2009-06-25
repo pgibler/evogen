@@ -50,6 +50,7 @@
 			{
 				player.IsAttacking = false;
 				player.HitDamage = 0;
+				new GroundIdleAction().PerformAction(player, game)
 			}
 			else
 			{

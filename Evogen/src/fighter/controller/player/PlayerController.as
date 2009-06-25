@@ -69,7 +69,10 @@
 				}
 			}
 			
-			player.XSpeed *= player.Friction;
+			if(player.OnGround)
+			{
+				player.XSpeed = 0;
+			}
 			player.Position.y += player.YSpeed;
 			
 			if (player.Position.y < game.GameLevel.GroundY)

@@ -41,7 +41,7 @@
 				player.CurrentAnimation = Animations.Instance.CammyJumpBackward;
 			}
 			player.CurrentAnimation.gotoAndPlay(1);
-			player.XSpeed = -player.WalkSpeed * 2;
+			player.XSpeed = -player.WalkSpeed;
 			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}
