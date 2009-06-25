@@ -12,6 +12,7 @@ package
 	import fighter.model.game.GameSettings;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
+	import fighter.util.Animations;
 	import fighter.util.KeyObject;
 	
 	import flash.display.Sprite;
@@ -42,13 +43,13 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			testGA();
-			
 		}
 		
 		private var ga : GeneticAlgorithmRunner;
 		
 		private function testGA():void
 		{
+			
 			var gameSettings : GameSettings = new GameSettings(stage, 3600, 1, Game.GRAPHICAL);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 1,2);

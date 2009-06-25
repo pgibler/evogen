@@ -12,6 +12,7 @@ package fighter.controller.runner
 	import fighter.model.player.Player;
 	import fighter.model.tournament.Tournament;
 	import fighter.model.tournament.TournamentSettings;
+	import fighter.util.Animations;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -54,6 +55,7 @@ package fighter.controller.runner
 			this.mostFitSpecimens = new Vector.<Specimen>();
 			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
 			this.algorithmTimer = new Timer(0);
+			Animations.Initialize();
 		}
 		
 		public function Run():void

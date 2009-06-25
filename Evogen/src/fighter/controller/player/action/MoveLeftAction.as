@@ -34,7 +34,7 @@
 		{
 			if(player.Position.x > player.CurrentOpponent.Position.x)
 			{
-				player.CurrentAnimation = Animations.Instance.CammyWalkToward;
+				player.CurrentAnimation = Animations.Instance.CammyWalkForward;
 			}
 			else
 			{

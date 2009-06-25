@@ -27,7 +27,7 @@ package fighter.util
 			instance.CammyJumpForward = new instance.CammyJumpForwardClass();
 			instance.CammyJumpUp = new instance.CammyJumpUpClass();
 			instance.CammyWalkBackward = new instance.CammyWalkBackwardClass();
-			instance.CammyWalkToward = new instance.CammyWalkTowardClass();
+			instance.CammyWalkForward = new instance.CammyWalkForwardClass();
 			instance.CammyStunned = new instance.CammyStunnedClass();
 			instance.CammyIntro = new instance.CammyIntroClass();
 			instance.CammyVictory = new instance.CammyVictoryClass();
@@ -44,7 +44,7 @@ package fighter.util
 		public var CammyJumpForward : MovieClip;
 		public var CammyJumpUp : MovieClip;
 		public var CammyWalkBackward : MovieClip;
-		public var CammyWalkToward : MovieClip;
+		public var CammyWalkForward : MovieClip;
 		public var CammyStunned : MovieClip;
 		public var CammyIntro : MovieClip;
 		public var CammyVictory : MovieClip;
@@ -65,7 +65,7 @@ package fighter.util
 		[Embed(source='../../../assets/img/animations/CammyAnimations.swf', symbol='CammyJumpUp')]
 		public var CammyJumpUpClass : Class;
 		[Embed(source='../../../assets/img/animations/CammyAnimations.swf', symbol='CammyWalkForward')]
-		public var CammyWalkTowardClass : Class;
+		public var CammyWalkForwardClass : Class;
 		[Embed(source='../../../assets/img/animations/CammyAnimations.swf', symbol='CammyWalkBackward')]
 		public var CammyWalkBackwardClass : Class;
 		[Embed(source='../../../assets/img/animations/CammyAnimations.swf', symbol='CammyStunned')]

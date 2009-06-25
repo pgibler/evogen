@@ -38,7 +38,7 @@
 			}
 			else
 			{
-				player.CurrentAnimation = Animations.Instance.CammyWalkToward;
+				player.CurrentAnimation = Animations.Instance.CammyWalkForward;
 			}
 			
 			player.Position.x += player.WalkSpeed;

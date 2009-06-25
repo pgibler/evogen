@@ -35,6 +35,7 @@
 			player.CurrentAnimation = Animations.Instance.CammyBlock;
 			player.CurrentAnimation.gotoAndPlay(1);
 			player.IsBlocking = true;
+			trace('blocking');
 			return this;
 		}
 		
