@@ -62,18 +62,17 @@
 			
 			game.TimeElapsed = 0;
 			
-			game.Settings.DisplayContainer.addChild(game.GameLevel.Background);
-			game.Settings.DisplayContainer.addChild(game.GameLevel.Ground);
-			game.Settings.DisplayContainer.addChild(game.Player1.DisplayContainer);
-			game.Settings.DisplayContainer.addChild(game.Player2.DisplayContainer);
+			game.Settings.DisplayContainer.addChild(game.DisplayContainer);
+			
+			game.DisplayContainer.addChild(game.GameLevel.Background);
+			game.DisplayContainer.addChild(game.GameLevel.Ground);
+			game.DisplayContainer.addChild(game.Player1.DisplayContainer);
+			game.DisplayContainer.addChild(game.Player2.DisplayContainer);
 		}
 		
 		public function OnGameEnd(game:Game):void
 		{
-			game.Settings.DisplayContainer.removeChild(game.GameLevel.Background);
-			game.Settings.DisplayContainer.removeChild(game.GameLevel.Ground);
-			game.Settings.DisplayContainer.removeChild(game.Player1.DisplayContainer);
-			game.Settings.DisplayContainer.removeChild(game.Player2.DisplayContainer);
+			game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
 		}
 		
 	}

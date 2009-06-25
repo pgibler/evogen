@@ -4,6 +4,7 @@
 	import fighter.model.player.Player;
 	
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 	import flash.geom.Point;
 	
 	/**
@@ -28,9 +29,9 @@
 		{
 			return level;
 		}
-		public function get ViewContainer():DisplayObjectContainer
+		public function get DisplayContainer():DisplayObjectContainer
 		{
-			return viewContainer;
+			return displayContainer;
 		}
 		public function get IsComplete():Boolean
 		{
@@ -68,6 +69,7 @@
 			this.player1 = player1;
 			this.player2 = player2;
 			this.level = level;
+			this.displayContainer = new Sprite();
 			
 			var threshhold : Number = 30;
 			startingPositions = new Vector.<Point>();
@@ -90,7 +92,7 @@
 		
 		private var callback : GameCallback;
 		private var startingPositions : Vector.<Point>;
-		private var viewContainer : DisplayObjectContainer;
+		private var displayContainer : DisplayObjectContainer;
 		private var timeElapsed : Number;
 		private var level : Level;
 		private var settings : GameSettings;
