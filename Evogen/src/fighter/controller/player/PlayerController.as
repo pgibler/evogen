@@ -90,6 +90,8 @@
 			{
 				player.Position.x = Math.max(player.Position.x - player.XSpeed, game.GameLevel.LeftWallX);
 			}
+			player.DisplayContainer.x = player.Position.x;
+			player.DisplayContainer.y = player.Position.y;
 			return this;
 		}
 		

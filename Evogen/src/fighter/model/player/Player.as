@@ -2,6 +2,7 @@
 {
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.GroundIdleAction;
 	import fighter.model.game.Game;
 	
 	import flash.display.MovieClip;
@@ -83,12 +84,12 @@
 		}
 		public function set CurrentAnimation(anim:MovieClip):void
 		{
-			if(this.animation != null)
+			if(this.animation != null && displaycontainer.contains(this.animation))
 			{
 				displaycontainer.removeChild(this.animation);
 			}
 			this.animation = anim;
-			displaycontainer.addChild(anim);
+			displaycontainer.addChild(this.animation);
 		}
 		public function get CurrentAnimation():MovieClip
 		{
@@ -186,7 +187,7 @@
 			this.isAttacking = false;
 			this.isStunned = false;
 			this.isBlocking = false;
-			this.animation = new MovieClip();
+			new GroundIdleAction().PerformAction(this, null);
 		}
 		
 		public function FacePlayer(player:Player):Player
