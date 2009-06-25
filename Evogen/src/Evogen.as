@@ -47,9 +47,9 @@ package
 		
 		private function testGA():void
 		{
-			var gameSettings : GameSettings = new GameSettings(stage, 3600);
+			var gameSettings : GameSettings = new GameSettings(stage, 3600, 1, 1);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 5,10);
+			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 1,2);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
 			
 			trace("Initial population:");

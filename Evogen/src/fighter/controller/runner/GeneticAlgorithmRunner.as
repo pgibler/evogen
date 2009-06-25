@@ -30,9 +30,9 @@ package fighter.controller.runner
 		
 		public function GeneticAlgorithmRunner(breederSettings:BreederSettings, tournamentSettings:TournamentSettings, gameSettings:GameSettings)
 		{
-			if(breederSettings.PopulationSize <= 2)
+			if(breederSettings.PopulationSize <= 1)
 			{
-				throw new Error("Population size must be greater than 2");
+				throw new Error("Population size must be greater than 1");
 			}
 			if(gameSettings.FrameIntervalsPerTick <= 0)
 			{
