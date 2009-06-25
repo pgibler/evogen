@@ -18,7 +18,7 @@ package fighter.model.game
 			ground = new Sprite();
 			super(background, ground);
 			var sizeRatio : Number = lvlWidth / background.width;
-			ground.graphics.beginFill(0xFFFFFF*Math.random(),.1);
+			ground.graphics.beginFill(0xFFFFFF*Math.random());
 			ground.graphics.drawRect(LeftWallX,GroundY,lvlWidth,100);
 			ground.graphics.endFill();
 			

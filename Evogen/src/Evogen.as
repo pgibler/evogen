@@ -8,6 +8,7 @@ package
 	import fighter.controller.runner.GeneticAlgorithmRunner;
 	import fighter.event.GeneticAlgorithmEvent;
 	import fighter.model.breeder.BreederSettings;
+	import fighter.model.game.Game;
 	import fighter.model.game.GameSettings;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
@@ -47,7 +48,7 @@ package
 		
 		private function testGA():void
 		{
-			var gameSettings : GameSettings = new GameSettings(stage, 3600, 1, 1);
+			var gameSettings : GameSettings = new GameSettings(stage, 3600, 1, Game.GRAPHICAL);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 1,2);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
