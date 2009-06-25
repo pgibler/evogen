@@ -2,7 +2,6 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.util.Animations;
 	
 	import flash.display.MovieClip;
 	import flash.utils.getQualifiedClassName;
@@ -33,9 +32,9 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			if(player.CurrentAnimation !== Animations.Instance.CammyIdle)
+			if(player.CurrentAnimation !== player.PlayerAnimations.Idle)
 			{
-				player.CurrentAnimation = Animations.Instance.CammyIdle;
+				player.CurrentAnimation = player.PlayerAnimations.Idle;
 				player.CurrentAnimation.play();
 			}
 			player.FacePlayer(player.CurrentOpponent);

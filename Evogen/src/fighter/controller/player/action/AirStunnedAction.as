@@ -2,7 +2,7 @@ package fighter.controller.player.action
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.util.Animations;
+	import fighter.view.CammyAnimations;
 	
 	import flash.utils.getQualifiedClassName;
 	
@@ -23,7 +23,7 @@ package fighter.controller.player.action
 		{
 			player.HitDamage = 0;
 			player.IsStunned = true;
-			player.CurrentAnimation = Animations.Instance.CammyStunned;
+			player.CurrentAnimation = player.PlayerAnimations.Stunned;
 			player.CurrentAnimation.gotoAndPlay(1);
 			return this;
 		}

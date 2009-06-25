@@ -12,7 +12,7 @@ package
 	import fighter.model.game.GameSettings;
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
-	import fighter.util.Animations;
+	import fighter.view.CammyAnimations;
 	import fighter.util.KeyObject;
 	
 	import flash.display.Sprite;

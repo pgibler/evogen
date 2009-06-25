@@ -2,7 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.util.Animations;
+	import fighter.view.CammyAnimations;
 	
 	import flash.utils.getQualifiedClassName;
 	
@@ -32,7 +32,7 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			player.CurrentAnimation = Animations.Instance.CammyBlock;
+			player.CurrentAnimation = player.PlayerAnimations.Block;
 			player.CurrentAnimation.gotoAndPlay(1);
 			player.IsBlocking = true;
 			trace('blocking');

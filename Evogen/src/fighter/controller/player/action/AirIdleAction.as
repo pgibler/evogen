@@ -2,7 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.util.Animations;
+	import fighter.view.CammyAnimations;
 	
 	import flash.display.MovieClip;
 	import flash.utils.getQualifiedClassName;

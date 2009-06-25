@@ -70,8 +70,8 @@
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
 				game.Settings.DisplayContainer.addChild(game.DisplayContainer);
-				game.DisplayContainer.x += game.DisplayContainer.width;
-				game.DisplayContainer.y += game.DisplayContainer.height/2;
+				game.DisplayContainer.x += game.DisplayContainer.width/2;
+				game.DisplayContainer.y = game.DisplayContainer.height/2;
 			}
 		}
 		

@@ -4,6 +4,8 @@
 	import fighter.controller.player.action.Action;
 	import fighter.controller.player.action.GroundIdleAction;
 	import fighter.model.game.Game;
+	import fighter.view.Animations;
+	import fighter.view.CammyAnimations;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -18,6 +20,11 @@
 	*/
 	public class Player implements Breedable
 	{
+		public function get PlayerAnimations () :Animations
+		{
+			return animations;
+		}
+		
 		public function get CurrentAction():Action
 		{
 			return currentAction;
@@ -197,6 +204,7 @@
 			this.isAttacking = false;
 			this.isStunned = false;
 			this.isBlocking = false;
+			this.animations = new CammyAnimations();
 			new GroundIdleAction().PerformAction(this, null);
 		}
 		
@@ -215,6 +223,7 @@
 		}
 		
 		private static var healthMax : Number = 100;
+		private var animations : Animations;
 		private var frameLag : uint;
 		private var isStunned : Boolean;
 		private var xSpeed : Number;

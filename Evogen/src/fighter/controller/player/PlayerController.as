@@ -2,7 +2,6 @@
 {
 	import fighter.controller.player.action.Action;
 	import fighter.controller.player.action.AirStunnedAction;
-	import fighter.controller.player.action.GroundIdleAction;
 	import fighter.controller.player.action.GroundStunnedAnimation;
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
@@ -73,7 +72,7 @@
 			player.Position.y += player.YSpeed;
 			if(player.OnGround)
 			{
-				player.XSpeed = 0;
+				player.XSpeed *= .9;
 			}
 			
 			if (player.Position.y < game.GameLevel.GroundY)
@@ -85,13 +84,14 @@
 				player.YSpeed = 0;
 				player.Position.y = game.GameLevel.GroundY;
 			}
+			var widthover2 : Number = player.DisplayContainer.width/2;
 			if (player.XSpeed > 0)
 			{
-				player.Position.x = Math.min(player.Position.x + player.XSpeed, game.GameLevel.RightWallX);
+				player.Position.x = Math.min(player.Position.x + player.XSpeed, game.GameLevel.RightWallX - widthover2);
 			}
 			else if (player.XSpeed < 0)
 			{
-				player.Position.x = Math.max(player.Position.x + player.XSpeed, game.GameLevel.LeftWallX);
+				player.Position.x = Math.max(player.Position.x + player.XSpeed, game.GameLevel.LeftWallX + widthover2);
 			}
 			player.DisplayContainer.x = player.Position.x;
 			player.DisplayContainer.y = player.Position.y;

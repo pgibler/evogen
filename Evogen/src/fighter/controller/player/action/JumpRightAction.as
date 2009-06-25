@@ -2,7 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.util.Animations;
+	import fighter.view.Animations;
 	
 	import flash.utils.getQualifiedClassName;
 	
@@ -34,11 +34,11 @@
 		{
 			if(player.Position.x > player.CurrentOpponent.Position.x)
 			{
-				player.CurrentAnimation = Animations.Instance.CammyJumpBackward;
+				player.CurrentAnimation = player.PlayerAnimations.JumpBackward;
 			}
 			else
 			{
-				player.CurrentAnimation = Animations.Instance.CammyJumpForward;
+				player.CurrentAnimation = player.PlayerAnimations.JumpForward;
 			}
 			player.CurrentAnimation.gotoAndPlay(1);
 			player.XSpeed = player.WalkSpeed;
