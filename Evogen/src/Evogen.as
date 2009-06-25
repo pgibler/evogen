@@ -28,6 +28,7 @@ package
 	 * ...
 	 * @author Paul Gibler
 	 */
+	[SWF(width="800", height="600", backgroundColor="#ffffff", frameRate="30")]
 	public class Evogen extends Sprite 
 	{
 		

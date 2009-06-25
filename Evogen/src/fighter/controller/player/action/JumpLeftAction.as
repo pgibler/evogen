@@ -32,13 +32,8 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			//player.CurrentAnimation.gotoAndPlay(1);
-			
-			var angle : Number = 70;
-			var jumpX : Number = Math.cos(angle) * player.JumpSpeed;
-			var jumpY : Number = Math.sin(angle) * player.JumpSpeed;
-			player.XSpeed = jumpX;
-			player.YSpeed = -jumpY;
+			player.XSpeed = -player.WalkSpeed;
+			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}
 		
