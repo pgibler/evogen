@@ -33,7 +33,7 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.CurrentAnimation = Animations.Instance.CammyAirMediumPunch;
-			player.CurrentAnimation.play();
+			player.CurrentAnimation.gotoAndPlay(1);
 			player.IsAttacking = true;
 			player.HitDamage = 12;
 			return this;
