@@ -21,8 +21,8 @@
 				returnme.push(new JumpRightAction());
 				returnme.push(new MoveLeftAction());
 				returnme.push(new MoveRightAction());
-				returnme.push(new GroundKickAction());
-				returnme.push(new AirKickAction());
+				returnme.push(new GroundMediumPunchAction());
+				returnme.push(new AirMediumPunchAction());
 				returnme.push(new BlockAction());
 				
 				returnme.push(new AirIdleAction());

@@ -18,7 +18,7 @@
 			possibleActionsWhenTrue = new Vector.<Action>();
 
 			possibleActionsWhenTrue.push(new GroundIdleAction());
-			possibleActionsWhenTrue.push(new GroundKickAction());
+			possibleActionsWhenTrue.push(new GroundMediumPunchAction());
 			possibleActionsWhenTrue.push(new BlockAction());
 			possibleActionsWhenTrue.push(new JumpUpAction());
 			possibleActionsWhenTrue.push(new JumpLeftAction());

@@ -8,10 +8,10 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class GroundKickAction implements Action
+	public class GroundMediumPunchAction implements Action
 	{
 		
-		public function GroundKickAction()
+		public function GroundMediumPunchAction()
 		{
 			this.name = getQualifiedClassName(this);
 		}

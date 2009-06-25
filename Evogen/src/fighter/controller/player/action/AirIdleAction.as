@@ -2,6 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.util.Animations;
 	
 	import flash.display.MovieClip;
 	import flash.utils.getQualifiedClassName;
@@ -33,10 +34,8 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			// TODO: implement animation playing
-			/*
-			player.CurrentAnimation = animation;
-			animation.play();
-			*/
+			//player.CurrentAnimation = Animations.Instance.CammyAirIdle;
+			//animation.play();
 			return this;
 		}
 		

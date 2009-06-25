@@ -8,10 +8,10 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class AirKickAction implements Action
+	public class AirMediumPunchAction implements Action
 	{
 		
-		public function AirKickAction()
+		public function AirMediumPunchAction()
 		{
 			this.name = getQualifiedClassName(this);
 		}

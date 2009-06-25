@@ -21,8 +21,8 @@
 			
 			possibleActionsWhenTrue = new Vector.<Action>();
 			
-			possibleActionsWhenTrue.push(new AirKickAction());
-			possibleActionsWhenTrue.push(new GroundKickAction());
+			possibleActionsWhenTrue.push(new AirMediumPunchAction());
+			possibleActionsWhenTrue.push(new GroundMediumPunchAction());
 			
 			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(possibleActionsWhenTrue);
 		}
