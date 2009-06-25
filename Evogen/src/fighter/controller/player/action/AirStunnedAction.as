@@ -23,6 +23,7 @@ package fighter.controller.player.action
 		{
 			player.HitDamage = 0;
 			player.IsStunned = true;
+			player.XSpeed = -player.FacingDirection * player.WalkSpeed;
 			player.CurrentAnimation = player.PlayerAnimations.Stunned;
 			player.CurrentAnimation.gotoAndPlay(1);
 			return this;
@@ -30,7 +31,7 @@ package fighter.controller.player.action
 		
 		public function get FrameLag():int
 		{
-			return 40;
+			return 50;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action

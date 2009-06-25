@@ -37,7 +37,7 @@
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
 					player.Health -= player.CurrentOpponent.HitDamage;
-					//trace("hit");
+					trace(player.Health);
 					player.OnGround ? 
 						new GroundStunnedAnimation().PerformAction(player,game) : 
 						new AirStunnedAction().PerformAction(player, game);
