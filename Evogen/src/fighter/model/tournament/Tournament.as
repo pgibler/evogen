@@ -35,7 +35,7 @@
 		
 		public function set TopPlayer(player:Player):void
 		{
-			this.topPlayer = topPlayer;
+			this.topPlayer = player;
 		}
 		
 		public function set CurrentGame(game:Game):void
