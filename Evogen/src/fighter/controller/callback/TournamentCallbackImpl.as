@@ -48,7 +48,7 @@ package fighter.controller.callback
 			
 			if(!tournament.IsComplete)
 			{
-				GenerateGameAndSetAsCurrent(tournament.TopPlayer, nextPlayer, tournament);
+				GenerateGameAndSetAsCurrent(winner, nextPlayer, tournament);
 			}
 			else
 			{
