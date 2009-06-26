@@ -4,7 +4,6 @@
 	import fighter.model.game.Game;
 	import fighter.model.game.Level;
 	import fighter.model.player.Player;
-	import fighter.model.tournament.Tournament;
 	
 	import flash.events.Event;
 	
@@ -15,16 +14,16 @@
 	public class GameRunner
 	{
 		
-		public function GameRunner(callback:GameCallback, game:Game, tournament:Tournament) 
+		public function GameRunner(callback:GameCallback, game:Game) 
 		{
 			this.callback = callback;
 			this.game = game;
-			this.tournament = tournament;
 		}
 		
 		public function Start():void
 		{
 			callback.OnGameStart(game);
+			game.Settings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
 		}
 		
 		public function Update(event:Event = null):void
@@ -32,7 +31,6 @@
 			callback.OnFrameUpdate( game );
 		}
 		
-		private var tournament : Tournament;
 		private var callback : GameCallback;
 		private var player1 : Player;
 		private var player2 : Player;

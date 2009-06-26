@@ -19,7 +19,8 @@
 		{
 			var prob : Number = Math.random();
 			var total : Number = 0;
-			for (var i : int = 0; i < actions.length; i++)
+			var i : int = 0;
+			for (; i < actions.length; i++)
 			{
 				total += actionProbabilities[i];
 				if (total > prob)
@@ -27,7 +28,9 @@
 					return actions[i];
 				}
 			}
-			throw new Error("Could not select action successfully");
+			// This is to handle floating point error.
+			// In rare cases, the random number is greater than the total probabilities
+			return actions[actions.length-1];
 		}
 		
 		private var actions : Vector.<Action>;

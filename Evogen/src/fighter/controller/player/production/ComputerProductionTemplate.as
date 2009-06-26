@@ -69,8 +69,8 @@
 		
 		public function GenerateProductionFromDNA(dna:String):Production
 		{
-			var p : Production = new Production(this);
-			return p;
+			var chrom : Chromosome = chromosomeTemplate.FromDNA(dna);
+			return GenerateProductionFromChromosome(chrom);
 		}
 		
 		private var lastProductionChromosome : Chromosome;
