@@ -188,6 +188,15 @@
 			this.isStunned = val;
 		}
 		
+		public function set IsIdle(val:Boolean):void
+		{
+			this.isIdle = val;
+		}
+		public function get IsIdle():Boolean
+		{
+			return this.isIdle;
+		}
+		
 		public function Player(controller:PlayerController, specimen:Specimen)
 		{
 			this.specimen = specimen;
@@ -238,6 +247,7 @@
 		private var specimen : Specimen;
 		private var isAttacking : Boolean;
 		private var isBlocking : Boolean;
+		private var isIdle : Boolean;
 		private var position : Point;
 		private var hitDamage : Number;
 		private var animation : MovieClip;

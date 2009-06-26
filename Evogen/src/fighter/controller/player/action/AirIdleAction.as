@@ -33,23 +33,27 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			// TODO: implement animation playing
-			//player.CurrentAnimation = Animations.Instance.CammyAirIdle;
-			//animation.play();
+			player.IsIdle = true;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			//animation.stop();
 			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.OnGround ?
-				new GroundIdleAction().PerformAction(player, game):
-				this.PerformAction(player, game);
+			if(!player.OnGround)
+			{
+				player.CurrentAction = this;
+			}
+			else
+			{
+				player.CurrentAction = new GroundIdleAction();
+			}
+			player.CurrentAction.PerformAction(player, game);
+				
 			return this;
 		}
 		

@@ -75,7 +75,7 @@
 			}
 			
 			player.Position.y += player.YSpeed;
-			if(player.OnGround)
+			if(player.OnGround && player.IsIdle)
 			{
 				player.FacePlayer(player.CurrentOpponent);
 				player.XSpeed = 0;
