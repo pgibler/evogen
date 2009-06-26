@@ -45,6 +45,7 @@ package fighter.controller.callback
 			loser.BreedableSpecimen.Data["losses"] += 1;
 			
 			var nextPlayer : Player = tournament.NextPlayer;
+			tournament.TopPlayer = winner;
 			
 			if(!tournament.IsComplete)
 			{
