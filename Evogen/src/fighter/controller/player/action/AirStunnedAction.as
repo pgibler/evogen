@@ -21,7 +21,6 @@ package fighter.controller.player.action
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			trace("air stunned?"+player.IsStunned);
 			player.HitDamage = 0;
 			player.IsStunned = true;
 			player.IsAttacking = false;
