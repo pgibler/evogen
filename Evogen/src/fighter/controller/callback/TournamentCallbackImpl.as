@@ -41,7 +41,7 @@ package fighter.controller.callback
 			var winner : Player = game.Player1.Health >= game.Player2.Health ? game.Player1 : game.Player2;
 			var loser : Player = winner.CurrentOpponent;
 			
-			winner.BreedableSpecimen.Data["wins"] += 1;
+			winner.BreedableSpecimen.Data["wins"] = tournament.TopPlayer.BreedableSpecimen.Data["wins"] + 1;
 			loser.BreedableSpecimen.Data["losses"] += 1;
 			
 			var nextPlayer : Player = tournament.NextPlayer;
