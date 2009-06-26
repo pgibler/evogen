@@ -50,8 +50,6 @@
 			return 1;
 		}
 		
-		private static var animation : MovieClip;
-		
 	}
 	
 }

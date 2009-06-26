@@ -41,7 +41,7 @@
 				player.CurrentAnimation = player.PlayerAnimations.WalkForward;
 			}
 			
-			player.XSpeed = player.WalkSpeed;
+			player.Position.y += player.WalkSpeed;
 			return this;
 		}
 		

@@ -34,6 +34,7 @@
 		{
 			player.CurrentAnimation = player.PlayerAnimations.JumpUp;
 			player.CurrentAnimation.gotoAndPlay(1);
+			player.XSpeed = 0;
 			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}

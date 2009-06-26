@@ -40,7 +40,7 @@
 			{
 				player.CurrentAnimation = player.PlayerAnimations.WalkBackward;
 			}
-			player.XSpeed = -player.WalkSpeed;
+			player.Position.x -= player.WalkSpeed;
 			return this;
 		}
 		

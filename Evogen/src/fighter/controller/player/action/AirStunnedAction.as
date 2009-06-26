@@ -23,7 +23,9 @@ package fighter.controller.player.action
 		{
 			player.HitDamage = 0;
 			player.IsStunned = true;
-			player.XSpeed = -player.FacingDirection * player.WalkSpeed;
+			player.IsAttacking = false;
+			player.IsBlocking = false;
+			player.XSpeed = player.FacingDirection * player.WalkSpeed;
 			player.CurrentAnimation = player.PlayerAnimations.Stunned;
 			player.CurrentAnimation.gotoAndPlay(1);
 			return this;
@@ -31,15 +33,24 @@ package fighter.controller.player.action
 		
 		public function get FrameLag():int
 		{
-			return 50;
+			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			player.IsStunned = false;
+			if(player.OnGround)
+			{
+				player.IsStunned = false;
+				player.CurrentAction = new GroundIdleAction();
+				player.CurrentAction.PerformAction(player, game);
+			}
+			else
+			{
+				player.FrameLag = 1;
+			}
+			
 			return this;
 		}
-		
 		public function get Name():String
 		{
 			return name;

@@ -49,7 +49,8 @@
 			{
 				player.IsAttacking = false;
 				player.HitDamage = 0;
-				new GroundIdleAction().PerformAction(player, game)
+				player.CurrentAction = new GroundIdleAction();
+				player.CurrentAction.PerformAction(player, game);
 			}
 			else
 			{
