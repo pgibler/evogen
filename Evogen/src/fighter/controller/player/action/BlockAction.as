@@ -33,7 +33,8 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.CurrentAnimation = player.PlayerAnimations.Block;
-			player.CurrentAnimation.gotoAndPlay(1);
+			player.CurrentAnimation.gotoAndStop(1);
+			player.RunAnimation = true;
 			player.IsBlocking = true;
 			trace('blocking');
 			return this;

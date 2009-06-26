@@ -28,7 +28,10 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
-			//trace("damage box " + player.CurrentAnimation.getChildByName("DamageBox"));
+			if(player.RunAnimation)
+			{
+				player.CurrentAnimation.nextFrame();
+			}
 			
 			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
 			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");

@@ -196,6 +196,14 @@
 		{
 			return this.isIdle;
 		}
+		public function get RunAnimation():Boolean
+		{
+			return this.runAnimation;
+		}
+		public function set RunAnimation(val:Boolean):void
+		{
+			this.runAnimation = val;
+		}
 		
 		public function Player(controller:PlayerController, specimen:Specimen)
 		{
@@ -213,6 +221,7 @@
 			this.isAttacking = false;
 			this.isStunned = false;
 			this.isBlocking = false;
+			this.runAnimation = true;
 			this.animations = new CammyAnimations();
 			new GroundIdleAction().PerformAction(this, null);
 		}
@@ -232,6 +241,7 @@
 		}
 		
 		private static var healthMax : Number = 100;
+		private var runAnimation : Boolean;
 		private var animations : Animations;
 		private var frameLag : uint;
 		private var isStunned : Boolean;

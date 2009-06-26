@@ -32,7 +32,8 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.CurrentAnimation = player.PlayerAnimations.AirMediumPunch;
-			player.CurrentAnimation.gotoAndPlay(1);
+			player.CurrentAnimation.gotoAndStop(1);
+			player.RunAnimation = true;
 			player.IsAttacking = true;
 			player.HitDamage = 12;
 			return this;

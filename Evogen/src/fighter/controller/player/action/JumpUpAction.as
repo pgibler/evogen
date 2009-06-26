@@ -33,7 +33,8 @@
 		public function PerformAction(player:Player, game:Game):Action
 		{
 			player.CurrentAnimation = player.PlayerAnimations.JumpUp;
-			player.CurrentAnimation.gotoAndPlay(1);
+			player.CurrentAnimation.gotoAndStop(1);
+			player.RunAnimation = true;
 			player.XSpeed = 0;
 			player.YSpeed = -player.JumpSpeed;
 			return this;

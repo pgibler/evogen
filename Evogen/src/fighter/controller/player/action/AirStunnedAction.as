@@ -28,7 +28,8 @@ package fighter.controller.player.action
 			player.IsBlocking = false;
 			player.XSpeed = player.FacingDirection * player.WalkSpeed;
 			player.CurrentAnimation = player.PlayerAnimations.Stunned;
-			player.CurrentAnimation.gotoAndPlay(1);
+			player.CurrentAnimation.gotoAndStop(1);
+			player.RunAnimation = true;
 			return this;
 		}
 		

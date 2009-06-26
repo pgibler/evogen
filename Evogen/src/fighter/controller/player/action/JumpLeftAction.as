@@ -40,7 +40,8 @@
 			{
 				player.CurrentAnimation = player.PlayerAnimations.JumpBackward;
 			}
-			player.CurrentAnimation.gotoAndPlay(1);
+			player.CurrentAnimation.gotoAndStop(1);
+			player.RunAnimation = true;
 			player.XSpeed = -player.WalkSpeed;
 			player.YSpeed = -player.JumpSpeed;
 			return this;
