@@ -28,7 +28,7 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
-			//trace("Player position: " + player.Position);
+			//trace("damage box " + player.CurrentAnimation.getChildByName("DamageBox"));
 			
 			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
 			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");
@@ -67,6 +67,7 @@
 			}
 			else
 			{
+				//trace("lag left:"+player.FrameLag);
 				player.FrameLag--;
 				if(player.FrameLag <= 0)
 				{

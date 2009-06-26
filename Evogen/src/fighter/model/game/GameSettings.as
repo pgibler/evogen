@@ -29,7 +29,7 @@ package fighter.model.game
 		{
 			this.container = container;
 			this.gameRunTime = gameRunTime;
-			this.frameIntervalsPerTick = mode == 0 ? 500 : 1;
+			this.frameIntervalsPerTick = 1;
 			this.mode = mode;
 		}
 		

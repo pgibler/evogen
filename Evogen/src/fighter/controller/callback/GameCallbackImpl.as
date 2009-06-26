@@ -31,7 +31,7 @@
 					p1.Controller.Update(p1, game);
 					p2.Controller.Update(p2, game);
 					game.TimeElapsed += 1;
-					//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax);
+					//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax + ", p1 hp:"+p1.Health + ", p2 hp:"+p2.Health);
 				}
 			}
 		}
@@ -78,9 +78,7 @@
 		public function OnGameEnd(game:Game):void
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
-			{
 				game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
-			}
 			
 			game.DisplayContainer.removeChild(game.GameLevel.Background);
 			game.DisplayContainer.removeChild(game.GameLevel.Ground);

@@ -33,6 +33,7 @@
 		{
 			player.CurrentAnimation = player.PlayerAnimations.GroundMediumPunch;
 			player.CurrentAnimation.gotoAndPlay(1);
+			
 			player.IsAttacking = true;
 			return this;
 		}
