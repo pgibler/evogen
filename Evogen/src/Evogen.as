@@ -50,7 +50,6 @@ package
 		
 		private function testGA():void
 		{
-			
 			var gameSettings : GameSettings = new GameSettings(stage, Game.SIMULATION);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 1000, 100);
