@@ -12,3 +12,10 @@ Some ideas to improve:
 5) Adjust hitboxes so the ground punch doesn't go "through" the other player
 	- Also make hitboxes bigger.
 6) Make it so they can't move through each other
+
+
+Meeting notes:
+* Read Winston chapter on scoring. Understand it.
+* Keep track of top player fitness and average population fitness
+* Watch first vs last generation; Are they improving?
+* Wins * 100 + Avg Health * 1 = Fitness
