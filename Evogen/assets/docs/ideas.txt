@@ -1,0 +1,14 @@
+Bugs:
+1) Blocking doesn't seem to work properly. I'll get to it.
+2) After an unknown amount of generations, all characters end up being the exact same. I'll have to log whats going on but I didn't get to it.
+
+Some ideas to improve:
+1) Adjust ratio for top player from 2/3rds to 1/2 or 1/3rd.
+2) Adjust fitness function from using just game wins to both game wins and life lost/game run time.
+3) Make a top player (like you suggested a while ago) rather than randomly generating them all.
+4) Punish characters who attack but don't deal damage by taking away health from them. I don't like how they ALWAYS seem to punch when they jump.
+ 	- I could also adjust this by having the player only choose a new action if BOTH their condition changes and
+	  they are capable of performing an action. This might not seem realistic though but it may prevent this behavior.
+5) Adjust hitboxes so the ground punch doesn't go "through" the other player
+	- Also make hitboxes bigger.
+6) Make it so they can't move through each other

@@ -2,7 +2,7 @@
 {
 	import fighter.controller.player.action.Action;
 	import fighter.controller.player.action.AirStunnedAction;
-	import fighter.controller.player.action.GroundStunnedAnimation;
+	import fighter.controller.player.action.GroundStunnedAction;
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
@@ -40,9 +40,10 @@
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
 					player.Health -= player.CurrentOpponent.HitDamage;
+					trace("hit: "+player.Health);
 					if(player.OnGround)
-					{ 
-						player.CurrentAction = new GroundStunnedAnimation();
+					{
+						player.CurrentAction = new GroundStunnedAction();
 					} 
 					else
 					{

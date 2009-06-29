@@ -78,7 +78,10 @@
 		public function OnGameEnd(game:Game):void
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
-				game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
+			{
+				if(game.Settings.DisplayContainer.contains(game.DisplayContainer))
+					game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
+			}
 			
 			game.DisplayContainer.removeChild(game.GameLevel.Background);
 			game.DisplayContainer.removeChild(game.GameLevel.Ground);
