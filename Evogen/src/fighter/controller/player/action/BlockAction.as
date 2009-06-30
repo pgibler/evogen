@@ -27,7 +27,7 @@
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{
-			return !player.OnGround && !player.IsAttacking;
+			return player.OnGround && !player.IsAttacking;
 		}
 		
 		public function PerformAction(player:Player, game:Game):Action
@@ -36,13 +36,12 @@
 			player.CurrentAnimation.gotoAndStop(1);
 			player.RunAnimation = true;
 			player.IsBlocking = true;
-			trace('blocking');
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 100;
+			return 20;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action

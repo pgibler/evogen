@@ -70,8 +70,8 @@
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
 				game.Settings.DisplayContainer.addChild(game.DisplayContainer);
-				game.DisplayContainer.x += game.DisplayContainer.width/2;
-				game.DisplayContainer.y = game.DisplayContainer.height/2;
+				game.DisplayContainer.x = game.GameLevel.Ground.width/2;
+				game.DisplayContainer.y = game.GameLevel.Ground.height*2.5;
 			}
 		}
 		
@@ -79,8 +79,7 @@
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
-				if(game.Settings.DisplayContainer.contains(game.DisplayContainer))
-					game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
+				game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
 			}
 			
 			game.DisplayContainer.removeChild(game.GameLevel.Background);

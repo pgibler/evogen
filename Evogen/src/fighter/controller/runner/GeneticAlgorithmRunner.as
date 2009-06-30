@@ -12,7 +12,6 @@ package fighter.controller.runner
 	import fighter.model.player.Player;
 	import fighter.model.tournament.Tournament;
 	import fighter.model.tournament.TournamentSettings;
-	import fighter.view.CammyAnimations;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -24,6 +23,21 @@ package fighter.controller.runner
 	
 	public class GeneticAlgorithmRunner extends EventDispatcher
 	{
+		
+		public function get GAGameSettings():GameSettings
+		{
+			return gameSettings;
+		}
+		
+		public function get GATournamentSettings():TournamentSettings
+		{
+			return tournamentSettings;
+		}
+		
+		public function get GABreederSettings():BreederSettings
+		{
+			return breederSettings;
+		}
 		
 		public function get Players():Vector.<Player>
 		{
@@ -75,13 +89,18 @@ package fighter.controller.runner
 			if(newMode == Game.SIMULATION && gameSettings.Mode == Game.GRAPHICAL)
 			{
 				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
+				this.gameSettings.DisplayContainer.removeChild(this.tournament.CurrentGame.DisplayContainer);
 				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
 			}
 			else if(newMode == Game.GRAPHICAL && gameSettings.Mode == Game.SIMULATION)
 			{
-				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
 				this.algorithmTimer.removeEventListener(TimerEvent.TIMER, Update);
+				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
+				this.gameSettings.DisplayContainer.addChild(this.tournament.CurrentGame.DisplayContainer);
 			}
+			tournament.CurrentGame.DisplayContainer.x = tournament.CurrentGame.GameLevel.Ground.width/2;
+			tournament.CurrentGame.DisplayContainer.y = tournament.CurrentGame.GameLevel.Ground.height*2.5;
+			gameSettings.Mode = newMode;
 		}
 		
 		private function Update(event:Event = null):void
