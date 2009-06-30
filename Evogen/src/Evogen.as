@@ -15,10 +15,9 @@ package
 	import fighter.model.player.Player;
 	import fighter.model.tournament.TournamentSettings;
 	
-	import flash.display.SimpleButton;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
 	
 	import org.evogen.breeder.TwoThirdsRatioBreeder;
@@ -50,31 +49,17 @@ package
 		
 		private var ga : GeneticAlgorithmRunner;
 		private var gameContainer : Sprite;
-		private var interfaceContainer : Sprite;
+		private var gamePlayContainer : Sprite;
+		private var gameInterfaceContainer : Sprite;
 		
 		private function testGA():void
 		{
-			gameContainer = new Sprite();
-			addChild(gameContainer);
-			interfaceContainer = new Sprite();
-			addChild(interfaceContainer);
-			
-			var toggleImg : Sprite = new Sprite();
-			toggleImg.graphics.lineStyle(1,0x001100);
-			toggleImg.graphics.beginFill(0xFFFFFF);
-			toggleImg.graphics.drawRect(0,0,100,30);
-			toggleImg.graphics.endFill();
-			var toggleBtn : SimpleButton = new SimpleButton(toggleImg, toggleImg, toggleImg, toggleImg);
-			interfaceContainer.addChild(toggleBtn);
-			toggleBtn.x = 100;
-			toggleBtn.y = 500;
-			
-			toggleBtn.addEventListener(MouseEvent.CLICK, changeMode);
-			
+			var gameContainer : DisplayObjectContainer = new Sprite();
+			stage.addChild(gameContainer);
 			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.SIMULATION);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 20, 100);
-			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings);
+			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings, stage);
 			
 			trace("Initial population:");
 			ga.Players.forEach(function(player:Player, i:int, vec:Vector.<Player>):void
@@ -101,12 +86,6 @@ package
 				trace(i + " : " + spec.SpecimenChromosome);
 			});
 			trace("Algorithm run time: "+(getTimer()/1000)+" seconds");
-		}
-		
-		private function changeMode(mouseEvent:MouseEvent):void
-		{
-			var newMode : int = ga.GAGameSettings.Mode == Game.GRAPHICAL ? Game.SIMULATION : Game.GRAPHICAL;
-			ga.SwitchMode(newMode);
 		}
 		
 		private function testGame():void

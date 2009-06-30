@@ -1,6 +1,7 @@
 package fighter.model.game
 {
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Sprite;
 
 	public class GameSettings
 	{
@@ -33,19 +34,44 @@ package fighter.model.game
 		
 		public function get DisplayContainer():DisplayObjectContainer
 		{
-			return container;
+			return displayContainer;
 		}
 		
-		public function GameSettings(container:DisplayObjectContainer, mode:int = 0, gameRunTime:int=3600)
+		public function get GameContainer():DisplayObjectContainer
 		{
-			this.container = container;
+			return gameContainer;
+		}
+		
+		public function get GameInterfaceContainer():DisplayObjectContainer
+		{
+			return gameInterfaceContainer;
+		}
+		
+		public function get GamePlayContainer():DisplayObjectContainer
+		{
+			return gamePlayContainer;
+		}
+		
+		public function GameSettings(displayContainer:DisplayObjectContainer, mode:int = 0, gameRunTime:int=3600)
+		{
+			gameContainer = new Sprite();
+			gamePlayContainer = new Sprite();
+			gamePlayContainer.name = "Play";
+			gameContainer.addChild(gamePlayContainer);
+			gameInterfaceContainer = new Sprite();
+			gameInterfaceContainer.name = "Interface";
+			gameContainer.addChild(gameInterfaceContainer);
+			this.displayContainer = displayContainer;
 			this.gameRunTime = gameRunTime;
 			this.simulationIntervalsPerTick = 500;
 			this.frameIntervalsPerTick = mode == 0 ? simulationIntervalsPerTick : 1;
 			this.mode = mode;
 		}
 		
-		private var container : DisplayObjectContainer;
+		private var gamePlayContainer : DisplayObjectContainer;
+		private var gameInterfaceContainer : DisplayObjectContainer;
+		private var gameContainer : DisplayObjectContainer;
+		private var displayContainer : DisplayObjectContainer;
 		private var gameRunTime : int;
 		private var mode : int;
 		private var simulationIntervalsPerTick : int;

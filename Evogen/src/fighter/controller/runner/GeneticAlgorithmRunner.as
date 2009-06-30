@@ -13,8 +13,12 @@ package fighter.controller.runner
 	import fighter.model.tournament.Tournament;
 	import fighter.model.tournament.TournamentSettings;
 	
+	import flash.display.DisplayObjectContainer;
+	import flash.display.SimpleButton;
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
@@ -44,7 +48,7 @@ package fighter.controller.runner
 			return players;
 		}
 		
-		public function GeneticAlgorithmRunner(breederSettings:BreederSettings, tournamentSettings:TournamentSettings, gameSettings:GameSettings)
+		public function GeneticAlgorithmRunner(breederSettings:BreederSettings, tournamentSettings:TournamentSettings, gameSettings:GameSettings, displayContainer:DisplayObjectContainer)
 		{
 			if(breederSettings.PopulationSize <= 1)
 			{
@@ -69,6 +73,19 @@ package fighter.controller.runner
 			this.mostFitSpecimens = new Vector.<Specimen>();
 			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
 			this.algorithmTimer = new Timer(0);
+			this.interfaceContainer = new Sprite();
+			displayContainer.addChild(interfaceContainer);
+			var toggleImg : Sprite = new Sprite();
+			toggleImg.graphics.lineStyle(1,0x001100);
+			toggleImg.graphics.beginFill(0xFFFFFF);
+			toggleImg.graphics.drawRect(0,0,100,30);
+			toggleImg.graphics.endFill();
+			var toggleBtn : SimpleButton = new SimpleButton(toggleImg, toggleImg, toggleImg, toggleImg);
+			interfaceContainer.addChild(toggleBtn);
+			toggleBtn.x = 100;
+			toggleBtn.y = 500;
+			
+			toggleBtn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
 		
 		public function Run():void
@@ -198,6 +215,13 @@ package fighter.controller.runner
 			return players;
 		}
 		
+		private function ChangeMode(mouseEvent:MouseEvent):void
+		{
+			var newMode : int = gameSettings.Mode == Game.GRAPHICAL ? Game.SIMULATION : Game.GRAPHICAL;
+			SwitchMode(newMode);
+		}
+		
+		private var interfaceContainer : DisplayObjectContainer;
 		private var algorithmTimer : Timer;
 		private var players : Vector.<Player>;
 		private var mostFitSpecimens : Vector.<Specimen>;
