@@ -75,17 +75,8 @@ package fighter.controller.runner
 			this.algorithmTimer = new Timer(0);
 			this.interfaceContainer = new Sprite();
 			displayContainer.addChild(interfaceContainer);
-			var toggleImg : Sprite = new Sprite();
-			toggleImg.graphics.lineStyle(1,0x001100);
-			toggleImg.graphics.beginFill(0xFFFFFF);
-			toggleImg.graphics.drawRect(0,0,100,30);
-			toggleImg.graphics.endFill();
-			var toggleBtn : SimpleButton = new SimpleButton(toggleImg, toggleImg, toggleImg, toggleImg);
-			interfaceContainer.addChild(toggleBtn);
-			toggleBtn.x = 100;
-			toggleBtn.y = 500;
 			
-			toggleBtn.addEventListener(MouseEvent.CLICK, ChangeMode);
+			GenerateInterface();
 		}
 		
 		public function Run():void
@@ -219,6 +210,21 @@ package fighter.controller.runner
 		{
 			var newMode : int = gameSettings.Mode == Game.GRAPHICAL ? Game.SIMULATION : Game.GRAPHICAL;
 			SwitchMode(newMode);
+		}
+		
+		private function GenerateInterface():void
+		{
+			var toggleImg : Sprite = new Sprite();
+			toggleImg.graphics.lineStyle(1,0x001100);
+			toggleImg.graphics.beginFill(0xFFFFFF);
+			toggleImg.graphics.drawRect(0,0,100,30);
+			toggleImg.graphics.endFill();
+			var toggleBtn : SimpleButton = new SimpleButton(toggleImg, toggleImg, toggleImg, toggleImg);
+			interfaceContainer.addChild(toggleBtn);
+			toggleBtn.x = 100;
+			toggleBtn.y = 500;
+			
+			toggleBtn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
 		
 		private var interfaceContainer : DisplayObjectContainer;

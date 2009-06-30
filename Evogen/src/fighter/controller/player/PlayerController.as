@@ -40,7 +40,6 @@
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
 					player.Health -= player.CurrentOpponent.HitDamage;
-					//trace("hit: "+player.Health);
 					if(player.OnGround)
 					{
 						player.CurrentAction = new GroundStunnedAction();
