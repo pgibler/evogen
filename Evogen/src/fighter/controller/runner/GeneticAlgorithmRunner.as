@@ -21,7 +21,6 @@ package fighter.controller.runner
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
 	import flash.utils.Timer;
 	
 	import org.evogen.entity.Specimen;
@@ -76,6 +75,8 @@ package fighter.controller.runner
 			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
 			this.algorithmTimer = new Timer(0);
 			this.interfaceContainer = new Sprite();
+			this.averageTournamentFitnesses = new Vector.<Number>();
+			this.averageTopPlayerFitnesses = new Vector.<Number>();
 			displayContainer.addChild(interfaceContainer);
 			
 			GenerateInterface();
@@ -143,6 +144,19 @@ package fighter.controller.runner
 				if(currentGeneration < breederSettings.Generations)
 				{
 					currentGeneration++;
+					var totalCharacterFitness : Number = 0;
+					var populationSize : Number = tournament.Players.length;
+					var evaluate : Function = breederSettings.Evaluator.EvaluateFitness;
+					tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
+					{
+						totalCharacterFitness += evaluate(player.BreedableSpecimen);
+					});
+					
+					var averageCharacterFitness : Number = totalCharacterFitness/populationSize;
+					var topCharacterFitness : Number = evaluate(tournament.TopPlayer.BreedableSpecimen);
+					averageTopPlayerFitnesses.push(topCharacterFitness);
+					averageTournamentFitnesses.push(averageCharacterFitness);
+					
 					SpawnNextGeneration();
 				}
 				else
@@ -236,6 +250,8 @@ package fighter.controller.runner
 		
 		private var interfaceContainer : DisplayObjectContainer;
 		private var algorithmTimer : Timer;
+		private var averageTournamentFitnesses : Vector.<Number>;
+		private var averageTopPlayerFitnesses : Vector.<Number>;
 		private var players : Vector.<Player>;
 		private var mostFitSpecimens : Vector.<Specimen>;
 		private var isComplete : Boolean = false;
