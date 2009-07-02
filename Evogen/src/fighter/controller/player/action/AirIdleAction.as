@@ -33,7 +33,6 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			player.IsIdle = true;
 			return this;
 		}
 		
@@ -53,7 +52,7 @@
 				player.CurrentAction = new GroundIdleAction();
 			}
 			player.CurrentAction.PerformAction(player, game);
-				
+			
 			return this;
 		}
 		

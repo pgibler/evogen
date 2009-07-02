@@ -105,6 +105,7 @@
 			if(player.OnGround && player.IsIdle)
 			{
 				player.FacePlayer(player.CurrentOpponent);
+				trace("turning");
 				player.XSpeed = 0;
 			}
 			

@@ -193,13 +193,9 @@
 			this.isStunned = val;
 		}
 		
-		public function set IsIdle(val:Boolean):void
-		{
-			this.isIdle = val;
-		}
 		public function get IsIdle():Boolean
 		{
-			return this.isIdle;
+			return this.frameLag <= 0;
 		}
 		public function get RunAnimation():Boolean
 		{
@@ -262,7 +258,6 @@
 		private var specimen : Specimen;
 		private var isAttacking : Boolean;
 		private var isBlocking : Boolean;
-		private var isIdle : Boolean;
 		private var position : Point;
 		private var hitDamage : Number;
 		private var animation : MovieClip;
