@@ -21,7 +21,7 @@ package fighter.view
 		public function GameInterface()
 		{
 			super();
-			var healthBarYOffset : Number = -200;
+			var healthBarYOffset : Number = -300;
 			var healthBarXOffset : Number = 200;
 			player1HealthBar = AddDisplayObject(CreateHealthBar("Player1Health"), healthBarXOffset, healthBarYOffset, true);
 			player2HealthBar = AddDisplayObject(CreateHealthBar("Player2Health"), -healthBarXOffset, healthBarYOffset, true)

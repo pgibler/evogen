@@ -19,11 +19,11 @@ package fighter.model.game
 			super(background, ground);
 			var sizeRatio : Number = lvlWidth / background.width;
 			ground.graphics.beginFill(0xFFFFFF*Math.random());
-			ground.graphics.drawRect(LeftWallX,GroundY,lvlWidth,100);
+			ground.graphics.drawRect(LeftWallX,GroundY,lvlWidth,150);
 			ground.graphics.endFill();
 			
 			background.graphics.beginFill(0xFFFFFF*Math.random());
-			background.graphics.drawRect(LeftWallX, 0, lvlWidth, 200);
+			background.graphics.drawRect(LeftWallX, -400, lvlWidth, 500);
 			background.graphics.endFill();
 		}
 	}
