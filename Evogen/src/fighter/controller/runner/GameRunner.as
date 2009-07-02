@@ -14,21 +14,20 @@
 	public class GameRunner
 	{
 		
-		public function GameRunner(callback:GameCallback, game:Game) 
+		public function GameRunner(game:Game) 
 		{
-			this.callback = callback;
 			this.game = game;
 		}
 		
 		public function Start():void
 		{
-			callback.OnGameStart(game);
+			game.Callback.OnGameStart(game);
 			game.Settings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
 		}
 		
 		public function Update(event:Event = null):void
 		{
-			callback.OnFrameUpdate( game );
+			game.Callback.OnFrameUpdate( game );
 		}
 		
 		private var callback : GameCallback;

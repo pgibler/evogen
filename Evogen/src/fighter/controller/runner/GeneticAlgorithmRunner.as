@@ -120,8 +120,6 @@ package fighter.controller.runner
 				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
 				this.gameSettings.DisplayContainer.addChild(this.gameSettings.GameContainer);
 			}
-			this.gameSettings.GameContainer.x = tournament.CurrentGame.GameLevel.Ground.width/2;
-			this.gameSettings.GameContainer.y = tournament.CurrentGame.GameLevel.Ground.height*2.5;
 			gameSettings.Mode = newMode;
 		}
 		

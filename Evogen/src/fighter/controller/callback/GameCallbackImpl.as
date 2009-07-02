@@ -40,6 +40,7 @@
 							if(gi == null)
 								gi = new GameInterface();
 							game.Settings.GameInterfaceContainer.addChild(gi);
+							game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
 							interfaceOnScreen = true;
 						}
 						gi.Update(game);
@@ -47,6 +48,7 @@
 					else if(interfaceOnScreen)
 					{
 						game.Settings.GameInterfaceContainer.removeChild(gi);
+						game.Settings.GamePlayContainer.removeChild(game.DisplayContainer);
 						interfaceOnScreen = false;
 					}
 				}
@@ -86,6 +88,8 @@
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
 				game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
+				game.Settings.GameContainer.x = game.GameLevel.Ground.width/2;
+				game.Settings.GameContainer.y = game.GameLevel.Ground.height*2.5;
 				
 				interfaceOnScreen = true;
 				gi = new GameInterface();
@@ -97,6 +101,7 @@
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
+				game.Settings.GameInterfaceContainer.removeChild(gi);
 				game.Settings.GamePlayContainer.removeChild(game.DisplayContainer);
 			}
 			

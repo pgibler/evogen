@@ -63,13 +63,14 @@
 			{
 				if(hitBox.hitTestObject(oppHitBox))
 				{
-					if(opp.Position.x > player.Position.x)
+					var currX : Number = player.Position.x;
+					if(opp.Position.x > currX)
 					{
-						player.Position.x -= player.SeparationSpeed;
+						player.Position.x = Math.max(currX - player.SeparationSpeed, game.GameLevel.LeftWallX);
 					}
 					else if(opp.Position.x < player.Position.x)
 					{
-						player.Position.x += player.SeparationSpeed;
+						player.Position.x = Math.min(currX + player.SeparationSpeed, game.GameLevel.RightWallX);
 					}
 				}
 			}
