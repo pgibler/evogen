@@ -41,16 +41,19 @@
 			{
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
-					player.Health -= opp.HitDamage;
-					if(player.OnGround)
+					if(!player.IsBlocking)
 					{
-						player.CurrentAction = new GroundStunnedAction();
-					} 
-					else
-					{
-						player.CurrentAction = new AirStunnedAction();
+						player.Health -= opp.HitDamage;
+						if(player.OnGround)
+						{
+							player.CurrentAction = new GroundStunnedAction();
+						}
+						else
+						{
+							player.CurrentAction = new AirStunnedAction();
+						}
+						player.CurrentAction.PerformAction(player,game);
 					}
-					player.CurrentAction.PerformAction(player,game);
 				}
 			}
 			
