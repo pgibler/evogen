@@ -7,7 +7,7 @@ package fighter.controller.breeder
 	{		
 		public function EvaluateFitness(specimen:Specimen):Number
 		{
-			return specimen.BreedableSpecimen.Data["wins"];
+			return specimen.BreedableSpecimen.Data["Wins"];
 		}
 		
 		public function SortSpecimens(specimens:Vector.<Specimen>):Vector.<Specimen>
