@@ -86,8 +86,6 @@
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
 				game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
-				game.DisplayContainer.x = game.GameLevel.Ground.width/2;
-				game.DisplayContainer.y = game.GameLevel.Ground.height*2.5;
 				
 				interfaceOnScreen = true;
 				gi = new GameInterface();

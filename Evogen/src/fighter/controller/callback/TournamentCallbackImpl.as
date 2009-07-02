@@ -68,8 +68,8 @@ package fighter.controller.callback
 			var game : Game = new Game( player1, player2, level, new GameCallbackImpl(), tournament.TournamentGameSettings );
 			tournament.Games.push(game);
 			tournament.CurrentGame = game;
-			tournament.CurrentGame.Callback.OnGameStart(tournament.CurrentGame);
-			tournament.CurrentGame.Settings.GamePlayContainer.addChild(tournament.CurrentGame.DisplayContainer);
+			game.Callback.OnGameStart(tournament.CurrentGame);
+			game.Settings.GamePlayContainer.addChild(tournament.CurrentGame.DisplayContainer);
 			return game;
 		}
 		 
