@@ -20,6 +20,8 @@ package fighter.controller.runner
 	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.utils.Timer;
 	
 	import org.evogen.entity.Specimen;
@@ -97,17 +99,17 @@ package fighter.controller.runner
 			if(newMode == Game.SIMULATION && gameSettings.Mode == Game.GRAPHICAL)
 			{
 				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
-				this.gameSettings.DisplayContainer.removeChild(this.tournament.CurrentGame.DisplayContainer);
+				this.gameSettings.DisplayContainer.removeChild(this.gameSettings.GameContainer);
 				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
 			}
 			else if(newMode == Game.GRAPHICAL && gameSettings.Mode == Game.SIMULATION)
 			{
 				this.algorithmTimer.removeEventListener(TimerEvent.TIMER, Update);
 				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
-				this.gameSettings.DisplayContainer.addChild(this.tournament.CurrentGame.DisplayContainer);
+				this.gameSettings.DisplayContainer.addChild(this.gameSettings.GameContainer);
 			}
-			tournament.CurrentGame.DisplayContainer.x = tournament.CurrentGame.GameLevel.Ground.width/2;
-			tournament.CurrentGame.DisplayContainer.y = tournament.CurrentGame.GameLevel.Ground.height*2.5;
+			this.gameSettings.GameContainer.x = tournament.CurrentGame.GameLevel.Ground.width/2;
+			this.gameSettings.GameContainer.y = tournament.CurrentGame.GameLevel.Ground.height*2.5;
 			gameSettings.Mode = newMode;
 		}
 		
@@ -214,17 +216,22 @@ package fighter.controller.runner
 		
 		private function GenerateInterface():void
 		{
-			var toggleImg : Sprite = new Sprite();
-			toggleImg.graphics.lineStyle(1,0x001100);
-			toggleImg.graphics.beginFill(0xFFFFFF);
-			toggleImg.graphics.drawRect(0,0,100,30);
-			toggleImg.graphics.endFill();
-			var toggleBtn : SimpleButton = new SimpleButton(toggleImg, toggleImg, toggleImg, toggleImg);
-			interfaceContainer.addChild(toggleBtn);
-			toggleBtn.x = 100;
-			toggleBtn.y = 500;
+			var img : Sprite = new Sprite();
+			var txtfld : TextField = new TextField();
+			var btn : SimpleButton;
+			img.graphics.lineStyle(1,0x001100);
+			img.graphics.beginFill(0xFFFFFF);
+			img.graphics.drawRect(0,0,100,30);
+			img.graphics.endFill();
+			//img.addChild(txtfld);
+			txtfld.text = "Toggle Run Mode";
+			txtfld.textColor = 0x00FF00;
+			btn = new SimpleButton(txtfld, txtfld, txtfld, txtfld);
+			interfaceContainer.addChild(btn);
+			btn.x = 100;
+			btn.y = 500;
 			
-			toggleBtn.addEventListener(MouseEvent.CLICK, ChangeMode);
+			btn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
 		
 		private var interfaceContainer : DisplayObjectContainer;

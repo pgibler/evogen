@@ -59,11 +59,17 @@ package fighter.controller.callback
 		
 		private function GenerateGameAndSetAsCurrent(player1:Player, player2:Player, tournament:Tournament):Game
 		{
+			if(	tournament.CurrentGame != null &&
+				tournament.CurrentGame.Settings.GamePlayContainer.contains(tournament.CurrentGame.DisplayContainer))
+			{
+				tournament.CurrentGame.Settings.GamePlayContainer.removeChild(tournament.CurrentGame.DisplayContainer);
+			}
 			var level : Level = new DefaultLevel();
 			var game : Game = new Game( player1, player2, level, new GameCallbackImpl(), tournament.TournamentGameSettings );
 			tournament.Games.push(game);
 			tournament.CurrentGame = game;
 			tournament.CurrentGame.Callback.OnGameStart(tournament.CurrentGame);
+			tournament.CurrentGame.Settings.GamePlayContainer.addChild(tournament.CurrentGame.DisplayContainer);
 			return game;
 		}
 		 

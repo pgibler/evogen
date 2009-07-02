@@ -2,8 +2,8 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.view.GameInterface;
 	
-	import flash.events.EventDispatcher;
 	import flash.geom.Point;
 	
 	/**
@@ -32,13 +32,29 @@
 					p2.Controller.Update(p2, game);
 					game.TimeElapsed += 1;
 					//trace("Game time: left="+game.TimeElapsed + ", max=" + game.TimeMax + ", p1 hp:"+p1.Health + ", p2 hp:"+p2.Health);
+					
+					if(game.Settings.Mode == Game.GRAPHICAL)
+					{
+						if(!interfaceOnScreen)
+						{
+							if(gi == null)
+								gi = new GameInterface();
+							game.Settings.GameInterfaceContainer.addChild(gi);
+							interfaceOnScreen = true;
+						}
+						gi.Update(game);
+					}
+					else if(interfaceOnScreen)
+					{
+						game.Settings.GameInterfaceContainer.removeChild(gi);
+						interfaceOnScreen = false;
+					}
 				}
 			}
 		}
 		
 		public function OnGameStart(game:Game):void
 		{
-			
 			var startPos1 : Point = game.StartingPositions[0];
 			var startPos2 : Point = game.StartingPositions[1];
 			
@@ -69,9 +85,13 @@
 			
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
-				game.Settings.DisplayContainer.addChild(game.DisplayContainer);
+				game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
 				game.DisplayContainer.x = game.GameLevel.Ground.width/2;
 				game.DisplayContainer.y = game.GameLevel.Ground.height*2.5;
+				
+				interfaceOnScreen = true;
+				gi = new GameInterface();
+				game.Settings.GameInterfaceContainer.addChild(gi);
 			}
 		}
 		
@@ -79,7 +99,7 @@
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
-				game.Settings.DisplayContainer.removeChild(game.DisplayContainer);
+				game.Settings.GamePlayContainer.removeChild(game.DisplayContainer);
 			}
 			
 			game.DisplayContainer.removeChild(game.GameLevel.Background);
@@ -87,6 +107,9 @@
 			game.DisplayContainer.removeChild(game.Player1.DisplayContainer);
 			game.DisplayContainer.removeChild(game.Player2.DisplayContainer);
 		}
+		
+		private var interfaceOnScreen : Boolean = false;
+		private var gi : GameInterface;
 		
 	}
 	

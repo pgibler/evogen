@@ -3,8 +3,17 @@ package org.evogen.breeder
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	
-	public class TwoThirdsRatioBreeder implements Breeder
+	public class RankBreeder implements Breeder
 	{
+		
+		public function RankBreeder(p:Number):void
+		{
+			if(p <= 0 || p >= 1)
+			{
+				throw new Error("p must be between 0 and 1");
+			}
+			this.p = p;
+		}
 		
 		public function Breed(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
@@ -21,7 +30,7 @@ package org.evogen.breeder
 			var nextHasHigherFitness : Boolean = true;
 			var lastFitness : Number = -1;
 			var numLeft : Number = 1;
-			var ratio : Number = 2.0/3.0;
+			var ratio : Number = p;
 			var popSize : int = population.length;
 			populationMinusLowestNumber = new Vector.<Specimen>();
 			populationOfLowestNumber = new Vector.<Specimen>();
@@ -190,5 +199,6 @@ package org.evogen.breeder
 		private var population : Vector.<Specimen>;
 		private var selectionProbabilities : Vector.<Number>;
 		private var fitness : Function;
+		private var p : Number;
 	}
 }

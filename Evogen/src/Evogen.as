@@ -20,7 +20,7 @@ package
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
-	import org.evogen.breeder.TwoThirdsRatioBreeder;
+	import org.evogen.breeder.RankBreeder;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -58,7 +58,7 @@ package
 			stage.addChild(gameContainer);
 			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.SIMULATION);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new TwoThirdsRatioBreeder(), new FighterSpecimenEvaluator(), 20, 100);
+			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 20, 100);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings, stage);
 			
 			trace("Initial population:");
