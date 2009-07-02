@@ -33,6 +33,12 @@
 				player.CurrentAnimation.nextFrame();
 			}
 			
+			if(player.OnGround && player.IsIdle)
+			{
+				player.FacePlayer(player.CurrentOpponent);
+				player.XSpeed = 0;
+			}
+			
 			var opp : Player = player.CurrentOpponent;
 			
 			var oppDmgBox : DisplayObject = opp.CurrentAnimation.getChildByName("DamageBox");
@@ -102,12 +108,6 @@
 			}
 			
 			player.Position.y += player.YSpeed;
-			if(player.OnGround && player.IsIdle)
-			{
-				player.FacePlayer(player.CurrentOpponent);
-				trace("turning");
-				player.XSpeed = 0;
-			}
 			
 			if (player.Position.y < game.GameLevel.GroundY)
 			{
