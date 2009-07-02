@@ -20,9 +20,14 @@
 	*/
 	public class Player implements Breedable
 	{
-		public function get PlayerAnimations () :Animations
+		public function get PlayerAnimations():Animations
 		{
 			return animations;
+		}
+		
+		public function get SeparationSpeed():Number
+		{
+			return 3;
 		}
 		
 		public function get CurrentAction():Action

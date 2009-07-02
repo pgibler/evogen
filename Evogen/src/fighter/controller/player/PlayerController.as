@@ -33,13 +33,15 @@
 				player.CurrentAnimation.nextFrame();
 			}
 			
-			var oppDmgBox : DisplayObject = player.CurrentOpponent.CurrentAnimation.getChildByName("DamageBox");
+			var opp : Player = player.CurrentOpponent;
+			
+			var oppDmgBox : DisplayObject = opp.CurrentAnimation.getChildByName("DamageBox");
 			var hitBox : DisplayObject = player.CurrentAnimation.getChildByName("HitBox");
 			if(!player.IsStunned && oppDmgBox != null && hitBox != null)
 			{
 				if(oppDmgBox.hitTestObject(hitBox))
 				{
-					player.Health -= player.CurrentOpponent.HitDamage;
+					player.Health -= opp.HitDamage;
 					if(player.OnGround)
 					{
 						player.CurrentAction = new GroundStunnedAction();
@@ -49,6 +51,23 @@
 						player.CurrentAction = new AirStunnedAction();
 					}
 					player.CurrentAction.PerformAction(player,game);
+				}
+			}
+			
+			var oppHitBox : DisplayObject = opp.CurrentAnimation.getChildByName("HitBox");
+			
+			if(hitBox != null && oppHitBox != null)
+			{
+				if(hitBox.hitTestObject(oppHitBox))
+				{
+					if(opp.Position.x > player.Position.x)
+					{
+						player.Position.x -= player.SeparationSpeed;
+					}
+					else if(opp.Position.x < player.Position.x)
+					{
+						player.Position.x += player.SeparationSpeed;
+					}
 				}
 			}
 			

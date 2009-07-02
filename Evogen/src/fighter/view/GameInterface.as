@@ -23,8 +23,8 @@ package fighter.view
 			super();
 			var healthBarYOffset : Number = -200;
 			var healthBarXOffset : Number = 200;
-			player1HealthBar = AddDisplayObject(CreateHealthBar("Player1Health"), healthBarXOffset, healthBarYOffset);
-			player2HealthBar = AddDisplayObject(CreateHealthBar("Player2Health"), -healthBarXOffset, healthBarYOffset)
+			player1HealthBar = AddDisplayObject(CreateHealthBar("Player1Health"), healthBarXOffset, healthBarYOffset, true);
+			player2HealthBar = AddDisplayObject(CreateHealthBar("Player2Health"), -healthBarXOffset, healthBarYOffset, true)
 		}
 		
 		public function Update(game:Game):void
@@ -33,11 +33,11 @@ package fighter.view
 			player2HealthBar.scaleX = game.Player2.Health / game.Player2.HealthMax;
 		}
 		
-		private function AddDisplayObject(dispObj:DisplayObject, x:Number, y:Number):DisplayObject
+		private function AddDisplayObject(dispObj:DisplayObject, x:Number, y:Number, centered:Boolean=false):DisplayObject
 		{
 			addChild(dispObj);
-			dispObj.x = x;
-			dispObj.y = y;
+			dispObj.x = centered ? x - dispObj.width/2 : x;
+			dispObj.y = centered ? y - dispObj.height/2 : y;
 			return dispObj;
 		}
 		
