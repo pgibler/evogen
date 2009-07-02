@@ -2,6 +2,7 @@ package fighter.model.game
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.geom.Matrix;
 	
 	public class DefaultLevel extends Level
 	{
@@ -26,7 +27,10 @@ package fighter.model.game
 			ground.graphics.drawRect(LeftWallX,GroundY,lvlWidth,150);
 			ground.graphics.endFill();
 			
-			background.graphics.beginBitmapFill(new backgroundImageCls().bitmapData);
+			var matrix : Matrix = new Matrix();
+			matrix.scale(1.2,1.2);
+			matrix.translate(-400,-400);
+			background.graphics.beginBitmapFill(new backgroundImageCls().bitmapData,matrix,false);
 			background.graphics.drawRect(LeftWallX, -400, lvlWidth, 500);
 			background.graphics.endFill();
 		}
