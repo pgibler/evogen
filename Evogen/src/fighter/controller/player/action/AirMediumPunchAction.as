@@ -36,6 +36,7 @@
 			player.RunAnimation = true;
 			player.IsAttacking = true;
 			player.HitDamage = 12;
+			this.number = Math.random();
 			return this;
 		}
 		
@@ -55,10 +56,13 @@
 			}
 			else
 			{
+				trace(number, player.FacingDirection);
 				player.FrameLag = 1;
 			}
 			return this;
 		}
+		
+		private var number : Number;
 		
 	}
 	
