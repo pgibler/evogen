@@ -44,8 +44,19 @@ package fighter.controller.runner
 			return breederSettings;
 		}
 		
+		public function get AverageTopPlayerFitnesses():Vector.<Number>
+		{
+			return averageTopPlayerFitnesses;
+		}
+		
+		public function get AverageTournamentPopulationFitnesses():Vector.<Number>
+		{
+			return averageTournamentPopulationFitnesses;
+		}
+		
 		public function get Players():Vector.<Player>
 		{
+			
 			return players;
 		}
 		
@@ -75,7 +86,7 @@ package fighter.controller.runner
 			this.players = GenerateInitialPlayers(breederSettings.PopulationSize);
 			this.algorithmTimer = new Timer(0);
 			this.interfaceContainer = new Sprite();
-			this.averageTournamentFitnesses = new Vector.<Number>();
+			this.averageTournamentPopulationFitnesses = new Vector.<Number>();
 			this.averageTopPlayerFitnesses = new Vector.<Number>();
 			displayContainer.addChild(interfaceContainer);
 			
@@ -155,7 +166,7 @@ package fighter.controller.runner
 					var averageCharacterFitness : Number = totalCharacterFitness/populationSize;
 					var topCharacterFitness : Number = evaluate(tournament.TopPlayer.BreedableSpecimen);
 					averageTopPlayerFitnesses.push(topCharacterFitness);
-					averageTournamentFitnesses.push(averageCharacterFitness);
+					averageTournamentPopulationFitnesses.push(averageCharacterFitness);
 					
 					SpawnNextGeneration();
 				}
@@ -250,7 +261,7 @@ package fighter.controller.runner
 		
 		private var interfaceContainer : DisplayObjectContainer;
 		private var algorithmTimer : Timer;
-		private var averageTournamentFitnesses : Vector.<Number>;
+		private var averageTournamentPopulationFitnesses : Vector.<Number>;
 		private var averageTopPlayerFitnesses : Vector.<Number>;
 		private var players : Vector.<Player>;
 		private var mostFitSpecimens : Vector.<Specimen>;
