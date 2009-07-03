@@ -6,7 +6,6 @@
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.view.CammyAnimations;
 	
 	import flash.display.DisplayObject;
 	
@@ -38,6 +37,7 @@
 			if(player.OnGround && player.IsIdle)
 			{
 				player.FacePlayer(player.CurrentOpponent);
+				player.XSpeed = 0;
 			}
 			
 			var opp : Player = player.CurrentOpponent;
@@ -91,12 +91,13 @@
 				{
 					conditionString += int(rules.Conditions[i].EvaluateCondition(player, game));
 				}
+				//var prevAction : Action = player.CurrentAction;
 				player.CurrentAction = rules.SelectAction(conditionString);
 				var a : Action = player.CurrentAction;
 				if (a != null && a.IsValid(player, game))
 				{
+					//trace("Player " + player + " is performing action " + a.Name + " with previous action " + prevAction.Name + " and is stunned ? " + player.IsStunned);
 					a.PerformAction(player, game);
-					//trace("Player " + player + " is performing action " + a.Name);
 					player.FrameLag = a.FrameLag;
 				}
 			}
@@ -120,11 +121,6 @@
 			else if (player.Position.y < game.GameLevel.GroundY)
 			{
 				player.YSpeed += player.Gravity;
-			}
-			
-			if(player.OnGround && player.IsIdle)
-			{
-				player.XSpeed = 0;
 			}
 			
 			var pxs : Number = player.XSpeed;
