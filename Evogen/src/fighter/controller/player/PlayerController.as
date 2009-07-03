@@ -102,12 +102,6 @@
 				}
 			}
 			
-			if(player.OnGround && player.IsIdle)
-			{
-				player.FacePlayer(player.CurrentOpponent);
-				player.XSpeed = 0;
-			}
-			
 			player.Position.y += player.YSpeed;
 			
 			if (player.Position.y < game.GameLevel.GroundY)
@@ -128,8 +122,16 @@
 			{
 				player.Position.x = Math.max(player.Position.x, game.GameLevel.LeftWallX + widthover2);
 			}
+			
 			player.DisplayContainer.x = player.Position.x;
 			player.DisplayContainer.y = player.Position.y;
+			
+			if(player.OnGround && player.IsIdle)
+			{
+				player.FacePlayer(player.CurrentOpponent);
+				player.XSpeed = 0;
+			}
+			
 			return this;
 		}
 		

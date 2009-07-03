@@ -33,7 +33,6 @@
 		
 		public function PerformAction(player:Player, game:Game):Action
 		{
-			trace("idling");
 			return this;
 		}
 		
