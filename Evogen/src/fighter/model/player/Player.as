@@ -227,6 +227,7 @@
 			this.animations = new CammyAnimations();
 			this.CurrentAction = new GroundIdleAction();
 			this.CurrentAction.PerformAction(this, game);
+			FacePlayer(currentOpponent);
 		}
 		
 		public function FacePlayer(player:Player):Player

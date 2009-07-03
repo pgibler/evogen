@@ -54,6 +54,7 @@
 						{
 							player.CurrentAction = new AirStunnedAction();
 						}
+						player.FacePlayer(opp);
 						player.CurrentAction.PerformAction(player,game);
 					}
 				}
@@ -116,7 +117,7 @@
 				player.YSpeed += player.Gravity;
 			}
 			
-			if(player.OnGround && !player.IsIdle)
+			if(player.OnGround && player.IsIdle)
 			{
 				player.FacePlayer(player.CurrentOpponent);
 				player.XSpeed = 0;

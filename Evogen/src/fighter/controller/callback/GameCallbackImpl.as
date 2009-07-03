@@ -1,5 +1,7 @@
 ﻿package fighter.controller.callback 
 {
+	import fighter.controller.player.action.AirStunnedAction;
+	import fighter.controller.player.action.GroundStunnedAction;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
 	import fighter.view.GameInterface;

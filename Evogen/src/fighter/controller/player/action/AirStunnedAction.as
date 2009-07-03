@@ -25,7 +25,7 @@ package fighter.controller.player.action
 			player.IsStunned = true;
 			player.IsAttacking = false;
 			player.IsBlocking = false;
-			player.XSpeed = player.FacingDirection * player.WalkSpeed;
+			player.XSpeed = -player.FacingDirection * player.WalkSpeed;
 			player.CurrentAnimation = player.PlayerAnimations.Stunned;
 			player.CurrentAnimation.gotoAndStop(1);
 			player.RunAnimation = true;
