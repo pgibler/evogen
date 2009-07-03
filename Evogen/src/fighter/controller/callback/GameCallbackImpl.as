@@ -77,8 +77,8 @@
 			game.Player2.CurrentOpponent = game.Player1;
 			game.TimeElapsed = 0;
 			
-			game.Player1.Initialize();
-			game.Player2.Initialize();
+			game.Player1.Initialize(game);
+			game.Player2.Initialize(game);
 			
 			game.DisplayContainer.addChild(game.GameLevel.Background);
 			game.DisplayContainer.addChild(game.GameLevel.Ground);

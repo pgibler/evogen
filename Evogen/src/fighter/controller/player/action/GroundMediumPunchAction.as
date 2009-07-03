@@ -41,13 +41,14 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
+			player.RunAnimation = false;
 			player.IsAttacking = false;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 30;
+			return 10;
 		}
 		
 	}

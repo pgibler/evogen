@@ -39,8 +39,6 @@ package fighter.controller.player.action
 		public function OnComplete(player:Player, game:Game):Action
 		{
 			player.IsStunned = false;
-			player.CurrentAction = new GroundIdleAction();
-			player.CurrentAction.PerformAction(player, game);
 			return this;
 		}
 		

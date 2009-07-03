@@ -2,6 +2,7 @@
 {
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.action.Action;
+	import fighter.controller.player.action.AirIdleAction;
 	import fighter.controller.player.action.GroundIdleAction;
 	import fighter.model.game.Game;
 	import fighter.view.Animations;
@@ -110,7 +111,7 @@
 		
 		public function get OnGround():Boolean
 		{
-			return position.y >= currentGame.GameLevel.GroundY;
+			return position.y >= currentGame.GameLevel.GroundY && ySpeed == 0;
 		}
 		
 		public function set Position(p:Point):void
@@ -213,7 +214,7 @@
 			this.controller = controller;
 		}
 		
-		public function Initialize():void
+		public function Initialize(game:Game):void
 		{
 			this.hitDamage = 0;
 			this.health = 100;
@@ -224,7 +225,8 @@
 			this.isBlocking = false;
 			this.runAnimation = true;
 			this.animations = new CammyAnimations();
-			new GroundIdleAction().PerformAction(this, null);
+			this.CurrentAction = new GroundIdleAction();
+			this.CurrentAction.PerformAction(this, game);
 		}
 		
 		public function FacePlayer(player:Player):Player
@@ -237,7 +239,14 @@
 			{
 				facingDirection = -1;
 			}
-			player.displaycontainer.scaleX = facingDirection;
+			displaycontainer.scaleX = facingDirection;
+			return this;
+		}
+		
+		public function GoIdle(game:Game):Player
+		{
+			OnGround ? CurrentAction = new GroundIdleAction() : CurrentAction = new AirIdleAction();
+			CurrentAction.PerformAction(this, game);
 			return this;
 		}
 		

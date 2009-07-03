@@ -43,16 +43,6 @@
 		
 		public function OnComplete(player:Player, game:Game):Action
 		{
-			if(!player.OnGround)
-			{
-				player.CurrentAction = this;
-			}
-			else
-			{
-				player.CurrentAction = new GroundIdleAction();
-			}
-			player.CurrentAction.PerformAction(player, game);
-			
 			return this;
 		}
 		

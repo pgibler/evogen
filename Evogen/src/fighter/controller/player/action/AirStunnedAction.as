@@ -42,8 +42,6 @@ package fighter.controller.player.action
 			if(player.OnGround)
 			{
 				player.IsStunned = false;
-				player.CurrentAction = new GroundIdleAction();
-				player.CurrentAction.PerformAction(player, game);
 			}
 			else
 			{

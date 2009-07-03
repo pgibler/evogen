@@ -6,6 +6,7 @@
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
+	import fighter.view.CammyAnimations;
 	
 	import flash.display.DisplayObject;
 	
@@ -28,6 +29,11 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
+			if(player.OnGround && !player.IsAttacking)
+			{
+				player.FacePlayer(player.CurrentOpponent);
+			}
+			
 			if(player.RunAnimation)
 			{
 				player.CurrentAnimation.nextFrame();
@@ -104,33 +110,34 @@
 			
 			player.Position.y += player.YSpeed;
 			
-			if (player.Position.y < game.GameLevel.GroundY)
-			{
-				player.YSpeed += player.Gravity;
-			}
-			else if(player.Position.y > game.GameLevel.GroundY)
+			if(player.Position.y > game.GameLevel.GroundY)
 			{
 				player.YSpeed = 0;
 				player.Position.y = game.GameLevel.GroundY;
 			}
-			player.Position.x += player.XSpeed;
-			if (player.XSpeed > 0)
+			else if (player.Position.y < game.GameLevel.GroundY)
 			{
-				player.Position.x = Math.min(player.Position.x, game.GameLevel.RightWallX - widthover2);
+				player.YSpeed += player.Gravity;
 			}
-			else if (player.XSpeed < 0)
+			
+			if(player.OnGround && !player.IsAttacking)
 			{
-				player.Position.x = Math.max(player.Position.x, game.GameLevel.LeftWallX + widthover2);
+				player.XSpeed = 0;
+			}
+			
+			var pxs : Number = player.XSpeed;
+			var playerX : Number = player.Position.x + pxs;
+			if (pxs > 0)
+			{
+				player.Position.x = Math.min(playerX, game.GameLevel.RightWallX - widthover2);
+			}
+			else if (pxs < 0)
+			{
+				player.Position.x = Math.max(playerX, game.GameLevel.LeftWallX + widthover2);
 			}
 			
 			player.DisplayContainer.x = player.Position.x;
 			player.DisplayContainer.y = player.Position.y;
-			
-			if(player.OnGround && player.IsIdle)
-			{
-				player.FacePlayer(player.CurrentOpponent);
-				player.XSpeed = 0;
-			}
 			
 			return this;
 		}
