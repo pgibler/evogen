@@ -33,12 +33,6 @@
 				player.CurrentAnimation.nextFrame();
 			}
 			
-			if(player.OnGround && player.IsIdle)
-			{
-				player.FacePlayer(player.CurrentOpponent);
-				player.XSpeed = 0;
-			}
-			
 			var opp : Player = player.CurrentOpponent;
 			
 			var oppDmgBox : DisplayObject = opp.CurrentAnimation.getChildByName("DamageBox");
@@ -64,6 +58,7 @@
 			}
 			
 			var oppHitBox : DisplayObject = opp.CurrentAnimation.getChildByName("HitBox");
+			var widthover2 : Number = player.DisplayContainer.width/2;
 			
 			if(hitBox != null && oppHitBox != null)
 			{
@@ -72,11 +67,11 @@
 					var currX : Number = player.Position.x;
 					if(opp.Position.x > currX)
 					{
-						player.Position.x = Math.max(currX - player.SeparationSpeed, game.GameLevel.LeftWallX);
+						player.Position.x = Math.max(currX - player.SeparationSpeed, game.GameLevel.LeftWallX+widthover2);
 					}
 					else if(opp.Position.x < player.Position.x)
 					{
-						player.Position.x = Math.min(currX + player.SeparationSpeed, game.GameLevel.RightWallX);
+						player.Position.x = Math.min(currX + player.SeparationSpeed, game.GameLevel.RightWallX-widthover2);
 					}
 				}
 			}
@@ -107,6 +102,12 @@
 				}
 			}
 			
+			if(player.OnGround && player.IsIdle)
+			{
+				player.FacePlayer(player.CurrentOpponent);
+				player.XSpeed = 0;
+			}
+			
 			player.Position.y += player.YSpeed;
 			
 			if (player.Position.y < game.GameLevel.GroundY)
@@ -118,7 +119,6 @@
 				player.YSpeed = 0;
 				player.Position.y = game.GameLevel.GroundY;
 			}
-			var widthover2 : Number = player.DisplayContainer.width/2;
 			player.Position.x += player.XSpeed;
 			if (player.XSpeed > 0)
 			{

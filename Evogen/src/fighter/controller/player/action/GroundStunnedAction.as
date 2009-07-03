@@ -24,7 +24,7 @@ package fighter.controller.player.action
 			player.IsStunned = true;
 			player.IsAttacking = false;
 			player.IsBlocking = false;
-			player.XSpeed = player.FacingDirection * player.WalkSpeed;
+			player.XSpeed = player.FacingDirection * player.WalkSpeed/2;
 			player.CurrentAnimation = player.PlayerAnimations.Stunned;
 			player.CurrentAnimation.gotoAndStop(1);
 			player.RunAnimation = true;
@@ -40,7 +40,7 @@ package fighter.controller.player.action
 		{
 			player.IsStunned = false;
 			player.CurrentAction = new GroundIdleAction();
-			player.CurrentAction.PerformAction(player, game)
+			player.CurrentAction.PerformAction(player, game);
 			return this;
 		}
 		

@@ -113,7 +113,6 @@ package
 			pc = new PlayerController(prod);
 			var p2 : Player = new Player(pc, new Specimen(prodTemp.LastGeneratedProductionChromosome));
 			var game : Game = new Game(p1, p2, new DefaultLevel(), new GameCallbackImpl(), gameSettings);
-			//var tourney : Tournament = new Tournament(new TournamentCallbackImpl(),
 			var gr : GameRunner = new GameRunner(game);
 			gr.Start();
 		}
