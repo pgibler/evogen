@@ -29,10 +29,6 @@
 		
 		public function Update(player:Player, game:Game):PlayerController 
 		{
-			if(player.OnGround && !player.IsAttacking)
-			{
-				player.FacePlayer(player.CurrentOpponent);
-			}
 			
 			if(player.RunAnimation)
 			{
@@ -120,8 +116,9 @@
 				player.YSpeed += player.Gravity;
 			}
 			
-			if(player.OnGround && !player.IsAttacking)
+			if(player.OnGround && !player.IsIdle)
 			{
+				player.FacePlayer(player.CurrentOpponent);
 				player.XSpeed = 0;
 			}
 			

@@ -27,7 +27,14 @@
 		
 		public function Update(event:Event = null):void
 		{
-			game.Callback.OnFrameUpdate( game );
+			if(!game.IsComplete)
+			{
+				game.Callback.OnFrameUpdate( game );
+			} 
+			else
+			{
+				game.Settings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
+			}
 		}
 		
 		private var callback : GameCallback;

@@ -29,8 +29,11 @@ package fighter.controller.callback
 		
 		public function OnTournamentUpdate(tournament:Tournament, game:Game):void
 		{
-			tournament.CurrentGame.Callback.OnFrameUpdate( tournament.CurrentGame );
-			if(tournament.CurrentGame.IsComplete)
+			if(!tournament.CurrentGame.IsComplete)
+			{
+				tournament.CurrentGame.Callback.OnFrameUpdate( tournament.CurrentGame );
+			}
+			else
 			{
 				OnTournamentGameEnd( tournament, game );
 			}

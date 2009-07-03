@@ -233,11 +233,11 @@
 		{
 			if (player.Position.x < position.x)
 			{
-				facingDirection = 1;
+				facingDirection = -1;
 			}
 			else if (player.Position.x > position.x)
 			{
-				facingDirection = -1;
+				facingDirection = 1;
 			}
 			displaycontainer.scaleX = facingDirection;
 			return this;
