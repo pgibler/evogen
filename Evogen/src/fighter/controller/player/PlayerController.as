@@ -35,6 +35,11 @@
 				player.CurrentAnimation.nextFrame();
 			}
 			
+			if(player.OnGround && player.IsIdle)
+			{
+				player.FacePlayer(player.CurrentOpponent);
+			}
+			
 			var opp : Player = player.CurrentOpponent;
 			
 			var oppDmgBox : DisplayObject = opp.CurrentAnimation.getChildByName("DamageBox");
@@ -119,7 +124,6 @@
 			
 			if(player.OnGround && player.IsIdle)
 			{
-				player.FacePlayer(player.CurrentOpponent);
 				player.XSpeed = 0;
 			}
 			
