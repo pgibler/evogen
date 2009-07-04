@@ -244,13 +244,6 @@
 			return this;
 		}
 		
-		public function GoIdle(game:Game):Player
-		{
-			OnGround ? CurrentAction = new GroundIdleAction() : CurrentAction = new AirIdleAction();
-			CurrentAction.PerformAction(this, game);
-			return this;
-		}
-		
 		private static var healthMax : Number = 100;
 		private var runAnimation : Boolean;
 		private var animations : Animations;
