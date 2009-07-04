@@ -61,6 +61,7 @@
 						}
 						player.FacePlayer(opp);
 						player.CurrentAction.PerformAction(player,game);
+						player.FrameLag = player.CurrentAction.FrameLag;
 					}
 				}
 			}
@@ -91,19 +92,16 @@
 				{
 					conditionString += int(rules.Conditions[i].EvaluateCondition(player, game));
 				}
-				//var prevAction : Action = player.CurrentAction;
 				player.CurrentAction = rules.SelectAction(conditionString);
 				var a : Action = player.CurrentAction;
 				if (a != null && a.IsValid(player, game))
 				{
-					//trace("Player " + player + " is performing action " + a.Name + " with previous action " + prevAction.Name + " and is stunned ? " + player.IsStunned);
 					a.PerformAction(player, game);
 					player.FrameLag = a.FrameLag;
 				}
 			}
 			else
 			{
-				//trace("lag left:"+player.FrameLag);
 				player.FrameLag--;
 				if(player.FrameLag <= 0)
 				{

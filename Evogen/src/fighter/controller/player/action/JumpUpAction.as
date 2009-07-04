@@ -27,7 +27,7 @@
 		
 		public function IsValid(player:Player, game:Game):Boolean
 		{
-			return !player.IsAttacking && player.OnGround;
+			return !player.IsAttacking && player.OnGround && !player.IsStunned;
 		}
 		
 		public function PerformAction(player:Player, game:Game):Action
