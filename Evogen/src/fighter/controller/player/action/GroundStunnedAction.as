@@ -33,7 +33,7 @@ package fighter.controller.player.action
 		
 		public function get FrameLag():int
 		{
-			return 40;
+			return 15;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action
