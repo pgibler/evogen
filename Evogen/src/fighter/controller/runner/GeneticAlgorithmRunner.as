@@ -111,14 +111,12 @@ package fighter.controller.runner
 			if(newMode == Game.SIMULATION && gameSettings.Mode == Game.GRAPHICAL)
 			{
 				this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
-				this.gameSettings.DisplayContainer.removeChild(this.gameSettings.GameContainer);
 				this.algorithmTimer.addEventListener(TimerEvent.TIMER, Update);
 			}
 			else if(newMode == Game.GRAPHICAL && gameSettings.Mode == Game.SIMULATION)
 			{
 				this.algorithmTimer.removeEventListener(TimerEvent.TIMER, Update);
 				this.gameSettings.DisplayContainer.addEventListener(Event.ENTER_FRAME, Update);
-				this.gameSettings.DisplayContainer.addChild(this.gameSettings.GameContainer);
 			}
 			gameSettings.Mode = newMode;
 		}

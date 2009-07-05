@@ -37,21 +37,23 @@
 					
 					if(game.Settings.Mode == Game.GRAPHICAL)
 					{
-						if(!interfaceOnScreen)
+						if(!gameOnScreen)
 						{
 							if(gi == null)
 								gi = new GameInterface();
+							game.Settings.DisplayContainer.addChild(game.Settings.GameContainer);
 							game.Settings.GameInterfaceContainer.addChild(gi);
 							game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
-							interfaceOnScreen = true;
+							gameOnScreen = true;
 						}
 						gi.Update(game);
 					}
-					else if(interfaceOnScreen)
+					else if(gameOnScreen)
 					{
+						game.Settings.DisplayContainer.removeChild(game.Settings.GameContainer);
 						game.Settings.GameInterfaceContainer.removeChild(gi);
 						game.Settings.GamePlayContainer.removeChild(game.DisplayContainer);
-						interfaceOnScreen = false;
+						gameOnScreen = false;
 					}
 				}
 			}
@@ -89,11 +91,12 @@
 			
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
+				game.Settings.DisplayContainer.addChild(game.Settings.GameContainer);
 				game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
 				game.Settings.GameContainer.x = game.GameLevel.Ground.width/2;
 				game.Settings.GameContainer.y = game.GameLevel.Ground.height*2.5;
 				
-				interfaceOnScreen = true;
+				gameOnScreen = true;
 				gi = new GameInterface();
 				game.Settings.GameInterfaceContainer.addChild(gi);
 			}
@@ -103,6 +106,7 @@
 		{
 			if(game.Settings.Mode == Game.GRAPHICAL)
 			{
+				game.Settings.DisplayContainer.removeChild(game.Settings.GameContainer);
 				game.Settings.GameInterfaceContainer.removeChild(gi);
 				game.Settings.GamePlayContainer.removeChild(game.DisplayContainer);
 			}
@@ -113,7 +117,7 @@
 			game.DisplayContainer.removeChild(game.Player2.DisplayContainer);
 		}
 		
-		private var interfaceOnScreen : Boolean = false;
+		private var gameOnScreen : Boolean = false;
 		private var gi : GameInterface;
 		
 	}

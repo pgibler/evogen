@@ -43,8 +43,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			//testGA();
-			testGame();
+			testGA();
+			//testGame();
 		}
 		
 		private var ga : GeneticAlgorithmRunner;

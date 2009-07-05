@@ -64,10 +64,8 @@ package fighter.model.game
 			this.displayContainer = displayContainer;
 			this.gameRunTime = gameRunTime;
 			this.simulationIntervalsPerTick = 500;
-			this.frameIntervalsPerTick = mode == 0 ? simulationIntervalsPerTick : 1;
 			this.mode = mode;
-			
-			displayContainer.addChild(gameContainer);
+			this.frameIntervalsPerTick = mode == 0 ? simulationIntervalsPerTick : 1;
 		}
 		
 		private var gamePlayContainer : DisplayObjectContainer;

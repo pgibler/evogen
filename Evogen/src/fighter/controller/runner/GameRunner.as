@@ -4,7 +4,9 @@
 	import fighter.model.game.Game;
 	import fighter.model.game.Level;
 	import fighter.model.player.Player;
+	import fighter.view.GameInterface;
 	
+	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	
 	/**
@@ -30,13 +32,14 @@
 			if(!game.IsComplete)
 			{
 				game.Callback.OnFrameUpdate( game );
-			} 
+			}
 			else
 			{
 				game.Settings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
 			}
 		}
 		
+		private var gi : GameInterface;
 		private var callback : GameCallback;
 		private var player1 : Player;
 		private var player2 : Player;
