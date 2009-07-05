@@ -24,7 +24,11 @@
 		
 		public function EvaluateCondition(player:Player, game:Game):Boolean
 		{
-			return Point.distance(player.CurrentOpponent.Position, player.Position) < 75;
+			var p : Point = player.Position.clone();
+			p.y -= player.DisplayContainer.height/2;
+			var o : Point = player.CurrentOpponent.Position.clone();
+			o.y -= player.CurrentOpponent.DisplayContainer.height/2;
+			return Point.distance(o,p) < 75;
 		}
 		
 		public function get PossibleActionsWhenTrue():Vector.<Action>
