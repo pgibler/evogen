@@ -165,10 +165,10 @@ package fighter.controller.runner
 					averageTopPlayerFitnesses.push(topCharacterFitness);
 					averageTournamentPopulationFitnesses.push(averageCharacterFitness);
 					
-					SpawnNextGeneration();
-					
 					avgPopFitnessGraph.Update();
-					avgTopPlayerFitnessGraph.Update();
+					//avgTopPlayerFitnessGraph.Update();
+					
+					SpawnNextGeneration();
 				}
 				else
 				{
@@ -189,10 +189,10 @@ package fighter.controller.runner
 		
 		private function StartTournament(players:Vector.<Player>):void
 		{
-			trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0].BreedableSpecimen.SpecimenChromosome);
 			tourneyCallback = new TournamentCallbackImpl();			
 			this.tournament = new Tournament(tourneyCallback , players, players[0], tournamentSettings, gameSettings);
 			tourneyCallback.OnTournamentStart( tournament );
+			trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0].BreedableSpecimen.SpecimenChromosome);
 		}
 		
 		private function SpawnNextGeneration():void
@@ -256,10 +256,14 @@ package fighter.controller.runner
 			btn.x = 100;
 			btn.y = 500;
 			
-			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 200, 200);
-			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 200, 200);
+			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 200, 100);
+			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 200, 100);
 			interfaceContainer.addChild(avgPopFitnessGraph);
 			interfaceContainer.addChild(avgTopPlayerFitnessGraph);
+			avgPopFitnessGraph.x = 250;
+			avgPopFitnessGraph.y = 400;
+			avgTopPlayerFitnessGraph.x = 500;
+			avgTopPlayerFitnessGraph.y = 400;
 			
 			btn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
