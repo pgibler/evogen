@@ -28,7 +28,8 @@
 			p.y -= player.DisplayContainer.height/2;
 			var o : Point = player.CurrentOpponent.Position.clone();
 			o.y -= player.CurrentOpponent.DisplayContainer.height/2;
-			return Point.distance(o,p) < 75;
+			var dist : Number = Point.distance(o,p);
+			return dist < 100;
 		}
 		
 		public function get PossibleActionsWhenTrue():Vector.<Action>
