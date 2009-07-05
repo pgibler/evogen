@@ -10,10 +10,10 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class JumpRightAction implements Action
+	public class JumpAwayAction implements Action
 	{
 		
-		public function JumpRightAction()
+		public function JumpAwayAction()
 		{
 			this.name = getQualifiedClassName(this);
 		}
@@ -34,15 +34,15 @@
 		{
 			if(player.Position.x > player.CurrentOpponent.Position.x)
 			{
-				player.CurrentAnimation = player.PlayerAnimations.JumpBackward;
+				player.XSpeed = player.WalkSpeed;
 			}
 			else
 			{
-				player.CurrentAnimation = player.PlayerAnimations.JumpForward;
+				player.XSpeed = -player.WalkSpeed;
 			}
+			player.CurrentAnimation = player.PlayerAnimations.JumpForward;
 			player.CurrentAnimation.gotoAndStop(1);
 			player.RunAnimation = true;
-			player.XSpeed = player.WalkSpeed;
 			player.YSpeed = -player.JumpSpeed;
 			return this;
 		}

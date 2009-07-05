@@ -21,8 +21,7 @@
 			super(Vector.<Condition>([	new IsInMeleeRange(),
 										new IsOnGroundCondition(),
 										new OpponentIsAttacking(),
-										new OpponentIsOnGroundCondition(),
-										new IsToLeftOfOpponentCondition()]));
+										new OpponentIsOnGroundCondition()]));
 			
 			chromosomeTemplate = new ChromosomeTemplate();
 			

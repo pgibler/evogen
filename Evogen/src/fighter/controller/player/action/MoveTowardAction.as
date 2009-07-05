@@ -2,7 +2,7 @@
 {
 	import fighter.model.game.Game;
 	import fighter.model.player.Player;
-	import fighter.view.Animations;
+	import fighter.view.CammyAnimations;
 	
 	import flash.utils.getQualifiedClassName;
 	
@@ -10,10 +10,10 @@
 	 * ...
 	 * @author pgibler
 	 */
-	public class JumpLeftAction implements Action
+	public class MoveTowardAction implements Action
 	{
 		
-		public function JumpLeftAction()
+		public function MoveTowardAction()
 		{
 			this.name = getQualifiedClassName(this);
 		}
@@ -34,22 +34,19 @@
 		{
 			if(player.Position.x > player.CurrentOpponent.Position.x)
 			{
-				player.CurrentAnimation = player.PlayerAnimations.JumpForward;
+				player.Position.x -= player.WalkSpeed;
 			}
 			else
 			{
-				player.CurrentAnimation = player.PlayerAnimations.JumpBackward;
+				player.Position.x += player.WalkSpeed;
 			}
-			player.CurrentAnimation.gotoAndStop(1);
-			player.RunAnimation = true;
-			player.XSpeed = -player.WalkSpeed;
-			player.YSpeed = -player.JumpSpeed;
+			player.CurrentAnimation = player.PlayerAnimations.WalkForward;
 			return this;
 		}
 		
 		public function get FrameLag():int
 		{
-			return 15;
+			return 1;
 		}
 		
 		public function OnComplete(player:Player, game:Game):Action

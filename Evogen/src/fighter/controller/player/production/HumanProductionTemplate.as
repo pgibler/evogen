@@ -18,6 +18,7 @@
 										new JumpKeyDownCondition(),
 										new KickKeyDownCondition(),
 										new BlockKeyDownCondition(),
+										new IsToLeftOfOpponentCondition(),
 										new IsOnGroundCondition()]));
 		}
 		
