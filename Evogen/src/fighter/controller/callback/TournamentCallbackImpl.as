@@ -28,7 +28,7 @@ package fighter.controller.callback
 		{
 			for each(var p : Player in tournament.Players)
 			{
-				p.BreedableSpecimen.Data["AverageLife"] = p.BreedableSpecimen.Data["TotalLife"] / p.BreedableSpecimen.Data["GamesPlayed"] 
+				p.BreedableSpecimen.Data["AverageLife"] = p.BreedableSpecimen.Data["TotalLife"] / p.BreedableSpecimen.Data["GamesPlayed"]; 
 			}
 			
 			trace("Tournament complete. " + tournament.Games.length + " games played.");
