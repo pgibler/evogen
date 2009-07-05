@@ -40,7 +40,7 @@
 			{
 				player.XSpeed = -player.WalkSpeed;
 			}
-			player.CurrentAnimation = player.PlayerAnimations.JumpForward;
+			player.CurrentAnimation = player.PlayerAnimations.JumpBackward;
 			player.CurrentAnimation.gotoAndStop(1);
 			player.RunAnimation = true;
 			player.YSpeed = -player.JumpSpeed;

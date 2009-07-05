@@ -21,10 +21,10 @@
 			possibleActionsWhenTrue.push(new GroundMediumPunchAction());
 			possibleActionsWhenTrue.push(new BlockAction());
 			possibleActionsWhenTrue.push(new JumpUpAction());
-			possibleActionsWhenTrue.push(new JumpLeftAction());
-			possibleActionsWhenTrue.push(new JumpRightAction());
-			possibleActionsWhenTrue.push(new MoveLeftAction());
-			possibleActionsWhenTrue.push(new MoveRightAction());			
+			possibleActionsWhenTrue.push(new JumpTowardAction());
+			possibleActionsWhenTrue.push(new JumpAwayAction());
+			possibleActionsWhenTrue.push(new MoveTowardAction());
+			possibleActionsWhenTrue.push(new MoveAwayAction());			
 			
 			possibleActionsWhenFalse = AvailableActions.GetAllActionsExcluding(possibleActionsWhenTrue);
 			

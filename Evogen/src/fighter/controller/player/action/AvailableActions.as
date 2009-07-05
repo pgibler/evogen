@@ -1,6 +1,6 @@
 ﻿package fighter.controller.player.action 
 {
-	import flash.utils.getQualifiedClassName;
+	
 	
 	/**
 	 * ...
@@ -16,11 +16,11 @@
 			if (returnme == null)
 			{
 				returnme = new Vector.<Action>();
-				returnme.push(new JumpLeftAction());
+				returnme.push(new JumpTowardAction());
 				returnme.push(new JumpUpAction());
-				returnme.push(new JumpRightAction());
-				returnme.push(new MoveLeftAction());
-				returnme.push(new MoveRightAction());
+				returnme.push(new JumpAwayAction());
+				returnme.push(new MoveTowardAction());
+				returnme.push(new MoveAwayAction());
 				returnme.push(new GroundMediumPunchAction());
 				returnme.push(new AirMediumPunchAction());
 				returnme.push(new BlockAction());

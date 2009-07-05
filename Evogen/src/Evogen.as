@@ -43,8 +43,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			//testGA();
-			testGame();
+			testGA();
+			//testGame();
 		}
 		
 		private var ga : GeneticAlgorithmRunner;
@@ -56,7 +56,7 @@ package
 		{
 			var gameContainer : DisplayObjectContainer = new Sprite();
 			stage.addChild(gameContainer);
-			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.SIMULATION);
+			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.GRAPHICAL);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
 			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 5, 100);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings, stage);
