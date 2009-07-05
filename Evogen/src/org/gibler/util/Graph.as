@@ -2,6 +2,7 @@ package org.gibler.util
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.text.TextField;
 	
 	public class Graph extends Sprite
 	{
@@ -25,30 +26,36 @@ package org.gibler.util
 			return GetVarianceInRange();
 		}
 		
-		public function GetVarianceInRange(startIndex:Number=0; endIndex:Number=0):void
+		public function get Mean():Number
+		{
+			return GetMeanInRange();
+		}
+		
+		public function GetVarianceInRange(startIndex:Number=0, endIndex:Number=0):Number
 		{
 			var mean : Number = Mean;
 			var variance : Number = 0;
-			SliceAndSort(startIndex, endIndex).forEach(function(val:Number, index:int, vec:Vector.<Number>):void
+			Slice(startIndex, endIndex).forEach(function(val:Number, index:int, vec:Vector.<Number>):void
 			{
 				variance += Math.pow(val - mean, 2);
 			});
 			return variance / values.length-1;
 		}
 		
-		public function GetStandardDeviationInRange(startIndex:Number=0; endIndex:Number=0):void
+		public function GetStandardDeviationInRange(startIndex:Number=0, endIndex:Number=0):Number
 		{
 			return Math.sqrt(GetVarianceInRange(startIndex, endIndex));
 		}
 		
-		public function GetMaxInRange(startIndex:Number=0, endIndex:Number=0):void
+		public function GetMaxInRange(startIndex:Number=0, endIndex:Number=0):Number
 		{
 			var copy : Vector.<Number> = SliceAndSort(startIndex, endIndex);
-			max = copy[0];
+			return copy[0];
 		}
 		
-		public function get Mean():Number
+		public function GetMeanInRange(startIndex:Number=0, endIndex:Number=0):Number
 		{
+			var copy : Vector.<Number> = Slice(startIndex, endIndex);
 			var total : Number = 0;
 			for(var i : int = 0; i < values.length; i++)
 			{
@@ -57,31 +64,36 @@ package org.gibler.util
 			return total / values.length;
 		}
 		
-		public function Graph(values:Vector.<Number>, displayWidth:Number=-1, displayHeight:Number=-1, graphWidth:int = 5)
+		public function Graph(title:String, values:Vector.<Number>, displayWidth:Number=-1, displayHeight:Number=-1, graphWidth:int = 5)
 		{
 			super();
+			this.title = title;
 			this.graphWidth = graphWidth;
 			this.displayHeight = displayHeight;
 			this.displayWidth = displayWidth;
 			this.graphHolder = new Sprite();
-		}
-		
-		public function UpdateValues():void
-		{
-			var copy : Vector.<Number> = SliceAndSort();
-			max = copy[0];
-			min = copy[copy.length-1];
+			var titleTxt : TextField = new TextField();
+			titleTxt.text = title;
+			
+			this.addChild(graphHolder);
+			this.addChild(titleTxt);
+			titleTxt.x = (displayWidth - titleTxt.width)/2;
+			titleTxt.y = -titleTxt.height;
 		}
 		
 		public function Update(event:Event = null):void
 		{
-			UpdateValues();
+			var copy : Vector.<Number> = SliceAndSort(values.length-graphWidth, values.length-1);
+			max = copy[0];
+			min = copy[copy.length-1];
 			
 			graphHolder.graphics.clear();
 			graphHolder.graphics.lineStyle(1,0xFFFFFF);
-			graphHolder.graphics.moveTo(0,max);
-			graphHolder.graphics.lineTo(0,min);
-			graphHolder.graphics.moveTo(0,0)
+			graphHolder.graphics.moveTo(0,max-min);
+			graphHolder.graphics.lineTo(0,0);
+			var xOrigin : Number = min < 0 ? -min : 0;
+			graphHolder.graphics.moveTo(0, xOrigin);
+			graphHolder.graphics.lineTo(graphWidth,0);
 			
 			graphHolder.width = displayWidth;
 			graphHolder.height = displayHeight;
@@ -107,10 +119,15 @@ package org.gibler.util
 				throw new Error("End index must be larger than start index");
 			}
 			var copy : Vector.<Number> = values.slice();
+			if(endIndex >= copy.length)
+			{
+				endIndex = copy.length-1;
+			}
 			copy = copy.slice(startIndex, endIndex);
 			return copy;
 		}
 		
+		private var title : String;
 		private var graphHolder : Sprite;
 		private var graphWidth : int;
 		private var displayWidth : Number;

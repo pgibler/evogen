@@ -25,6 +25,7 @@ package fighter.controller.runner
 	
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
+	import org.gibler.util.Graph;
 	
 	public class GeneticAlgorithmRunner extends EventDispatcher
 	{
@@ -165,6 +166,9 @@ package fighter.controller.runner
 					averageTournamentPopulationFitnesses.push(averageCharacterFitness);
 					
 					SpawnNextGeneration();
+					
+					avgPopFitnessGraph.Update();
+					avgTopPlayerFitnessGraph.Update();
 				}
 				else
 				{
@@ -252,9 +256,16 @@ package fighter.controller.runner
 			btn.x = 100;
 			btn.y = 500;
 			
+			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 200, 200);
+			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 200, 200);
+			interfaceContainer.addChild(avgPopFitnessGraph);
+			interfaceContainer.addChild(avgTopPlayerFitnessGraph);
+			
 			btn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
 		
+		private var avgPopFitnessGraph : Graph;
+		private var avgTopPlayerFitnessGraph : Graph;
 		private var interfaceContainer : DisplayObjectContainer;
 		private var algorithmTimer : Timer;
 		private var averageTournamentPopulationFitnesses : Vector.<Number>;
