@@ -1,5 +1,6 @@
 package org.evogen.breeder
 {
+	import org.evogen.entity.PopulationPool;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	
@@ -15,9 +16,9 @@ package org.evogen.breeder
 			this.p = p;
 		}
 		
-		public function Breed(population:Vector.<Specimen>, evaluator:SpecimenEvaluator):Vector.<Chromosome>
+		public function Breed(populationPool:PopulationPool, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
-			this.population = population;
+			this.population = populationPool.TopPopulation.slice();
 			this.fitness = evaluator.EvaluateFitness;
 			population = evaluator.SortSpecimens(population);
 			var fitnesses : Vector.<Number> = new Vector.<Number>();

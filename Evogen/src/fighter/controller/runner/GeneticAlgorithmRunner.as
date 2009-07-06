@@ -23,6 +23,7 @@ package fighter.controller.runner
 	import flash.text.TextField;
 	import flash.utils.Timer;
 	
+	import org.evogen.entity.PopulationPool;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.gibler.util.Graph;
@@ -89,6 +90,7 @@ package fighter.controller.runner
 			this.interfaceContainer = new Sprite();
 			this.averageTournamentPopulationFitnesses = new Vector.<Number>();
 			this.averageTopPlayerFitnesses = new Vector.<Number>();
+			this.populationPool = new PopulationPool();
 			displayContainer.addChild(interfaceContainer);
 			
 			GenerateInterface();
@@ -134,7 +136,7 @@ package fighter.controller.runner
 				{
 					this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
 				}
-				var specs :Vector.<Specimen> = new Vector.<Specimen>();
+				var specs : Vector.<Specimen> = new Vector.<Specimen>();
 				tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 				{
 					specs.push(player.BreedableSpecimen);
@@ -167,6 +169,14 @@ package fighter.controller.runner
 					
 					avgPopFitnessGraph.Update();
 					avgTopPlayerFitnessGraph.Update();
+					
+					var specimens : Vector.<Specimen> = new Vector.<Specimen>();
+					tournament.Players.forEach(function(p:Player, i:int, v:Vector.<Player>):void
+					{
+						specimens.push(p.BreedableSpecimen);
+					});
+					
+					populationPool.AddPopulation(specimens, averageCharacterFitness);
 					
 					SpawnNextGeneration();
 				}
@@ -202,7 +212,7 @@ package fighter.controller.runner
 			{
 				specimens.push( player.BreedableSpecimen );
 			});
-			var chromosomes : Vector.<Chromosome> = breederSettings.SettingsBreeder.Breed(specimens, breederSettings.Evaluator);
+			var chromosomes : Vector.<Chromosome> = breederSettings.SettingsBreeder.Breed(populationPool, breederSettings.Evaluator);
 			players = GeneratePlayers(chromosomes);
 			StartTournament(players);
 		}
@@ -268,6 +278,7 @@ package fighter.controller.runner
 			btn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
 		
+		private var populationPool : PopulationPool;
 		private var avgPopFitnessGraph : Graph;
 		private var avgTopPlayerFitnessGraph : Graph;
 		private var interfaceContainer : DisplayObjectContainer;

@@ -5,6 +5,16 @@ package org.evogen.entity
 	public class PopulationPool
 	{
 		
+		public function get Populations():Vector.<Vector.<Specimen>>
+		{
+			return populations;
+		}
+		
+		public function get TopPopulation():Vector.<Specimen>
+		{
+			return populations[0];
+		}
+		
 		public function PopulationPool(maxPopulations:int=5)
 		{
 			this.maxPopulations = maxPopulations
