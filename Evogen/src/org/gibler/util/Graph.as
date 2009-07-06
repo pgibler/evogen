@@ -32,7 +32,7 @@ package org.gibler.util
 			return GetMeanInRange();
 		}
 		
-		public function GetVarianceInRange(startIndex:Number=0, endIndex:Number=0):Number
+		public function GetVarianceInRange(startIndex:Number=0, endIndex:Number=-1):Number
 		{
 			var mean : Number = Mean;
 			var variance : Number = 0;
@@ -43,18 +43,18 @@ package org.gibler.util
 			return variance / values.length-1;
 		}
 		
-		public function GetStandardDeviationInRange(startIndex:Number=0, endIndex:Number=0):Number
+		public function GetStandardDeviationInRange(startIndex:Number=0, endIndex:Number=-1):Number
 		{
 			return Math.sqrt(GetVarianceInRange(startIndex, endIndex));
 		}
 		
-		public function GetMaxInRange(startIndex:Number=0, endIndex:Number=0):Number
+		public function GetMaxInRange(startIndex:Number=0, endIndex:Number=-1):Number
 		{
 			var copy : Vector.<Number> = SliceAndSort(startIndex, endIndex);
 			return copy[0];
 		}
 		
-		public function GetMeanInRange(startIndex:Number=0, endIndex:Number=0):Number
+		public function GetMeanInRange(startIndex:Number=0, endIndex:Number=-1):Number
 		{
 			var copy : Vector.<Number> = Slice(startIndex, endIndex);
 			var total : Number = 0;
@@ -79,57 +79,59 @@ package org.gibler.util
 			
 			this.addChild(graphHolder);
 			this.addChild(titleTxt);
-			titleTxt.x = (displayWidth - titleTxt.width)/2;
-			titleTxt.y = -titleTxt.height;
 			titleTxt.background = true;
 			titleTxt.backgroundColor = 0xFFFFFF;
-			
-			Update();
+			titleTxt.height = 20;
+			titleTxt.x = (displayWidth - titleTxt.width)/2;
+			titleTxt.y = -titleTxt.height;
 		}
 		
 		public function Update(event:Event = null):void
 		{
 			var start : Number = values.length >= graphWidth ? values.length-graphWidth : 0;
-			var copy : Vector.<Number> = SliceAndSort(start, values.length);
+			var valuesCopy : Vector.<Number> = SliceAndSort();
+			var copy : Vector.<Number> = Slice(start,values.length);
+			var sortedCopy : Vector.<Number> = SliceAndSort(start, values.length);
 			
-			if(copy.length > 0)
+			if(valuesCopy.length > 0)
 			{
-				max = copy[0];
-				min = copy[copy.length-1];
+				min = valuesCopy[0];
+				max = valuesCopy[valuesCopy.length-1];
 			}
-			else
-			{
-				max = 0;
-				min = 0;
-			}
+			var hr : Number = displayHeight / (max-min);
+			var yOffset : Number = displayHeight;
+			
+			RenderBackgroundBox();
 			
 			var g : Graphics = graphHolder.graphics;
-			
-			g.clear();
 			g.lineStyle(1,0xFF0000);
-			g.moveTo(0,max-min);
-			g.lineTo(0,0);
-			var xOrigin : Number = min < 0 ? -min : 0;
-			g.moveTo(0, xOrigin);
-			g.lineTo(displayWidth,0);
-			
 			if(copy.length > 0)
 			{
 				var indexWidth : Number = displayWidth / graphWidth;
-				g.moveTo(0, copy[0]);
+				g.moveTo(0, yOffset+hr*(-copy[0] + min));
 				for(var i : int = 1; i < copy.length; i++)
 				{
 					var xx : Number = i * indexWidth;
-					g.lineTo(xx, copy[i]);
+					var startY : Number = -copy[i] + min;
+					var yy : Number = hr*startY;
+					g.lineTo(xx, yOffset+yy);
 				}
 			}
-			
 			
 			//graphHolder.width = displayWidth;
 			//graphHolder.height = displayHeight;
 		}
 		
-		private function SliceAndSort(startIndex:Number=0, endIndex:Number=0):Vector.<Number>
+		public function RenderBackgroundBox():void
+		{
+			var g : Graphics = graphHolder.graphics;
+			g.clear();
+			g.beginFill(0xFFFFFF);
+			g.drawRect(0,0,displayWidth,displayHeight);
+			g.endFill();
+		}
+		
+		private function SliceAndSort(startIndex:Number=0, endIndex:Number=-1):Vector.<Number>
 		{
 			var copy : Vector.<Number> = Slice(startIndex, endIndex);
 			copy.sort(function(val1:Number, val2:Number):Number

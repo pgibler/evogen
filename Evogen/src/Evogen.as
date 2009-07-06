@@ -58,7 +58,7 @@ package
 			stage.addChild(gameContainer);
 			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.SIMULATION);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 10, 5);
+			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 15, 5);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings, stage);
 			
 			trace("Initial population:");

@@ -44,6 +44,8 @@
 							game.Settings.DisplayContainer.addChild(game.Settings.GameContainer);
 							game.Settings.GameInterfaceContainer.addChild(gi);
 							game.Settings.GamePlayContainer.addChild(game.DisplayContainer);
+							game.Settings.GameContainer.x = game.GameLevel.Ground.width/2;
+							game.Settings.GameContainer.y = game.GameLevel.Ground.height*2.5;
 							gameOnScreen = true;
 						}
 						gi.Update(game);

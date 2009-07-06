@@ -166,7 +166,7 @@ package fighter.controller.runner
 					averageTournamentPopulationFitnesses.push(averageCharacterFitness);
 					
 					avgPopFitnessGraph.Update();
-					//avgTopPlayerFitnessGraph.Update();
+					avgTopPlayerFitnessGraph.Update();
 					
 					SpawnNextGeneration();
 				}
@@ -256,14 +256,14 @@ package fighter.controller.runner
 			btn.x = 100;
 			btn.y = 500;
 			
-			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 200, 100);
-			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 200, 100);
+			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 150, 75, 8);
+			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 150, 75, 8);
 			interfaceContainer.addChild(avgPopFitnessGraph);
 			interfaceContainer.addChild(avgTopPlayerFitnessGraph);
-			avgPopFitnessGraph.x = 250;
-			avgPopFitnessGraph.y = 400;
-			avgTopPlayerFitnessGraph.x = 500;
-			avgTopPlayerFitnessGraph.y = 400;
+			avgPopFitnessGraph.x = 300;
+			avgPopFitnessGraph.y = 510;
+			avgTopPlayerFitnessGraph.x = 550;
+			avgTopPlayerFitnessGraph.y = 510;
 			
 			btn.addEventListener(MouseEvent.CLICK, ChangeMode);
 		}
