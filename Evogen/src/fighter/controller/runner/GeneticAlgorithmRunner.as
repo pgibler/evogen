@@ -254,13 +254,11 @@ package fighter.controller.runner
 			var img : Sprite = new Sprite();
 			var txtfld : TextField = new TextField();
 			var btn : SimpleButton;
-			img.graphics.lineStyle(1,0x001100);
-			img.graphics.beginFill(0xFFFFFF);
-			img.graphics.drawRect(0,0,100,30);
-			img.graphics.endFill();
-			//img.addChild(txtfld);
 			txtfld.text = "Toggle Run Mode";
-			txtfld.textColor = 0x00FF00;
+			txtfld.textColor = 0x000000;
+			txtfld.height = 20;
+			txtfld.background = true;
+			txtfld.backgroundColor = 0xFFFFFF;
 			btn = new SimpleButton(txtfld, txtfld, txtfld, txtfld);
 			interfaceContainer.addChild(btn);
 			btn.x = 100;

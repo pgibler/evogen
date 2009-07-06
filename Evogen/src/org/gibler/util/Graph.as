@@ -4,6 +4,7 @@ package org.gibler.util
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	public class Graph extends Sprite
 	{
@@ -76,6 +77,9 @@ package org.gibler.util
 			this.values = values;
 			var titleTxt : TextField = new TextField();
 			titleTxt.text = title;
+			var fmt : TextFormat = new TextFormat();
+			fmt.font = "Calibri";
+			titleTxt.setTextFormat(fmt);
 			
 			this.addChild(graphHolder);
 			this.addChild(titleTxt);
