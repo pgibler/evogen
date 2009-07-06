@@ -21,6 +21,7 @@ package
 	import flash.utils.getTimer;
 	
 	import org.evogen.breeder.RankBreeder;
+	import org.evogen.entity.PopulationPool;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
@@ -43,8 +44,9 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			testGA();
+			//testGA();
 			//testGame();
+			testPopulationPool();
 		}
 		
 		private var ga : GeneticAlgorithmRunner;
@@ -132,6 +134,26 @@ package
 			var c : Chromosome = ct.GenerateRandomChromosome();
 			trace(c.ToDNA());
 			trace(c.Mutate(.5).ToDNA());
+		}
+		
+		private function testPopulationPool():void
+		{
+			var p : PopulationPool = new PopulationPool(3);
+			p.AddPopulation(new Vector.<Specimen>, 1);
+			p.AddPopulation(new Vector.<Specimen>, 2);
+			p.AddPopulation(new Vector.<Specimen>, 3);
+			p.AddPopulation(new Vector.<Specimen>, 4);
+			p.AddPopulation(new Vector.<Specimen>, 3);
+			p.AddPopulation(new Vector.<Specimen>, 2);
+			p.AddPopulation(new Vector.<Specimen>, 2);
+			p.AddPopulation(new Vector.<Specimen>, 4);
+			p.AddPopulation(new Vector.<Specimen>, 10);
+			p.AddPopulation(new Vector.<Specimen>, 12);
+			p.AddPopulation(new Vector.<Specimen>, 1);
+			p.AddPopulation(new Vector.<Specimen>, -5);
+			p.AddPopulation(new Vector.<Specimen>, 24);
+			p.AddPopulation(new Vector.<Specimen>, 20);
+			
 		}
 		
 	}
