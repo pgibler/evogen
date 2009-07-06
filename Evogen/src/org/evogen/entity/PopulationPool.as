@@ -5,12 +5,12 @@ package org.evogen.entity
 	public class PopulationPool
 	{
 		
-		public function get Populations():Vector.<Vector.<Specimen>>
+		public function get Populations():Vector.<Population>
 		{
 			return populations;
 		}
 		
-		public function get TopPopulation():Vector.<Specimen>
+		public function get TopPopulation():Population
 		{
 			return populations[0];
 		}
@@ -18,11 +18,11 @@ package org.evogen.entity
 		public function PopulationPool(maxPopulations:int=5)
 		{
 			this.maxPopulations = maxPopulations
-			this.populations = new Vector.<Vector.<Specimen>>();
+			this.populations = new Vector.<Population>();
 			this.populationScores = new Vector.<Number>();
 		}
 		
-		public function AddPopulation(population:Vector.<Specimen>, fitness:Number):PopulationPool
+		public function AddPopulation(population:Population, fitness:Number):PopulationPool
 		{
 			if(populations.length < maxPopulations)
 			{
@@ -59,6 +59,6 @@ package org.evogen.entity
 		
 		private var maxPopulations : int;
 		private var populationScores : Vector.<Number>;
-		private var populations : Vector.<Vector.<Specimen>>;
+		private var populations : Vector.<Population>;
 	}
 }

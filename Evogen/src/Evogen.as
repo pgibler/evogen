@@ -21,6 +21,7 @@ package
 	import flash.utils.getTimer;
 	
 	import org.evogen.breeder.RankBreeder;
+	import org.evogen.entity.Population;
 	import org.evogen.entity.PopulationPool;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
@@ -74,13 +75,10 @@ package
 			ga.Run();
 		}
 		
-		private function gaComplete(event:Event):void
+		private function gaComplete(event:GeneticAlgorithmEvent):void
 		{
-			var specimens:Vector.<Specimen> = new Vector.<Specimen>();
-			ga.Players.forEach(function(player:Player, i:int, vec:Vector.<Player>):void
-			{
-				specimens.push(player.BreedableSpecimen);
-			});
+			var population : Population = event.GAPopulation;
+			var specimens : Vector.<Specimen> = population.Specimens;
 			
 			trace("Most fit specimens are:");
 			specimens.forEach(function(spec:Specimen, i:int, vec:Vector.<Specimen>):void

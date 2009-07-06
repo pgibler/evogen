@@ -18,7 +18,7 @@ package org.evogen.breeder
 		
 		public function Breed(populationPool:PopulationPool, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
-			this.population = populationPool.TopPopulation.slice();
+			this.population = populationPool.TopPopulation.Specimens.slice();
 			this.fitness = evaluator.EvaluateFitness;
 			population = evaluator.SortSpecimens(population);
 			var fitnesses : Vector.<Number> = new Vector.<Number>();
@@ -87,34 +87,6 @@ package org.evogen.breeder
 		}
 		
 		/**
-		 * Crosses over two specimens and produces a child chromosome from them.
-		 * @param	specimen1 The first specimen to cross over with.
-		 * @param	specimen2 The second specimen to cross over with.
-		 * @return	A child chromosome from the two specimens.
-		 */
-		private function Crossover(specimen1:Specimen, specimen2:Specimen):Chromosome
-		{
-			var crossoverPoint : int = int(Math.random() * (specimen1.SpecimenChromosome.Traits.length-1));
-			var chromosome : Chromosome = new Chromosome(specimen1.BreedableSpecimen.SpecimenChromosome.Template);
-			chromosome.TraitNames = specimen1.SpecimenChromosome.TraitNames.slice();
-			var topChrom : Chromosome;
-			var botChrom : Chromosome;
-			if(Math.random() < .5)
-			{
-				topChrom = specimen1.BreedableSpecimen.SpecimenChromosome;
-				botChrom = specimen2.BreedableSpecimen.SpecimenChromosome;
-			}
-			else
-			{
-				topChrom = specimen2.BreedableSpecimen.SpecimenChromosome;
-				botChrom = specimen1.BreedableSpecimen.SpecimenChromosome;
-			}
-			chromosome.Traits = chromosome.Traits.concat(topChrom.Traits.slice(0, crossoverPoint));
-			chromosome.Traits = chromosome.Traits.concat(botChrom.Traits.slice(crossoverPoint));
-			return chromosome;
-		}
-		
-		/**
 		 * Chooses a specimen for crossover and returns the new chromosome.
 		 * @return	A crossed over chromosome.
 		 */
@@ -171,7 +143,7 @@ package org.evogen.breeder
 		 */
 		private function ChooseSpecimenForMutationAndMutate():Chromosome
 		{
-			return ChooseSpecimen().BreedableSpecimen.SpecimenChromosome.Mutate(.1);
+			return BreederHelper.Mutate(ChooseSpecimen(), .1);
 		}
 		
 		/**
@@ -192,7 +164,7 @@ package org.evogen.breeder
 				mySelectProb[i] += prob;
 			}
 			var s2 : Specimen = ChooseSpecimen(myPop, mySelectProb);
-			return Crossover(s1, s2);
+			return BreederHelper.Crossover(s1, s2);
 		}
 		
 		private var populationMinusLowestNumber : Vector.<Specimen>;

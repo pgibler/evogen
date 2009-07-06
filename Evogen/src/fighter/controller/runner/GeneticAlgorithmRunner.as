@@ -23,6 +23,7 @@ package fighter.controller.runner
 	import flash.text.TextField;
 	import flash.utils.Timer;
 	
+	import org.evogen.entity.Population;
 	import org.evogen.entity.PopulationPool;
 	import org.evogen.entity.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
@@ -58,7 +59,6 @@ package fighter.controller.runner
 		
 		public function get Players():Vector.<Player>
 		{
-			
 			return players;
 		}
 		
@@ -136,12 +136,12 @@ package fighter.controller.runner
 				{
 					this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
 				}
-				var specs : Vector.<Specimen> = new Vector.<Specimen>();
+				var pop : Population = new Population();
 				tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 				{
-					specs.push(player.BreedableSpecimen);
+					pop.AddBreedable(player.BreedableSpecimen);
 				});
-				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, specs);
+				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, pop);
 				this.dispatchEvent(ev);
 			}
 			else if(tournament == null)
@@ -170,13 +170,13 @@ package fighter.controller.runner
 					avgPopFitnessGraph.Update();
 					avgTopPlayerFitnessGraph.Update();
 					
-					var specimens : Vector.<Specimen> = new Vector.<Specimen>();
+					var population : Population = new Population();
 					tournament.Players.forEach(function(p:Player, i:int, v:Vector.<Player>):void
 					{
-						specimens.push(p.BreedableSpecimen);
+						population.AddBreedable(p.BreedableSpecimen);
 					});
 					
-					populationPool.AddPopulation(specimens, averageCharacterFitness);
+					populationPool.AddPopulation(population, averageCharacterFitness);
 					
 					SpawnNextGeneration();
 				}
