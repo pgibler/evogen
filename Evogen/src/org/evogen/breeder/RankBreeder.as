@@ -18,6 +18,67 @@ package org.evogen.breeder
 		
 		public function Breed(populationPool:PopulationPool, evaluator:SpecimenEvaluator):Vector.<Chromosome>
 		{
+			var returnme : Vector.<Chromosome> = new Vector.<Chromosome>();
+			var fitnesses : Vector.<Number> = new Vector.<Number>();
+			this.population = populationPool.TopPopulation.Specimens.slice();
+			population = evaluator.SortSpecimens(population);
+			this.fitness = evaluator.EvaluateFitness;
+			population.forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
+			{
+				fitnesses.push( fitness(spec) );
+			});
+			this.selectionProbabilities = new Vector.<Number>();
+			var numLeft : Number = 1;
+			var ratio : Number = this.p;
+			selectionProbabilities.push(numLeft*ratio);
+			numLeft -= numLeft*ratio;
+			this.populationRanks = new Vector.<Vector.<Specimen>>();
+			this.populationRanks.push(new Vector.<Specimen>);
+			var currentFitness : Number = fitnesses[0];
+			var currentRankIndex : Number = 0;
+			this.population.forEach(function(spec:Specimen, i:int, v:Vector.<Specimen>):void
+			{
+				// Error checking
+				if(fitnesses[i] > currentFitness)
+				{
+					throw new Error("This shouldn't happen");
+				}
+				
+				if(fitnesses[i] < currentFitness)
+				{
+					populationRanks.push(new Vector.<Specimen>);
+					selectionProbabilities.push(numLeft*ratio);
+					numLeft -= numLeft*ratio;
+					currentFitness = fitnesses[i];
+				}
+				populationRanks[populationRanks.length-1].push(spec);
+			});
+			
+			var popSize : int = this.population.length;
+			var topPercentile : int = popSize/2;
+			
+			population.slice(0, topPercentile).forEach(function(spec:Specimen, index:int, pop:Vector.<Specimen>):void
+			{
+				returnme.push( spec.BreedableSpecimen.SpecimenChromosome );
+			});
+			
+			for(var n : int = topPercentile; n < popSize; n++)
+			{
+				if(Math.random() < .5)
+				{
+					returnme.push(ChooseSpecimenForMutationAndMutate());
+				}
+				else
+				{
+					returnme.push(ChooseTwoSpecimensAndCrossover());					
+				}
+			} 
+			
+			return returnme;
+		}
+		
+		/*public function Breed(populationPool:PopulationPool, evaluator:SpecimenEvaluator):Vector.<Chromosome>
+		{
 			this.population = populationPool.TopPopulation.Specimens.slice();
 			this.fitness = evaluator.EvaluateFitness;
 			population = evaluator.SortSpecimens(population);
@@ -60,8 +121,7 @@ package org.evogen.breeder
 					populationMinusLowestNumber.push(population[i]);
 					lastFitness = fitness(population[i]);
 				}
-				selectionProbabilities.push(numLeft*ratio);
-				numLeft -= numLeft*ratio;
+				
 			}
 			
 			var topPercentile : int = popSize/2;
@@ -84,7 +144,7 @@ package org.evogen.breeder
 			} 
 			
 			return returnme;
-		}
+		}*/
 		
 		/**
 		 * Chooses a specimen for crossover and returns the new chromosome.
@@ -95,43 +155,42 @@ package org.evogen.breeder
 			population = population == null ? this.population : population;
 			selectionProbabilities = selectionProbabilities == null ? this.selectionProbabilities : selectionProbabilities;
 			
-			var randNum : Number = .3//Math.random();
-			var total : Number = 0;
+			var i : int;
 			var specimen : Specimen;
 			
-			var totalOfLowest : Number = 0;
-			var i : int;
-			for(i = population.length-populationOfLowestNumber.length; i < population.length; i++)
+			var myPopRanks : Vector.<Vector.<Specimen>> = new Vector.<Vector.<Specimen>>();
+			for(i = 0; i < this.populationRanks.length; i++)
 			{
-				totalOfLowest += selectionProbabilities[i];
+				myPopRanks.push(new Vector.<Specimen>());
 			}
 			
-			if(randNum < totalOfLowest)
+			for each(specimen in population)
 			{
-				var indx : int = Math.round(Math.random()*(populationOfLowestNumber.length-1));
-				return populationOfLowestNumber[indx];
+				for(i = 0; i < this.populationRanks.length; i++)
+				{
+					if(this.populationRanks[i].indexOf(specimen) != -1)
+					{
+						myPopRanks[i].push(specimen);
+					}
+				}
 			}
 			
-			for(i = populationMinusLowestNumber.length-1; i > 0; i--)
+			var randNum : Number = Math.random();
+			var total : Number = 0;
+			
+			for(i = populationRanks.length-1; i > 0; i--)
 			{
 				total += selectionProbabilities[i];
 				if(total >= randNum)
 				{
 					// Determine if there are other specimens with the same selection probability
-					var sameProbs : Vector.<Specimen> = new Vector.<Specimen>();
-					sameProbs.push(population[i]);
-					for(var j : int = 0; j < population.length; j++)
+					var specimensForChoosing : Vector.<Specimen> = populationRanks[i];
+					if(specimensForChoosing.length <= 0)
 					{
-						if(selectionProbabilities[j] == selectionProbabilities[i])
-						{
-							sameProbs.push(population[j]);
-						}
-						else
-						{
-							break;
-						}
+						specimensForChoosing = (i-1 > 0) ? populationRanks[i-1] : populationRanks[i+1];
 					}
-					return sameProbs[Math.round(Math.random()*(sameProbs.length-1))];
+					specimen = specimensForChoosing[Math.round(Math.random()*(specimensForChoosing.length-1))];
+					return specimen;
 				}
 			}
 			throw new Error("This shouldn't have happened.");
@@ -154,23 +213,15 @@ package org.evogen.breeder
 		{
 			var s1 : Specimen = ChooseSpecimen();
 			var s1Index : int = population.indexOf(s1);
-			var myPop : Vector.<Specimen> = population.slice();
+			var myPop : Vector.<Specimen> = this.population.slice();
 			myPop.splice(s1Index, 1)
-			var mySelectProb : Vector.<Number> = selectionProbabilities.slice();
-			var prob : Number = mySelectProb.splice(s1Index, 1)[0];
-			prob /= mySelectProb.length;
-			for(var i : int = 0 ; i < mySelectProb.length; i++)
-			{
-				mySelectProb[i] += prob;
-			}
-			var s2 : Specimen = ChooseSpecimen(myPop, mySelectProb);
+			var s2 : Specimen = ChooseSpecimen(myPop);
 			return BreederHelper.Crossover(s1, s2);
 		}
 		
-		private var populationMinusLowestNumber : Vector.<Specimen>;
-		private var populationOfLowestNumber : Vector.<Specimen>;
-		private var population : Vector.<Specimen>;
 		private var selectionProbabilities : Vector.<Number>;
+		private var populationRanks : Vector.<Vector.<Specimen>>;
+		private var population : Vector.<Specimen>;
 		private var fitness : Function;
 		private var p : Number;
 	}
