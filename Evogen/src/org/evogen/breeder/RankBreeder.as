@@ -64,15 +64,16 @@ package org.evogen.breeder
 			
 			for(var n : int = topPercentile; n < popSize; n++)
 			{
-				if(Math.random() < .5)
+				returnme.push(ChooseSpecimenForMutationAndMutate());
+				/*if(Math.random() < .5)
 				{
 					returnme.push(ChooseSpecimenForMutationAndMutate());
 				}
 				else
 				{
-					returnme.push(ChooseTwoSpecimensAndCrossover());					
-				}
-			} 
+					returnme.push(ChooseTwoSpecimensAndCrossover());
+				}*/
+			}
 			
 			return returnme;
 		}
@@ -178,10 +179,10 @@ package org.evogen.breeder
 			var randNum : Number = Math.random();
 			var total : Number = 0;
 			
-			for(i = populationRanks.length-1; i > 0; i--)
+			for(i = populationRanks.length-1; i >= 0; i--)
 			{
 				total += selectionProbabilities[i];
-				if(total >= randNum)
+				if(total >= randNum || i == 0)
 				{
 					// Determine if there are other specimens with the same selection probability
 					var specimensForChoosing : Vector.<Specimen> = populationRanks[i];
