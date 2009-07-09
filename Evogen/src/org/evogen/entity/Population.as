@@ -1,12 +1,15 @@
 package org.evogen.entity
 {
+	
+	
+	
 
 	public class Population
 	{
 		
 		public function get Breedables():Vector.<Breedable>
 		{
-			return population;
+			return breedables;
 		}
 		
 		public function get Fitnesses():Vector.<Number>
@@ -17,7 +20,7 @@ package org.evogen.entity
 		public function get Specimens():Vector.<Specimen>
 		{
 			var returnme : Vector.<Specimen> = new Vector.<Specimen>();
-			population.forEach(function(bs:Breedable, i:int, v:Vector.<Breedable>):void
+			breedables.forEach(function(bs:Breedable, i:int, v:Vector.<Breedable>):void
 			{
 				returnme.push(bs.BreedableSpecimen);
 			});
@@ -26,17 +29,18 @@ package org.evogen.entity
 		
 		public function Population()
 		{
-			population = new Vector.<Breedable>();
+			breedables = new Vector.<Breedable>();
+			fitnesses = new Vector.<Number>();
 		}
 		
 		public function AddBreedable(breedable:Breedable, fitness:Number=NaN):Population
 		{
-			if(population.indexOf(breedable) == -1)
+			if(breedables.indexOf(breedable) == -1)
 			{
-				population.push(breedable);
+				breedables.push(breedable);
 				if(fitness)
 				{
-					fitnesses[population.length-1] = fitness;
+					fitnesses[breedables.length-1] = fitness;
 				}
 			}
 			else
@@ -46,13 +50,48 @@ package org.evogen.entity
 			return this;
 		}
 		
-		public function IntegratePopulation(population:Population):Population
+		public function SortByFitness():Population
 		{
-			population.Breedables
+			var sortedFitnesses : Vector.<Number> = fitnesses.sort(function(n1:Number, n2:Number):Number
+			{
+				return n1 - n2;
+			});
+			var sortedBreedables : Vector.<Breedable> = new Vector.<Breedable>(breedables.length);
+			breedables.forEach(function(spec:Specimen, index:int, v:Vector.<Breedable>):void
+			{
+				var fitness : Number = fitnesses[index];
+				var i : int = sortedFitnesses.indexOf(fitness);
+				for(var j : int = i; j < sortedFitnesses.length; j++)
+				{
+					if(fitness != sortedFitnesses[j])
+					{
+						throw new Error("We've moved too far back in the list");
+					}
+					else if(sortedBreedables[j] == null)
+					{
+						sortedBreedables[j] = breedables[i];
+					}
+				}
+			});
+			this.breedables = sortedBreedables;
 			return this;
 		}
 		
-		private var population : Vector.<Breedable>;
+		public function IntegratePopulation(population:Population):Population
+		{
+			this.breedables.concat(population.Breedables);
+			this.fitnesses.concat(population.Fitnesses);
+			return this;
+		}
+		
+		public function Truncate(cutoffPoint:int):Population
+		{
+			breedables.splice(cutoffPoint, breedables.length);
+			fitnesses.splice(cutoffPoint, fitnesses.length);
+			return this;
+		}
+		
+		private var breedables : Vector.<Breedable>;
 		private var fitnesses : Vector.<Number>;
 	}
 }
