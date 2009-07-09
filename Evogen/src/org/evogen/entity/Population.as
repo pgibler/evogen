@@ -91,7 +91,7 @@ package org.evogen.entity
 			{
 				for(var j : int = 0; j < this.breedables.length; j++)
 				{
-					if(this.breedables[j].BreedableSpecimen.SpecimenChromosome.Equals(b.BreedableSpecimen.SpecimenChromosome)
+					if(this.breedables[j].BreedableSpecimen.SpecimenChromosome.Equals(b.BreedableSpecimen.SpecimenChromosome))
 					{
 						this.breedables.splice(j, 1);
 						this.fitnesses.splice(j, 1);
