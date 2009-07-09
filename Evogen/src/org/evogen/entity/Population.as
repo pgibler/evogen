@@ -48,7 +48,20 @@ package org.evogen.entity
 		{
 			var sortedFitnesses : Vector.<Number> = fitnesses.sort(function(n1:Number, n2:Number):Number
 			{
-				return n2 - n1;
+				var val : Number = n2 - n1;
+				if(val > 0)
+				{
+					val = 1;
+				}
+				else if(val < 0)
+				{
+					val = -1;
+				}
+				else
+				{
+					val = 0;
+				}
+				return val;
 			});
 			var sortedBreedables : Vector.<Breedable> = new Vector.<Breedable>(breedables.length);
 			breedables.forEach(function(spec:Specimen, index:int, v:Vector.<Breedable>):void
@@ -57,11 +70,11 @@ package org.evogen.entity
 				var i : int = sortedFitnesses.indexOf(fitness);
 				for(var j : int = i; j < sortedFitnesses.length; j++)
 				{
-					if(fitness != sortedFitnesses[j])
+					if(fitness > sortedFitnesses[j])
 					{
-						throw new Error("We've moved too far back in the list");
+						throw new Error("This shouldn't happen");
 					}
-					else if(sortedBreedables[j] == null)
+					if(sortedBreedables[j] == null)
 					{
 						sortedBreedables[j] = breedables[i];
 						break;
