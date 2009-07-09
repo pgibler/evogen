@@ -1,5 +1,7 @@
 package fighter.controller.breeder
 {
+	import flash.utils.Dictionary;
+	
 	import org.evogen.breeder.SpecimenEvaluator;
 	import org.evogen.entity.Specimen;
 	
@@ -7,7 +9,8 @@ package fighter.controller.breeder
 	{		
 		public function EvaluateFitness(specimen:Specimen):Number
 		{
-			return specimen.BreedableSpecimen.Data["Wins"] * 100 + specimen.BreedableSpecimen.Data["AverageLife"] * 1;
+			var d : Dictionary = specimen.BreedableSpecimen.Data;
+			return d["Wins"] * 100 + d["AverageDamageDealt"] * 1 + d["AverageSuccessfulBlocks"] * 10;
 		}
 		
 		public function SortSpecimens(specimens:Vector.<Specimen>):Vector.<Specimen>

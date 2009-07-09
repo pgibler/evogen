@@ -45,8 +45,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			//testGA();
-			testGame();
+			testGA();
+			//testGame();
 			//testPopulationPool();
 		}
 		
@@ -61,7 +61,7 @@ package
 			stage.addChild(gameContainer);
 			var gameSettings : GameSettings = new GameSettings(gameContainer, Game.SIMULATION);
 			var tournamentSettings : TournamentSettings = new TournamentSettings();
-			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 1000, 100);
+			var breederSettings:BreederSettings = new BreederSettings(new RankBreeder(2.0/3.0), new FighterSpecimenEvaluator(), 100, 5);
 			ga = new GeneticAlgorithmRunner(breederSettings, tournamentSettings, gameSettings, stage);
 			
 			trace("Initial population:");

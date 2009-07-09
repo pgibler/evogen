@@ -2,6 +2,7 @@
 {
 	import fighter.controller.player.action.Action;
 	import fighter.controller.player.action.AirStunnedAction;
+	import fighter.controller.player.action.BlockAction;
 	import fighter.controller.player.action.GroundStunnedAction;
 	import fighter.controller.player.production.Production;
 	import fighter.model.game.Game;
@@ -62,6 +63,14 @@
 						player.FacePlayer(opp);
 						player.CurrentAction.PerformAction(player,game);
 						player.FrameLag = player.CurrentAction.FrameLag;
+					}
+					else
+					{
+						if(!player.BreedableSpecimen.Data["BlockTest"])
+						{
+							player.BreedableSpecimen.Data["BlockTest"] = true;
+							player.BreedableSpecimen.Data["TotalSuccessfulBlocks"] += 1;
+						}
 					}
 				}
 			}

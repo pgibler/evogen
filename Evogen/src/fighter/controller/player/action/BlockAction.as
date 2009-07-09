@@ -47,6 +47,7 @@
 		public function OnComplete(player:Player, game:Game):Action
 		{
 			player.IsBlocking = false;
+			player.BreedableSpecimen.Data["BlockTest"] = false;
 			return this;
 		}
 		

@@ -17,8 +17,10 @@ package fighter.controller.callback
 			{
 				p.BreedableSpecimen.Data["Wins"] = 0;
 				p.BreedableSpecimen.Data["Losses"] = 0;
-				p.BreedableSpecimen.Data["TotalLife"] = 0;
+				p.BreedableSpecimen.Data["TotalDamageDealt"] = 0;
+				p.BreedableSpecimen.Data["TotalSuccessfulBlocks"] = 0;
 				p.BreedableSpecimen.Data["GamesPlayed"] = 0;
+				p.BreedableSpecimen.Data["BlockTest"] = false;
 			}
 			
 			GenerateGameAndSetAsCurrent(tournament.TopPlayer, tournament.NextPlayer, tournament);
@@ -28,7 +30,8 @@ package fighter.controller.callback
 		{
 			for each(var p : Player in tournament.Players)
 			{
-				p.BreedableSpecimen.Data["AverageLife"] = p.BreedableSpecimen.Data["TotalLife"] / p.BreedableSpecimen.Data["GamesPlayed"]; 
+				p.BreedableSpecimen.Data["AverageDamageDealt"] = p.BreedableSpecimen.Data["TotalDamageDealt"] / p.BreedableSpecimen.Data["GamesPlayed"];
+				p.BreedableSpecimen.Data["AverageSuccessfulBlocks"] = p.BreedableSpecimen.Data["TotalSuccessfulBlocks"] / p.BreedableSpecimen.Data["GamesPlayed"];
 			}
 			
 			trace("Tournament complete. " + tournament.Games.length + " games played.");
@@ -54,9 +57,9 @@ package fighter.controller.callback
 			winner.BreedableSpecimen.Data["Wins"] = winner.BreedableSpecimen.Data["Wins"] + 1;
 			loser.BreedableSpecimen.Data["Losses"] += 1;
 			
-			winner.BreedableSpecimen.Data["TotalLife"] += winner.Health;
+			winner.BreedableSpecimen.Data["TotalDamageDealt"] += loser.HealthMax - loser.Health;
 			winner.BreedableSpecimen.Data["GamesPlayed"] += 1;
-			loser.BreedableSpecimen.Data["TotalLife"] += loser.Health;
+			loser.BreedableSpecimen.Data["TotalDamageDealt"] += winner.HealthMax - winner.Health;
 			loser.BreedableSpecimen.Data["GamesPlayed"] += 1;
 			
 			var nextPlayer : Player = tournament.NextPlayer;

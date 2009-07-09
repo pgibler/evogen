@@ -37,7 +37,7 @@ package org.evogen.entity
 				breedables.push(breedable);
 				if(fitness)
 				{
-					fitnesses[breedables.length-1] = fitness;
+					fitnesses.push( fitness );
 				}
 			}
 			else
@@ -67,6 +67,7 @@ package org.evogen.entity
 					else if(sortedBreedables[j] == null)
 					{
 						sortedBreedables[j] = breedables[i];
+						break;
 					}
 				}
 			});
@@ -76,8 +77,9 @@ package org.evogen.entity
 		
 		public function IntegratePopulation(population:Population):Population
 		{
-			this.breedables.concat(population.Breedables);
-			this.fitnesses.concat(population.Fitnesses);
+			this.breedables = this.breedables.concat(population.Breedables);
+			this.fitnesses = this.fitnesses.concat(population.Fitnesses);
+			SortByFitness();
 			return this;
 		}
 		
