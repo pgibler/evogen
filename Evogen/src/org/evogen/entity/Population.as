@@ -87,18 +87,22 @@ package org.evogen.entity
 		
 		public function IntegratePopulation(population:Population):Population
 		{
-			population.breedables.forEach(function(b:Breedable, i:int, v:Vector.<Breedable>):void
+			var breedablesLength : int = this.breedables.length;
+			if(breedablesLength > 0)
 			{
-				for(var j : int = 0; j < this.breedables.length; j++)
+				population.breedables.forEach(function(b:Breedable, i:int, v:Vector.<Breedable>):void
 				{
-					if(this.breedables[j].BreedableSpecimen.SpecimenChromosome.Equals(b.BreedableSpecimen.SpecimenChromosome))
+					for(var j : int = 0; j < breedablesLength; j++)
 					{
-						this.breedables.splice(j, 1);
-						this.fitnesses.splice(j, 1);
-						break;
+						if(this.breedables[j].BreedableSpecimen.SpecimenChromosome.Equals(b.BreedableSpecimen.SpecimenChromosome))
+						{
+							this.breedables.splice(j, 1);
+							this.fitnesses.splice(j, 1);
+							break;
+						}
 					}
-				}
-			});
+				});
+			}
 			
 			this.breedables = this.breedables.concat(population.breedables);
 			this.fitnesses = this.fitnesses.concat(population.fitnesses);
