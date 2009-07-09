@@ -26,6 +26,8 @@ package org.evogen.entity
 		public function AddPopulation(population:Population, fitness:Number):PopulationPool
 		{
 			topPopulation.IntegratePopulation(population);
+			if(topPopulation.Breedables.length > population.Breedables.length)
+				topPopulation.Truncate(population.Breedables.length);
 			
 			if(populations.length < maxPopulations)
 			{

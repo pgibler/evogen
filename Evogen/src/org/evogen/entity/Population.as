@@ -30,15 +30,12 @@ package org.evogen.entity
 			fitnesses = new Vector.<Number>();
 		}
 		
-		public function AddBreedable(breedable:Breedable, fitness:Number=NaN):Population
+		public function AddBreedable(breedable:Breedable, fitness:Number):Population
 		{
 			if(breedables.indexOf(breedable) == -1)
 			{
 				breedables.push(breedable);
-				if(fitness)
-				{
-					fitnesses.push( fitness );
-				}
+				fitnesses.push( fitness );
 			}
 			else
 			{
@@ -51,7 +48,7 @@ package org.evogen.entity
 		{
 			var sortedFitnesses : Vector.<Number> = fitnesses.sort(function(n1:Number, n2:Number):Number
 			{
-				return n1 - n2;
+				return n2 - n1;
 			});
 			var sortedBreedables : Vector.<Breedable> = new Vector.<Breedable>(breedables.length);
 			breedables.forEach(function(spec:Specimen, index:int, v:Vector.<Breedable>):void
@@ -85,8 +82,8 @@ package org.evogen.entity
 		
 		public function Truncate(cutoffPoint:int):Population
 		{
-			breedables.splice(cutoffPoint, breedables.length);
-			fitnesses.splice(cutoffPoint, fitnesses.length);
+			breedables.splice(cutoffPoint, breedables.length-cutoffPoint);
+			fitnesses.splice(cutoffPoint, fitnesses.length-cutoffPoint);
 			return this;
 		}
 		
