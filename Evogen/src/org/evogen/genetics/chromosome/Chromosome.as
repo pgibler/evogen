@@ -88,6 +88,11 @@
 			return traits[ traitNames.indexOf(traitStr) ];
 		}
 		
+		public function Equals(c:Chromosome):Boolean
+		{
+			return c.ToDNA() == this.ToDNA();
+		}
+		
 		public function Copy():Chromosome
 		{
 			var c : Chromosome = new Chromosome(this.template);
