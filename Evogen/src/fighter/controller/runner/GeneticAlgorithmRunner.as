@@ -136,12 +136,8 @@ package fighter.controller.runner
 				{
 					this.gameSettings.DisplayContainer.removeEventListener(Event.ENTER_FRAME, Update);
 				}
-				var pop : Population = new Population();
-				tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
-				{
-					pop.AddBreedable(player.BreedableSpecimen);
-				});
-				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, pop.Specimens);
+				var pop : Population = populationPool.TopPopulation;
+				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, pop);
 				this.dispatchEvent(ev);
 			}
 			else if(tournament == null)

@@ -77,7 +77,7 @@ package
 		
 		private function gaComplete(event:GeneticAlgorithmEvent):void
 		{
-			var specimens : Vector.<Specimen> = event.Specimens;
+			var specimens : Vector.<Specimen> = event.TopPopulation.Specimens;
 			
 			trace("Most fit specimens are:");
 			specimens.forEach(function(spec:Specimen, i:int, vec:Vector.<Specimen>):void
