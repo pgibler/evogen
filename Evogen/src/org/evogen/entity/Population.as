@@ -1,8 +1,5 @@
 package org.evogen.entity
 {
-	
-	
-	
 
 	public class Population
 	{
