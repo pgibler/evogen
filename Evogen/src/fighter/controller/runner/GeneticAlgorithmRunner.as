@@ -141,7 +141,7 @@ package fighter.controller.runner
 				{
 					pop.AddBreedable(player.BreedableSpecimen);
 				});
-				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, pop);
+				var ev : GeneticAlgorithmEvent = new GeneticAlgorithmEvent(GeneticAlgorithmEvent.COMPLETE, pop.Specimens);
 				this.dispatchEvent(ev);
 			}
 			else if(tournament == null)
@@ -157,9 +157,12 @@ package fighter.controller.runner
 					var totalCharacterFitness : Number = 0;
 					var populationSize : Number = tournament.Players.length;
 					var evaluate : Function = breederSettings.Evaluator.EvaluateFitness;
+					var population : Population = new Population();
 					tournament.Players.forEach(function(player:Player, index:int, vec:Vector.<Player>):void
 					{
-						totalCharacterFitness += evaluate(player.BreedableSpecimen);
+						var fitness : Number = evaluate(player.BreedableSpecimen);
+						totalCharacterFitness += fitness;
+						population.AddBreedable(player.BreedableSpecimen, fitness);
 					});
 					
 					var averageCharacterFitness : Number = totalCharacterFitness/populationSize;
@@ -169,12 +172,6 @@ package fighter.controller.runner
 					
 					avgPopFitnessGraph.Update();
 					avgTopPlayerFitnessGraph.Update();
-					
-					var population : Population = new Population();
-					tournament.Players.forEach(function(p:Player, i:int, v:Vector.<Player>):void
-					{
-						population.AddBreedable(p.BreedableSpecimen);
-					});
 					
 					populationPool.AddPopulation(population, averageCharacterFitness);
 					
@@ -265,7 +262,7 @@ package fighter.controller.runner
 			btn.y = 500;
 			
 			avgPopFitnessGraph = new Graph("Avg Pop Fitness", averageTournamentPopulationFitnesses, 150, 75, 8);
-			avgTopPlayerFitnessGraph = new Graph("Avg Top Player Fitness", averageTopPlayerFitnesses, 150, 75, 8);
+			avgTopPlayerFitnessGraph = new Graph("Top Player Fitnesses", averageTopPlayerFitnesses, 150, 75, 8);
 			interfaceContainer.addChild(avgPopFitnessGraph);
 			interfaceContainer.addChild(avgTopPlayerFitnessGraph);
 			avgPopFitnessGraph.x = 300;

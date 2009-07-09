@@ -12,7 +12,7 @@ package org.evogen.entity
 		
 		public function get TopPopulation():Population
 		{
-			return populations[0];
+			return this.topPopulation;
 		}
 		
 		public function PopulationPool(maxPopulations:int=5)
@@ -20,10 +20,13 @@ package org.evogen.entity
 			this.maxPopulations = maxPopulations
 			this.populations = new Vector.<Population>();
 			this.populationScores = new Vector.<Number>();
+			this.topPopulation = new Population();
 		}
 		
 		public function AddPopulation(population:Population, fitness:Number):PopulationPool
 		{
+			topPopulation;
+			
 			if(populations.length < maxPopulations)
 			{
 				populations.unshift(population);
@@ -58,6 +61,7 @@ package org.evogen.entity
 		}
 		
 		private var maxPopulations : int;
+		private var topPopulation : Population;
 		private var populationScores : Vector.<Number>;
 		private var populations : Vector.<Population>;
 	}
