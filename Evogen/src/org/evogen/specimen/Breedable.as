@@ -1,4 +1,4 @@
-package org.evogen.entity
+package org.evogen.specimen
 {
 	/**
 	 * Used by the Breeder to extract breedable specimens

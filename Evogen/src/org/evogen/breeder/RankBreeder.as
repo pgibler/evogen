@@ -1,7 +1,7 @@
 package org.evogen.breeder
 {
-	import org.evogen.entity.PopulationPool;
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.PopulationPool;
+	import org.evogen.specimen.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	
 	public class RankBreeder implements Breeder

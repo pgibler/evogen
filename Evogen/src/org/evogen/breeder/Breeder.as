@@ -1,6 +1,6 @@
 ﻿package org.evogen.breeder
 {
-	import org.evogen.entity.PopulationPool;
+	import org.evogen.specimen.PopulationPool;
 	import org.evogen.genetics.chromosome.Chromosome;
 	
 

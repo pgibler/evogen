@@ -2,7 +2,7 @@ package fighter.event
 {
 	import flash.events.Event;
 	
-	import org.evogen.entity.Population;
+	import org.evogen.specimen.Population;
 	
 	public class GeneticAlgorithmEvent extends Event
 	{

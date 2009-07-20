@@ -1,6 +1,6 @@
 package org.evogen.breeder
 {
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.Specimen;
 
 	public interface SpecimenEvaluator
 	{

@@ -12,8 +12,8 @@
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	
-	import org.evogen.entity.Breedable;
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.Breedable;
+	import org.evogen.specimen.Specimen;
 	
 	/**
 	 * ...

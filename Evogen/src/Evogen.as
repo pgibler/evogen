@@ -21,9 +21,9 @@ package
 	import flash.utils.getTimer;
 	
 	import org.evogen.breeder.RankBreeder;
-	import org.evogen.entity.Population;
-	import org.evogen.entity.PopulationPool;
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.Population;
+	import org.evogen.specimen.PopulationPool;
+	import org.evogen.specimen.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.evogen.genetics.chromosome.ChromosomeTemplate;
 	import org.evogen.genetics.trait.*;
@@ -45,8 +45,8 @@ package
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			testGame();
-			//testGA();
+			//testGame();
+			testGA();
 			//testPopulationPool();
 		}
 		

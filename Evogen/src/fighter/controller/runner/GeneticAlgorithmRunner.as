@@ -23,9 +23,9 @@ package fighter.controller.runner
 	import flash.text.TextField;
 	import flash.utils.Timer;
 	
-	import org.evogen.entity.Population;
-	import org.evogen.entity.PopulationPool;
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.Population;
+	import org.evogen.specimen.PopulationPool;
+	import org.evogen.specimen.Specimen;
 	import org.evogen.genetics.chromosome.Chromosome;
 	import org.gibler.util.Graph;
 	

@@ -3,7 +3,7 @@ package fighter.controller.breeder
 	import flash.utils.Dictionary;
 	
 	import org.evogen.breeder.SpecimenEvaluator;
-	import org.evogen.entity.Specimen;
+	import org.evogen.specimen.Specimen;
 	
 	public class FighterSpecimenEvaluator implements SpecimenEvaluator
 	{		
