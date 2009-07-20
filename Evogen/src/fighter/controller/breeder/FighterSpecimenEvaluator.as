@@ -10,7 +10,7 @@ package fighter.controller.breeder
 		public function EvaluateFitness(specimen:Specimen):Number
 		{
 			var d : Dictionary = specimen.BreedableSpecimen.Data;
-			return d["Wins"] * 100 + d["AverageDamageDealt"] * 1 + d["AverageSuccessfulBlocks"] * 10;
+			return d["Wins"] * 20 + d["AverageDamageDealt"] * 20 + d["AverageSuccessfulBlocks"] * 10;
 		}
 		
 		public function SortSpecimens(specimens:Vector.<Specimen>):Vector.<Specimen>

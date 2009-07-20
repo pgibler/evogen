@@ -1,4 +1,4 @@
-﻿package org.evogen.genetics.chromosome
+package org.evogen.genetics.chromosome
 {
 	import org.evogen.genetics.trait.Trait;
 	import org.evogen.util.Nameable;
@@ -41,8 +41,9 @@
 		 */
 		public function Chromosome(template:ChromosomeTemplate) 
 		{
-			traits = new Vector.<Trait>();
-			traitNames = new Vector.<String>();
+			this.traits = new Vector.<Trait>();
+			this.traitNames = new Vector.<String>();
+			this.template = template;
 		}
 		
 		/**
