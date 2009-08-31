@@ -8,7 +8,7 @@ package fighter.controller.callback
 	
 	import flash.events.EventDispatcher;
 	
-	public class TournamentCallbackImpl extends EventDispatcher implements TournamentCallback
+	public class TopPlayerVsNextTournamentCallback extends EventDispatcher implements TournamentCallback
 	{
 		
 		public function OnTournamentStart(tournament:Tournament):void
@@ -34,7 +34,7 @@ package fighter.controller.callback
 				p.BreedableSpecimen.Data["AverageSuccessfulBlocks"] = p.BreedableSpecimen.Data["TotalSuccessfulBlocks"] / p.BreedableSpecimen.Data["GamesPlayed"];
 			}
 			
-			trace("Tournament complete. " + tournament.Games.length + " games played.");
+			//trace("Tournament complete. " + tournament.Games.length + " games played.");
 		}
 		
 		public function OnTournamentUpdate(tournament:Tournament, game:Game):void

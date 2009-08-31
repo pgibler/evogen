@@ -5,7 +5,6 @@
 	import fighter.view.GameInterface;
 	
 	import flash.geom.Point;
-	import flash.utils.getTimer;
 	
 	/**
 	 * ...
@@ -62,7 +61,6 @@
 		
 		public function OnGameStart(game:Game):void
 		{
-			runTime = getTimer();
 			
 			var startPos1 : Point = game.StartingPositions[0];
 			var startPos2 : Point = game.StartingPositions[1];
@@ -118,14 +116,10 @@
 			game.DisplayContainer.removeChild(game.GameLevel.Ground);
 			game.DisplayContainer.removeChild(game.Player1.DisplayContainer);
 			game.DisplayContainer.removeChild(game.Player2.DisplayContainer);
-			
-			runTime = getTimer() - runTime;
-			trace(runTime);
 		}
 		
 		private var gameOnScreen : Boolean = false;
 		private var gi : GameInterface;
-		private var runTime : int;
 		
 	}
 	

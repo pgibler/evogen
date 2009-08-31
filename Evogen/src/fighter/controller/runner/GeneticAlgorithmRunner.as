@@ -1,7 +1,7 @@
 package fighter.controller.runner
 {
 	import fighter.controller.callback.TournamentCallback;
-	import fighter.controller.callback.TournamentCallbackImpl;
+	import fighter.controller.callback.TopPlayerVsNextTournamentCallback;
 	import fighter.controller.player.PlayerController;
 	import fighter.controller.player.production.ComputerProductionTemplate;
 	import fighter.controller.player.production.Production;
@@ -147,7 +147,7 @@ package fighter.controller.runner
 			}
 			else if(tournament.IsComplete)
 			{
-				if(currentGeneration < breederSettings.Generations)
+				if(currentGeneration <= breederSettings.Generations)
 				{
 					currentGeneration++;
 					var totalCharacterFitness : Number = 0;
@@ -165,6 +165,8 @@ package fighter.controller.runner
 					var topCharacterFitness : Number = evaluate(tournament.TopPlayer.BreedableSpecimen);
 					averageTopPlayerFitnesses.push(topCharacterFitness);
 					averageTournamentPopulationFitnesses.push(averageCharacterFitness);
+					
+					trace(topCharacterFitness + ","+ averageCharacterFitness);
 					
 					avgPopFitnessGraph.Update();
 					avgTopPlayerFitnessGraph.Update();
@@ -192,10 +194,10 @@ package fighter.controller.runner
 		
 		private function StartTournament(players:Vector.<Player>):void
 		{
-			tourneyCallback = new TournamentCallbackImpl();			
+			tourneyCallback = new TopPlayerVsNextTournamentCallback();			
 			this.tournament = new Tournament(tourneyCallback , players, players[0], tournamentSettings, gameSettings);
 			tourneyCallback.OnTournamentStart( tournament );
-			trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0].BreedableSpecimen.SpecimenChromosome);
+			//trace("Running Tournament "+currentGeneration+" with population size " + players.length + " with top player " + players[0].BreedableSpecimen.SpecimenChromosome);
 		}
 		
 		private function SpawnNextGeneration():void
