@@ -16,4 +16,8 @@ Yes you can!
 
 ## How do I use this?
 
-It must be built it using the FlexSDK.
+To build this you must have the FlexSDK installed.
+
+## Development suggestions
+
+This project was built using [FlashDevelop](http://www.flashdevelop.org/). I highly recommend you use that to edit and build the source.
