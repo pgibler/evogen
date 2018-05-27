@@ -14,10 +14,10 @@ The fighters are valued based on a set of criteria including whether they win fi
 
 Yes you can!
 
-## How do I use this?
+## How do I build this?
 
 To build this you must have the FlexSDK installed.
 
-## Development suggestions
+## How do I use this?
 
-This project was built using [FlashDevelop](http://www.flashdevelop.org/). I highly recommend you use that to edit and build the source.
+After building the application, run the generated .swf or .exe. that Flex built. I recommend using [FlashDevelop](http://www.flashdevelop.org/) as you can just run the project from it and not mess with running the build commands.
